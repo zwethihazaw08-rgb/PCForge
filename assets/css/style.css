@@ -1,0 +1,652 @@
+/* Load after Bootstrap so these styles take priority. */
+.forge-save-btn {
+  --save-accent: #3b5bff;
+  --save-ease: cubic-bezier(.22,.61,.36,1);
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 170px;
+  height: 50px;
+  border-radius: 13px;
+  font: 600 14.5px var(--bs-body-font-family);
+  cursor: pointer;
+  background: transparent;
+  color: var(--bs-body-color);
+  border: 1px solid var(--forge-border);
+  text-decoration: none;
+  user-select: none;
+  transition: background .3s var(--save-ease), color .3s var(--save-ease), border-color .3s var(--save-ease), box-shadow .3s var(--save-ease);
+}
+html[data-theme="dark"] .forge-save-btn { --save-accent: #6d8cff; }
+.forge-save-btn:hover { color: var(--bs-body-color); border-color: var(--save-accent); }
+.forge-save-btn:focus-visible { outline: 2px solid var(--save-accent); outline-offset: 3px; }
+.forge-save-btn:disabled { cursor: wait; }
+.forge-save-label { grid-area: 1 / 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; transition: opacity .22s var(--save-ease); }
+.forge-save-label svg { width: 17px; height: 17px; }
+.forge-save-done { opacity: 0; }
+.forge-save-btn.is-saved { background: var(--save-accent); border-color: transparent; color: #fff; box-shadow: 0 12px 28px -14px color-mix(in srgb, var(--save-accent) 75%, transparent); }
+.forge-save-btn.is-saved .forge-save-idle { opacity: 0; }
+.forge-save-btn.is-saved .forge-save-done { opacity: 1; }
+.forge-save-btn.is-saved .forge-save-done svg { animation: forge-save-pop .42s var(--save-ease); }
+@keyframes forge-save-pop { 0% { transform: scale(.4); opacity: .3; } 55% { transform: scale(1.25); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .forge-save-btn, .forge-save-label { transition: none; }
+  .forge-save-btn.is-saved .forge-save-done svg { animation: none; }
+}
+
+:root {
+  --bs-body-font-family: Arial, Helvetica, sans-serif;
+  --bs-body-color: #202020;
+  --bs-body-bg: #ffffff;
+  --bs-border-color: #dedede;
+  --bs-link-color: #202020;
+  --bs-link-hover-color: #555555;
+  --bs-border-radius: 0.75rem;
+  --bs-border-radius-lg: 1rem;
+  --forge-muted: #606060;
+  --forge-surface: #f5f5f5;
+  --forge-surface-raised: #ffffff;
+  --forge-border: #dedede;
+  --forge-focus: #202020;
+  --forge-hero-grid: rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bs-body-color: #f1f1f1;
+  --bs-body-bg: #121212;
+  --bs-border-color: #3a3a3a;
+  --bs-link-color: #f1f1f1;
+  --bs-link-hover-color: #ffffff;
+  --forge-muted: #a9a9a9;
+  --forge-surface: #1d1d1d;
+  --forge-surface-raised: #202020;
+  --forge-border: #3a3a3a;
+  --forge-focus: #ffffff;
+  --forge-hero-grid: rgba(255, 255, 255, 0.12);
+}
+
+body {
+  line-height: 1.6;
+  background-color: var(--bs-body-bg) !important;
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] body.bg-white,
+html[data-theme="dark"] .bg-white {
+  background-color: var(--bs-body-bg) !important;
+}
+
+html[data-theme="dark"] .bg-light {
+  background-color: var(--forge-surface) !important;
+  color: var(--bs-body-color) !important;
+}
+
+html[data-theme="dark"] .text-dark,
+html[data-theme="dark"] .text-body {
+  color: var(--bs-body-color) !important;
+}
+
+html[data-theme="dark"] .text-secondary {
+  color: var(--forge-muted) !important;
+}
+
+html[data-theme="dark"] .border,
+html[data-theme="dark"] .border-top,
+html[data-theme="dark"] .border-bottom,
+html[data-theme="dark"] .border-start,
+html[data-theme="dark"] .border-end {
+  border-color: var(--forge-border) !important;
+}
+
+main {
+  flex: 1;
+  min-width: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 3px solid var(--forge-focus);
+  outline-offset: 3px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+}
+
+.navbar .nav-link {
+  color: var(--forge-muted);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #111111;
+}
+
+.navbar .nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+}
+
+.btn {
+  padding: 0.65rem 1.2rem;
+  font-weight: 600;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #171717;
+  --bs-btn-border-color: #171717;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #363636;
+  --bs-btn-hover-border-color: #363636;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #000000;
+  --bs-btn-active-border-color: #000000;
+  --bs-btn-disabled-bg: #555555;
+  --bs-btn-disabled-border-color: #555555;
+  --bs-btn-focus-shadow-rgb: 70, 70, 70;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: #555555;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15);
+}
+
+.form-check-input:checked {
+  background-color: #202020;
+  border-color: #202020;
+}
+
+.hero {
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  background-color: var(--forge-surface);
+}
+
+.hero h1 {
+  max-width: 16ch;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.hero p {
+  max-width: 58ch;
+  color: var(--forge-muted);
+}
+
+.section-padding {
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+}
+
+/* Product details share the catalog's content width but use a compact hero so
+   the image, purchase actions, and first specifications remain visible on a
+   typical desktop viewport. */
+.product-detail-page {
+  padding: clamp(1.5rem, 3vw, 2.75rem) 0 clamp(2rem, 4vw, 3.5rem);
+}
+
+.product-detail-hero {
+  row-gap: 1.5rem !important;
+}
+
+.product-detail-media {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.product-detail-image {
+  display: block;
+  width: 100%;
+  height: 360px;
+  max-height: 36vh;
+  min-height: 250px;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.product-detail-info h1 {
+  font-size: clamp(1.75rem, 2.8vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.product-detail-specs dl {
+  margin-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+  .product-detail-image {
+    height: auto;
+    max-height: none;
+    min-height: 0;
+  }
+}
+
+.product-card,
+.category-card,
+.build-summary {
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius-lg);
+  background-color: var(--forge-surface-raised);
+}
+
+.product-card,
+.category-card {
+  height: 100%;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.category-card {
+  display: block;
+  padding: 1.5rem;
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
+.product-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  padding: 1.5rem;
+  background-color: var(--forge-surface);
+  border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0;
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.build-summary {
+  padding: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.builder-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.builder-steps [aria-current="step"] {
+  color: #ffffff;
+  background-color: #202020;
+  border-color: #202020;
+}
+
+/* Status text must explain the result; color alone is not enough. */
+.compatibility-status {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.compatibility-status.compatible {
+  color: #285b3b;
+  background-color: #eff6f1;
+}
+
+.compatibility-status.incompatible {
+  color: #8c2929;
+  background-color: #fff2f2;
+}
+
+.compatibility-status.warning {
+  color: #705015;
+  background-color: #fff8e8;
+}
+
+.compatibility-status.unknown {
+  color: #555555;
+  background-color: #f3f3f3;
+}
+
+html[data-theme="dark"] .product-card,
+html[data-theme="dark"] .category-card,
+html[data-theme="dark"] .build-summary,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .dropdown-menu,
+html[data-theme="dark"] .list-group-item {
+  background-color: var(--forge-surface-raised);
+  color: var(--bs-body-color);
+  border-color: var(--forge-border);
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .form-check-input {
+  color: var(--bs-body-color);
+  background-color: #181818;
+  border-color: #555555;
+}
+
+html[data-theme="dark"] .form-control::placeholder {
+  color: #8d8d8d;
+}
+
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .form-select:focus,
+html[data-theme="dark"] .form-check-input:focus {
+  border-color: #bdbdbd;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme="dark"] .form-check-input:checked {
+  background-color: #f1f1f1;
+  border-color: #f1f1f1;
+}
+
+html[data-theme="dark"] .btn-outline-dark {
+  --bs-btn-color: #f1f1f1;
+  --bs-btn-border-color: #777777;
+  --bs-btn-hover-color: #171717;
+  --bs-btn-hover-bg: #f1f1f1;
+  --bs-btn-hover-border-color: #f1f1f1;
+  --bs-btn-active-color: #171717;
+  --bs-btn-active-bg: #f1f1f1;
+  --bs-btn-active-border-color: #f1f1f1;
+}
+
+html[data-theme="dark"] .btn-primary {
+  --bs-btn-color: #171717;
+  --bs-btn-bg: #f1f1f1;
+  --bs-btn-border-color: #f1f1f1;
+  --bs-btn-hover-color: #171717;
+  --bs-btn-hover-bg: #ffffff;
+  --bs-btn-hover-border-color: #ffffff;
+  --bs-btn-active-color: #171717;
+  --bs-btn-active-bg: #d8d8d8;
+  --bs-btn-active-border-color: #d8d8d8;
+  --bs-btn-disabled-color: #777777;
+  --bs-btn-disabled-bg: #3a3a3a;
+  --bs-btn-disabled-border-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+html[data-theme="dark"] .compatibility-status.compatible {
+  color: #9bd4aa;
+  background-color: #173321;
+}
+
+html[data-theme="dark"] .compatibility-status.incompatible {
+  color: #ffabab;
+  background-color: #3b1717;
+}
+
+html[data-theme="dark"] .compatibility-status.warning {
+  color: #f2cf87;
+  background-color: #3b2d12;
+}
+
+html[data-theme="dark"] .compatibility-status.unknown {
+  color: #c4c4c4;
+  background-color: #303030;
+}
+
+html[data-theme="dark"] hr {
+  border-color: var(--forge-border);
+  opacity: 1;
+}
+
+html[data-theme="dark"] .alert-secondary,
+html[data-theme="dark"] .alert-info {
+  color: #d9d9d9;
+  background-color: #292929;
+  border-color: #4b4b4b;
+}
+
+html[data-theme="dark"] .alert-warning {
+  color: #f2cf87;
+  background-color: #3b2d12;
+  border-color: #6d541d;
+}
+
+html[data-theme="dark"] .table {
+  --bs-table-color: var(--bs-body-color);
+  --bs-table-border-color: var(--forge-border);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .product-card:hover,
+  .category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.07);
+  }
+}
+
+/* Keep the summary in normal flow on small screens and short windows. */
+@media (min-width: 992px) and (min-height: 800px) {
+  .build-summary {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark theme overrides for the page-specific inline styles. */
+html[data-theme="dark"] .forge-nav {
+  background: rgba(29, 29, 29, 0.94);
+  border-color: var(--forge-border);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .forge-nav .navbar-brand,
+html[data-theme="dark"] .forge-nav .nav-link,
+html[data-theme="dark"] .forge-nav .nav-account-toggle {
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .forge-nav .nav-link:hover,
+html[data-theme="dark"] .forge-nav .nav-link:focus-visible,
+html[data-theme="dark"] .forge-nav .nav-account-toggle:hover,
+html[data-theme="dark"] .forge-nav .nav-account-toggle:focus-visible {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .forge-nav-indicator {
+  background: transparent;
+}
+
+html[data-theme="dark"] .forge-nav .navbar-toggler {
+  border-color: #555555;
+}
+
+html[data-theme="dark"] .forge-nav .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .builder-product,
+html[data-theme="dark"] .builder-hint,
+html[data-theme="dark"] .compare-choice-content,
+html[data-theme="dark"] .compare-image,
+html[data-theme="dark"] .product-image {
+  background-color: var(--forge-surface) !important;
+  color: var(--bs-body-color);
+}
+
+html[data-theme="dark"] .build-purpose p {
+  color: var(--forge-muted) !important;
+}
+
+html[data-theme="dark"] .build-purpose {
+  background-color: transparent;
+  border-color: var(--forge-border) !important;
+}
+
+html[data-theme="dark"] .build-purpose-icon {
+  background: #303030 !important;
+  border-color: #5a5a5a !important;
+  color: #f1f1f1 !important;
+}
+
+html[data-theme="dark"] .builder-product:hover {
+  background-color: #292929 !important;
+}
+
+html[data-theme="dark"] .builder-catalog {
+  background-color: var(--forge-surface-raised) !important;
+  border-color: var(--forge-border) !important;
+}
+
+html[data-theme="dark"] .builder-product-list > div + div {
+  border-color: var(--forge-border) !important;
+}
+
+html[data-theme="dark"] .builder-summary-toggle {
+  border-color: #f1f1f1 !important;
+  background: #f1f1f1 !important;
+  color: #171717 !important;
+}
+
+html[data-theme="dark"] .builder-product.is-selected {
+  background-color: #303030 !important;
+  box-shadow: inset 3px 0 #f1f1f1;
+}
+
+html[data-theme="dark"] .builder-product-media,
+html[data-theme="dark"] .builder-product-media img {
+  background-color: #303030 !important;
+}
+
+html[data-theme="dark"] .builder-image-placeholder,
+html[data-theme="dark"] .builder-quick-specs,
+html[data-theme="dark"] .builder-details-button,
+html[data-theme="dark"] .compare-mobile-name,
+html[data-theme="dark"] .compare-image-fallback {
+  color: var(--forge-muted) !important;
+}
+
+html[data-theme="dark"] .builder-issue-tooltip {
+  --bs-tooltip-bg: #f1f1f1;
+  --bs-tooltip-color: #171717;
+}
+
+html[data-theme="dark"] .compare-table .compare-different > * {
+  background: #303030 !important;
+}
+
+html[data-theme="dark"] .compare-choice input {
+  accent-color: #f1f1f1;
+}
+
+html[data-theme="dark"]
+  .compare-choice
+  input:checked
+  + .compare-choice-content {
+  border-color: #f1f1f1;
+  box-shadow: inset 0 0 0 1px #f1f1f1;
+}
+
+html[data-theme="dark"] .forge-footer {
+  background: var(--forge-surface-raised) !important;
+  color: var(--bs-body-color) !important;
+  border-color: var(--forge-border) !important;
+}
+
+html[data-theme="dark"] .forge-footer-logo,
+html[data-theme="dark"] .forge-footer-list a,
+html[data-theme="dark"] .forge-footer-top-link {
+  color: #f1f1f1 !important;
+}
+
+html[data-theme="dark"] .forge-footer-description,
+html[data-theme="dark"] .forge-footer-bottom,
+html[data-theme="dark"] .forge-footer-list a:hover,
+html[data-theme="dark"] .forge-footer-top-link:hover {
+  color: var(--forge-muted) !important;
+}
+
+html[data-theme="dark"] .forge-footer-bottom {
+  border-color: var(--forge-border) !important;
+}
+
+html[data-theme="dark"] .forge-footer-note {
+  background: #303030 !important;
+  color: #d7d7d7 !important;
+}
+
+html[data-theme="dark"] .component-carousel-card {
+  background: var(--forge-surface-raised) !important;
+  border-color: var(--forge-border) !important;
+  color: var(--bs-body-color) !important;
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.9);
+}
+
+html[data-theme="dark"] .component-carousel-media {
+  background: #2a2a2a !important;
+}
+
+html[data-theme="dark"] .component-carousel-category,
+html[data-theme="dark"] .component-carousel-brand,
+html[data-theme="dark"] .component-carousel-placeholder {
+  color: var(--forge-muted) !important;
+}
+
+html[data-theme="dark"] .component-carousel-control {
+  background: rgba(35, 35, 35, 0.92) !important;
+  border-color: #5a5a5a !important;
+  color: #f1f1f1 !important;
+}
+
+html[data-theme="dark"] .component-carousel-control:hover,
+html[data-theme="dark"] .component-carousel-control:focus-visible {
+  background: #3a3a3a !important;
+}
+
+html[data-theme="dark"] .component-carousel-dot {
+  background: #646464;
+}
+
+html[data-theme="dark"] .component-carousel-dot[aria-current="true"] {
+  background: #f1f1f1;
+}
+
+/* Keep the transparent black logo visible on dark surfaces. */
+html[data-theme="dark"] .forge-nav-logo-image,
+html[data-theme="dark"] .forge-footer-logo-image {
+  filter: invert(1);
+}

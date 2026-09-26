@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration of desktop memory</title>
+  <desc id="desc">A memory module with chips and connector pins.</desc>
+  <g fill="none" stroke="#202020" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="115" y="185" width="570" height="230" rx="20" fill="#e8e8e8" stroke-width="12"/>
+    <rect x="155" y="220" width="490" height="130" rx="12" fill="#303030" stroke-width="8"/>
+    <g fill="#bdbdbd" stroke-width="5">
+      <rect x="190" y="250" width="62" height="70" rx="5"/>
+      <rect x="275" y="250" width="62" height="70" rx="5"/>
+      <rect x="360" y="250" width="62" height="70" rx="5"/>
+      <rect x="445" y="250" width="62" height="70" rx="5"/>
+      <rect x="530" y="250" width="62" height="70" rx="5"/>
+    </g>
+    <path d="M170 415v58M205 415v58M240 415v58M275 415v58M310 415v58M345 415v58M380 415v58M415 415v58M450 415v58M485 415v58M520 415v58M555 415v58M590 415v58M625 415v58" stroke-width="9"/>
+    <path d="M140 185v-45h140M660 185v-45H520" stroke-width="10"/>
+  </g>
+</svg>

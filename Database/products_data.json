@@ -1,0 +1,4331 @@
+{
+  "version": 1,
+  "currency": "USD",
+  "sources": [
+    {
+      "path": "ProductsData/CPU/CPU.xlsx",
+      "sha256": "5200b88014fda2a55e8d0b3f1e83725d0d4f94f679aa0c4efe0f7701595cc6da",
+      "sheet": "High-End Flagship CPUs",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Video_Card/GPU.xlsx",
+      "sha256": "47676e83593fc45c2c71814a789142b554827a067bb428930b0fca9e5eda55c4",
+      "sheet": "High-End Flagship GPUs",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Motherboard/Motherboard.xlsx",
+      "sha256": "8525d8c72184868c2991fa22edd8118b20badfb11b9803d279a2021b6fa8e188",
+      "sheet": "High-End Motherboards",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Memory/RAM.xlsx",
+      "sha256": "27010a3a3e3334bd4fc5dd3feae79fb2bfd0b2470ff27a8e51129c957013e321",
+      "sheet": "High-End RAM Kits",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Storage/ROM.xlsx",
+      "sha256": "2b8143c0cd2769e76beffcc9daddd9d23bfbb031aa43a0f7d4581bc9aff4977e",
+      "sheet": "High-End Storage Solutions",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Power_Supply/PSU.xlsx",
+      "sha256": "a2550226826f252a62b811e0a66f7544bd3461ce97d5ab45156d57b346d1a5cc",
+      "sheet": "High-End Power Supplies",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Case/Case.xlsx",
+      "sha256": "cc3e8276648f2b80ddd3b914e242ce6441cfd36bd31219c110ab1d303bcd0928",
+      "sheet": "High-End Computer Cases",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "sha256": "2665e5eb34a179acbbb430960a6a54a74e3e0f9c08c31da2f139732d2cfdd1ce",
+      "sheet": "High-End CPU Coolers",
+      "count": 15
+    },
+    {
+      "path": "ProductsData/Monitor/Monitor.xlsx",
+      "sha256": "05d34d6a12aa966d74b90fba7d5bd48435b525301f253af85707b37e435adfce",
+      "sheet": "High-End Gaming Monitors",
+      "count": 15
+    }
+  ],
+  "warnings": [],
+  "products": [
+    {
+      "category": "cpu",
+      "source_id": 1,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "CPU Name": "Intel Core i9-14900KS",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "24 (8P + 16E) / 32 Threads",
+        "Perf Core Clock": "3.2 GHz (6.2 GHz Boost)",
+        "Microarchitecture": "Raptor Lake Refresh",
+        "TDP": "150W (253W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 689.99
+      },
+      "values": {
+        "name": "Intel Core i9-14900KS",
+        "brand": "Intel",
+        "price": "689.99",
+        "image_url": "productsdata-cpu-1.jpg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 24 (8P + 16E) / 32 Threads\nPerf Core Clock: 3.2 GHz (6.2 GHz Boost)\nMicroarchitecture: Raptor Lake Refresh\nTDP: 150W (253W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i9-14900KS",
+        "socket": "LGA1700",
+        "cores": "24 (8P + 16E)",
+        "threads": "32",
+        "base_clock": "3.2 GHz",
+        "tdp": 150
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i9-14900KS.jpg",
+      "image_sha256": "46d0192c0bb572bda72d5686813c63851d989156c58c706d6ec40da774833d14",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 2,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "CPU Name": "AMD Ryzen 9 7950X3D",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "16 Cores / 32 Threads",
+        "Perf Core Clock": "4.2 GHz (5.7 GHz Boost)",
+        "Microarchitecture": "Zen 4 (3D V-Cache)",
+        "TDP": "120W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 649
+      },
+      "values": {
+        "name": "AMD Ryzen 9 7950X3D",
+        "brand": "AMD",
+        "price": "649.00",
+        "image_url": "productsdata-cpu-2.jpg",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 16 Cores / 32 Threads\nPerf Core Clock: 4.2 GHz (5.7 GHz Boost)\nMicroarchitecture: Zen 4 (3D V-Cache)\nTDP: 120W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 9 7950X3D",
+        "socket": "AM5",
+        "cores": "16 Cores",
+        "threads": "32",
+        "base_clock": "4.2 GHz",
+        "tdp": 120
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 9 7950X3D.jpg",
+      "image_sha256": "16c2c80aa0318ea4f59e5fe53965eeb8e3f2978c97e671d0d9dc63e42aa1c199",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 3,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "CPU Name": "Intel Core i9-14900K",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "24 (8P + 16E) / 32 Threads",
+        "Perf Core Clock": "3.2 GHz (6.0 GHz Boost)",
+        "Microarchitecture": "Raptor Lake Refresh",
+        "TDP": "125W (253W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 549.99
+      },
+      "values": {
+        "name": "Intel Core i9-14900K",
+        "brand": "Intel",
+        "price": "549.99",
+        "image_url": "productsdata-cpu-3.jpg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 24 (8P + 16E) / 32 Threads\nPerf Core Clock: 3.2 GHz (6.0 GHz Boost)\nMicroarchitecture: Raptor Lake Refresh\nTDP: 125W (253W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i9-14900K",
+        "socket": "LGA1700",
+        "cores": "24 (8P + 16E)",
+        "threads": "32",
+        "base_clock": "3.2 GHz",
+        "tdp": 125
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i9-14900K.jpg",
+      "image_sha256": "15003cc5f2351ccf82372508b2c23c140784b7983062ffa8d850dd1fe00fced0",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 4,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "CPU Name": "AMD Ryzen 9 7950X",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "16 Cores / 32 Threads",
+        "Perf Core Clock": "4.5 GHz (5.7 GHz Boost)",
+        "Microarchitecture": "Zen 4",
+        "TDP": "170W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 549
+      },
+      "values": {
+        "name": "AMD Ryzen 9 7950X",
+        "brand": "AMD",
+        "price": "549.00",
+        "image_url": "productsdata-cpu-4.jpg",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 16 Cores / 32 Threads\nPerf Core Clock: 4.5 GHz (5.7 GHz Boost)\nMicroarchitecture: Zen 4\nTDP: 170W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 9 7950X",
+        "socket": "AM5",
+        "cores": "16 Cores",
+        "threads": "32",
+        "base_clock": "4.5 GHz",
+        "tdp": 170
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 9 7950X.jpg",
+      "image_sha256": "66aeb36235fe443b9379a5cda54f9e47ce8964c042693bdb214352992dd8c341",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 5,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "CPU Name": "Intel Core i9-13900KS",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "24 (8P + 16E) / 32 Threads",
+        "Perf Core Clock": "3.2 GHz (6.0 GHz Boost)",
+        "Microarchitecture": "Raptor Lake",
+        "TDP": "150W (253W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 629.99
+      },
+      "values": {
+        "name": "Intel Core i9-13900KS",
+        "brand": "Intel",
+        "price": "629.99",
+        "image_url": "productsdata-cpu-5.jpg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 24 (8P + 16E) / 32 Threads\nPerf Core Clock: 3.2 GHz (6.0 GHz Boost)\nMicroarchitecture: Raptor Lake\nTDP: 150W (253W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i9-13900KS",
+        "socket": "LGA1700",
+        "cores": "24 (8P + 16E)",
+        "threads": "32",
+        "base_clock": "3.2 GHz",
+        "tdp": 150
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i9-13900KS.jpg",
+      "image_sha256": "1d6ad0298280292895e88ae1d977c48ce63e0c6ab380886ae97f55842dfb0fdc",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 6,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "CPU Name": "AMD Ryzen 7 7800X3D",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "8 Cores / 16 Threads",
+        "Perf Core Clock": "4.2 GHz (5.0 GHz Boost)",
+        "Microarchitecture": "Zen 4 (3D V-Cache)",
+        "TDP": "120W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 369
+      },
+      "values": {
+        "name": "AMD Ryzen 7 7800X3D",
+        "brand": "AMD",
+        "price": "369.00",
+        "image_url": "productsdata-cpu-6.jpg",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 8 Cores / 16 Threads\nPerf Core Clock: 4.2 GHz (5.0 GHz Boost)\nMicroarchitecture: Zen 4 (3D V-Cache)\nTDP: 120W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 7 7800X3D",
+        "socket": "AM5",
+        "cores": "8 Cores",
+        "threads": "16",
+        "base_clock": "4.2 GHz",
+        "tdp": 120
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 7 7800X3D.jpg",
+      "image_sha256": "f4d58f46348874ff6fd56ba7773cf588701fd2ab291cf544049c3cc9fe047990",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 7,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "CPU Name": "Intel Core i9-13900K",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "24 (8P + 16E) / 32 Threads",
+        "Perf Core Clock": "3.0 GHz (5.8 GHz Boost)",
+        "Microarchitecture": "Raptor Lake",
+        "TDP": "125W (253W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 489.99
+      },
+      "values": {
+        "name": "Intel Core i9-13900K",
+        "brand": "Intel",
+        "price": "489.99",
+        "image_url": "productsdata-cpu-7.png",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 24 (8P + 16E) / 32 Threads\nPerf Core Clock: 3.0 GHz (5.8 GHz Boost)\nMicroarchitecture: Raptor Lake\nTDP: 125W (253W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i9-13900K",
+        "socket": "LGA1700",
+        "cores": "24 (8P + 16E)",
+        "threads": "32",
+        "base_clock": "3.0 GHz",
+        "tdp": 125
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i9-13900K.png",
+      "image_sha256": "7bd261e6cdcff4abd3e4aa3c2739e3a4bcd9796dbf4a68556d8b916fb5fbcdd4",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 8,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "CPU Name": "AMD Ryzen 9 7900X3D",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "12 Cores / 24 Threads",
+        "Perf Core Clock": "4.4 GHz (5.6 GHz Boost)",
+        "Microarchitecture": "Zen 4 (3D V-Cache)",
+        "TDP": "120W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 499
+      },
+      "values": {
+        "name": "AMD Ryzen 9 7900X3D",
+        "brand": "AMD",
+        "price": "499.00",
+        "image_url": "productsdata-cpu-8.jpg",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 12 Cores / 24 Threads\nPerf Core Clock: 4.4 GHz (5.6 GHz Boost)\nMicroarchitecture: Zen 4 (3D V-Cache)\nTDP: 120W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 9 7900X3D",
+        "socket": "AM5",
+        "cores": "12 Cores",
+        "threads": "24",
+        "base_clock": "4.4 GHz",
+        "tdp": 120
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 9 7900X3D.jpg",
+      "image_sha256": "ea70f9232e9c3980608a4047e41cc3f034a92e96b183ac0c6574e18d4edabd4a",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 9,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "CPU Name": "Intel Core i7-14700K",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "20 (8P + 12E) / 28 Threads",
+        "Perf Core Clock": "3.4 GHz (5.6 GHz Boost)",
+        "Microarchitecture": "Raptor Lake Refresh",
+        "TDP": "125W (253W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 389.99
+      },
+      "values": {
+        "name": "Intel Core i7-14700K",
+        "brand": "Intel",
+        "price": "389.99",
+        "image_url": "productsdata-cpu-9.jpg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 20 (8P + 12E) / 28 Threads\nPerf Core Clock: 3.4 GHz (5.6 GHz Boost)\nMicroarchitecture: Raptor Lake Refresh\nTDP: 125W (253W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i7-14700K",
+        "socket": "LGA1700",
+        "cores": "20 (8P + 12E)",
+        "threads": "28",
+        "base_clock": "3.4 GHz",
+        "tdp": 125
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i7-14700K.jpg",
+      "image_sha256": "4fde5477c06e4993f95f31c8cc1e2716dbe66770a510c4e0931e980357ee1d81",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 10,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "CPU Name": "AMD Ryzen 9 7900X",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "12 Cores / 24 Threads",
+        "Perf Core Clock": "4.7 GHz (5.6 GHz Boost)",
+        "Microarchitecture": "Zen 4",
+        "TDP": "170W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 389
+      },
+      "values": {
+        "name": "AMD Ryzen 9 7900X",
+        "brand": "AMD",
+        "price": "389.00",
+        "image_url": "productsdata-cpu-10.avif",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 12 Cores / 24 Threads\nPerf Core Clock: 4.7 GHz (5.6 GHz Boost)\nMicroarchitecture: Zen 4\nTDP: 170W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 9 7900X",
+        "socket": "AM5",
+        "cores": "12 Cores",
+        "threads": "24",
+        "base_clock": "4.7 GHz",
+        "tdp": 170
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 9 7900X.avif",
+      "image_sha256": "b01e1be44052210b7bb109f97bcf5e273b1df484c555c6047beb943c2cf25104",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 11,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "CPU Name": "Intel Core i9-14900KF",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "24 (8P + 16E) / 32 Threads",
+        "Perf Core Clock": "3.2 GHz (6.0 GHz Boost)",
+        "Microarchitecture": "Raptor Lake Refresh",
+        "TDP": "125W (253W Turbo)",
+        "Integrated Graphic Card": "None (Requires Discrete GPU)",
+        "Price (USD)": 529.99
+      },
+      "values": {
+        "name": "Intel Core i9-14900KF",
+        "brand": "Intel",
+        "price": "529.99",
+        "image_url": "productsdata-cpu-11.jpeg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 24 (8P + 16E) / 32 Threads\nPerf Core Clock: 3.2 GHz (6.0 GHz Boost)\nMicroarchitecture: Raptor Lake Refresh\nTDP: 125W (253W Turbo)\nIntegrated Graphic Card: None (Requires Discrete GPU)",
+        "short_name": "Intel Core i9-14900KF",
+        "socket": "LGA1700",
+        "cores": "24 (8P + 16E)",
+        "threads": "32",
+        "base_clock": "3.2 GHz",
+        "tdp": 125
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i9-14900KF.jpeg",
+      "image_sha256": "43dda86e1f1892a01eae131253cd13ba6ee07059627b25d5929588575f99fec7",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 12,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "CPU Name": "AMD Ryzen 9 7900",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "12 Cores / 24 Threads",
+        "Perf Core Clock": "3.7 GHz (5.4 GHz Boost)",
+        "Microarchitecture": "Zen 4",
+        "TDP": "65W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 369
+      },
+      "values": {
+        "name": "AMD Ryzen 9 7900",
+        "brand": "AMD",
+        "price": "369.00",
+        "image_url": "productsdata-cpu-12.jpg",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 12 Cores / 24 Threads\nPerf Core Clock: 3.7 GHz (5.4 GHz Boost)\nMicroarchitecture: Zen 4\nTDP: 65W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 9 7900",
+        "socket": "AM5",
+        "cores": "12 Cores",
+        "threads": "24",
+        "base_clock": "3.7 GHz",
+        "tdp": 65
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 9 7900.jpg",
+      "image_sha256": "049055da4e8fd1cc6ef883df6ea07337aea65be61a1e324b6274cc820ab1e40c",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 13,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "CPU Name": "Intel Core i7-13700K",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "16 (8P + 8E) / 24 Threads",
+        "Perf Core Clock": "3.4 GHz (5.4 GHz Boost)",
+        "Microarchitecture": "Raptor Lake",
+        "TDP": "125W (253W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 349.99
+      },
+      "values": {
+        "name": "Intel Core i7-13700K",
+        "brand": "Intel",
+        "price": "349.99",
+        "image_url": "productsdata-cpu-13.jpg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 16 (8P + 8E) / 24 Threads\nPerf Core Clock: 3.4 GHz (5.4 GHz Boost)\nMicroarchitecture: Raptor Lake\nTDP: 125W (253W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i7-13700K",
+        "socket": "LGA1700",
+        "cores": "16 (8P + 8E)",
+        "threads": "24",
+        "base_clock": "3.4 GHz",
+        "tdp": 125
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i7-13700K.jpg",
+      "image_sha256": "f49597ef1d3ccb36489d73d613f564f0c3ae1a053849a5b887c6a5e5de851199",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 14,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "CPU Name": "AMD Ryzen 7 7700X",
+        "Socket / Motherboard Support": "AM5",
+        "Core Count": "8 Cores / 16 Threads",
+        "Perf Core Clock": "4.5 GHz (5.4 GHz Boost)",
+        "Microarchitecture": "Zen 4",
+        "TDP": "105W",
+        "Integrated Graphic Card": "AMD Radeon Graphics (2 Cores)",
+        "Price (USD)": 289
+      },
+      "values": {
+        "name": "AMD Ryzen 7 7700X",
+        "brand": "AMD",
+        "price": "289.00",
+        "image_url": "productsdata-cpu-14.jpg",
+        "description": "Socket / Motherboard Support: AM5\nCore Count: 8 Cores / 16 Threads\nPerf Core Clock: 4.5 GHz (5.4 GHz Boost)\nMicroarchitecture: Zen 4\nTDP: 105W\nIntegrated Graphic Card: AMD Radeon Graphics (2 Cores)",
+        "short_name": "AMD Ryzen 7 7700X",
+        "socket": "AM5",
+        "cores": "8 Cores",
+        "threads": "16",
+        "base_clock": "4.5 GHz",
+        "tdp": 105
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/AMD Ryzen 7 7700X.jpg",
+      "image_sha256": "a15d66a7ac52b885a11be24ed9180a13a2a6ffae51c86eec4bb215f1b61be76e",
+      "support": []
+    },
+    {
+      "category": "cpu",
+      "source_id": 15,
+      "source_file": "ProductsData/CPU/CPU.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "CPU Name": "Intel Core i9-12900KS",
+        "Socket / Motherboard Support": "LGA 1700",
+        "Core Count": "16 (8P + 8E) / 24 Threads",
+        "Perf Core Clock": "3.4 GHz (5.5 GHz Boost)",
+        "Microarchitecture": "Alder Lake",
+        "TDP": "150W (241W Turbo)",
+        "Integrated Graphic Card": "Intel UHD Graphics 770",
+        "Price (USD)": 419.99
+      },
+      "values": {
+        "name": "Intel Core i9-12900KS",
+        "brand": "Intel",
+        "price": "419.99",
+        "image_url": "productsdata-cpu-15.jpg",
+        "description": "Socket / Motherboard Support: LGA 1700\nCore Count: 16 (8P + 8E) / 24 Threads\nPerf Core Clock: 3.4 GHz (5.5 GHz Boost)\nMicroarchitecture: Alder Lake\nTDP: 150W (241W Turbo)\nIntegrated Graphic Card: Intel UHD Graphics 770",
+        "short_name": "Intel Core i9-12900KS",
+        "socket": "LGA1700",
+        "cores": "16 (8P + 8E)",
+        "threads": "24",
+        "base_clock": "3.4 GHz",
+        "tdp": 150
+      },
+      "image_source": "ProductsData/CPU/CPU_IMG/Intel Core i9-12900KS.jpg",
+      "image_sha256": "734a7327a79c932d8808e7df71d6c21d3af8b7828f91605ccf9a95d353cb82b8",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 1,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "GPU Name": "NVIDIA GeForce RTX 5090 FE",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB202",
+        "VRAM Size & Type": "32 GB GDDR7",
+        "Memory Bus Width": "512-bit",
+        "Boost Core Clock": "2400 MHz",
+        "TDP / Power": "575W",
+        "Price (USD)": 1999
+      },
+      "values": {
+        "name": "NVIDIA GeForce RTX 5090 FE",
+        "brand": "NVIDIA",
+        "price": "1999.00",
+        "image_url": "productsdata-gpu-1.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB202\nVRAM Size & Type: 32 GB GDDR7\nMemory Bus Width: 512-bit\nBoost Core Clock: 2400 MHz\nTDP / Power: 575W",
+        "short_name": "NVIDIA GeForce RTX 5090 FE",
+        "vram": "32 GB GDDR7",
+        "boost_clock": "2400 MHz",
+        "tdp": 575,
+        "power_consumption": "575W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/NVIDIA GeForce RTX 5090 FE.png",
+      "image_sha256": "1136865b4d69ce197ba9499bd46922b62689f833ab7d2ce0d0b2cc312d202287",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 2,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "GPU Name": "ASUS ROG Strix RTX 5090 OC",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB202",
+        "VRAM Size & Type": "32 GB GDDR7",
+        "Memory Bus Width": "512-bit",
+        "Boost Core Clock": "2550 MHz",
+        "TDP / Power": "600W",
+        "Price (USD)": 2299.99
+      },
+      "values": {
+        "name": "ASUS ROG Strix RTX 5090 OC",
+        "brand": "ASUS",
+        "price": "2299.99",
+        "image_url": "productsdata-gpu-2.jpg",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB202\nVRAM Size & Type: 32 GB GDDR7\nMemory Bus Width: 512-bit\nBoost Core Clock: 2550 MHz\nTDP / Power: 600W",
+        "short_name": "ASUS ROG Strix RTX 5090 OC",
+        "vram": "32 GB GDDR7",
+        "boost_clock": "2550 MHz",
+        "tdp": 600,
+        "power_consumption": "600W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/ASUS ROG Strix RTX 5090 OC.jpg",
+      "image_sha256": "46d990a5b3f3520c463724b93cc8c5f7f835d356b082e0b26d823a81ce1e5382",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 3,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "GPU Name": "MSI GeForce RTX 5090 SUPRIM X",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB202",
+        "VRAM Size & Type": "32 GB GDDR7",
+        "Memory Bus Width": "512-bit",
+        "Boost Core Clock": "2535 MHz",
+        "TDP / Power": "600W",
+        "Price (USD)": 2199.99
+      },
+      "values": {
+        "name": "MSI GeForce RTX 5090 SUPRIM X",
+        "brand": "MSI",
+        "price": "2199.99",
+        "image_url": "productsdata-gpu-3.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB202\nVRAM Size & Type: 32 GB GDDR7\nMemory Bus Width: 512-bit\nBoost Core Clock: 2535 MHz\nTDP / Power: 600W",
+        "short_name": "MSI GeForce RTX 5090 SUPRIM X",
+        "vram": "32 GB GDDR7",
+        "boost_clock": "2535 MHz",
+        "tdp": 600,
+        "power_consumption": "600W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/MSI GeForce RTX 5090 SUPRIM X.png",
+      "image_sha256": "a313bc266f5e98b680c6403c3527b5f345ab3a134cc7bce7f0213d1342b75819",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 4,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "GPU Name": "GIGABYTE RTX 5090 AORUS Xtreme",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB202",
+        "VRAM Size & Type": "32 GB GDDR7",
+        "Memory Bus Width": "512-bit",
+        "Boost Core Clock": "2520 MHz",
+        "TDP / Power": "600W",
+        "Price (USD)": 2149.99
+      },
+      "values": {
+        "name": "GIGABYTE RTX 5090 AORUS Xtreme",
+        "brand": "GIGABYTE",
+        "price": "2149.99",
+        "image_url": "productsdata-gpu-4.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB202\nVRAM Size & Type: 32 GB GDDR7\nMemory Bus Width: 512-bit\nBoost Core Clock: 2520 MHz\nTDP / Power: 600W",
+        "short_name": "GIGABYTE RTX 5090 AORUS Xtreme",
+        "vram": "32 GB GDDR7",
+        "boost_clock": "2520 MHz",
+        "tdp": 600,
+        "power_consumption": "600W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/GIGABYTE RTX 5090 AORUS Xtreme.png",
+      "image_sha256": "99ccf1a4d3eb46524732f7a777a6184a84b4afdc4e1d3f339dadb5a6d9ff5676",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 5,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "GPU Name": "NVIDIA GeForce RTX 5080 FE",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB203",
+        "VRAM Size & Type": "16 GB GDDR7",
+        "Memory Bus Width": "256-bit",
+        "Boost Core Clock": "2610 MHz",
+        "TDP / Power": "400W",
+        "Price (USD)": 999
+      },
+      "values": {
+        "name": "NVIDIA GeForce RTX 5080 FE",
+        "brand": "NVIDIA",
+        "price": "999.00",
+        "image_url": "productsdata-gpu-5.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB203\nVRAM Size & Type: 16 GB GDDR7\nMemory Bus Width: 256-bit\nBoost Core Clock: 2610 MHz\nTDP / Power: 400W",
+        "short_name": "NVIDIA GeForce RTX 5080 FE",
+        "vram": "16 GB GDDR7",
+        "boost_clock": "2610 MHz",
+        "tdp": 400,
+        "power_consumption": "400W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/NVIDIA GeForce RTX 5080 FE.png",
+      "image_sha256": "9bcaf504d0298899cd1e31894533091a0803c276de5991a196f81d58d06569f1",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 6,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "GPU Name": "ASUS ROG Strix RTX 5080 OC",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB203",
+        "VRAM Size & Type": "16 GB GDDR7",
+        "Memory Bus Width": "256-bit",
+        "Boost Core Clock": "2730 MHz",
+        "TDP / Power": "430W",
+        "Price (USD)": 1199.99
+      },
+      "values": {
+        "name": "ASUS ROG Strix RTX 5080 OC",
+        "brand": "ASUS",
+        "price": "1199.99",
+        "image_url": "productsdata-gpu-6.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB203\nVRAM Size & Type: 16 GB GDDR7\nMemory Bus Width: 256-bit\nBoost Core Clock: 2730 MHz\nTDP / Power: 430W",
+        "short_name": "ASUS ROG Strix RTX 5080 OC",
+        "vram": "16 GB GDDR7",
+        "boost_clock": "2730 MHz",
+        "tdp": 430,
+        "power_consumption": "430W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/ASUS ROG Strix RTX 5080 OC.png",
+      "image_sha256": "f469816b8b1136a7b0ad8140caac075dc06f573529c6383c64c34ba1e3b4fab8",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 7,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "GPU Name": "MSI GeForce RTX 5080 SUPRIM X",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB203",
+        "VRAM Size & Type": "16 GB GDDR7",
+        "Memory Bus Width": "256-bit",
+        "Boost Core Clock": "2715 MHz",
+        "TDP / Power": "425W",
+        "Price (USD)": 1149.99
+      },
+      "values": {
+        "name": "MSI GeForce RTX 5080 SUPRIM X",
+        "brand": "MSI",
+        "price": "1149.99",
+        "image_url": "productsdata-gpu-7.jpg",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB203\nVRAM Size & Type: 16 GB GDDR7\nMemory Bus Width: 256-bit\nBoost Core Clock: 2715 MHz\nTDP / Power: 425W",
+        "short_name": "MSI GeForce RTX 5080 SUPRIM X",
+        "vram": "16 GB GDDR7",
+        "boost_clock": "2715 MHz",
+        "tdp": 425,
+        "power_consumption": "425W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/MSI GeForce RTX 5080 SUPRIM X.jpg",
+      "image_sha256": "197027caee3c1404b0c8cab40e3cad369a4bf1730e8ca13600d55a65a55c1d05",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 8,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "GPU Name": "NVIDIA GeForce RTX 4090 FE",
+        "GPU Chipset / Architecture": "NVIDIA Ada Lovelace AD102",
+        "VRAM Size & Type": "24 GB GDDR6X",
+        "Memory Bus Width": "384-bit",
+        "Boost Core Clock": "2520 MHz",
+        "TDP / Power": "450W",
+        "Price (USD)": 1599
+      },
+      "values": {
+        "name": "NVIDIA GeForce RTX 4090 FE",
+        "brand": "NVIDIA",
+        "price": "1599.00",
+        "image_url": "productsdata-gpu-8.jpg",
+        "description": "GPU Chipset / Architecture: NVIDIA Ada Lovelace AD102\nVRAM Size & Type: 24 GB GDDR6X\nMemory Bus Width: 384-bit\nBoost Core Clock: 2520 MHz\nTDP / Power: 450W",
+        "short_name": "NVIDIA GeForce RTX 4090 FE",
+        "vram": "24 GB GDDR6X",
+        "boost_clock": "2520 MHz",
+        "tdp": 450,
+        "power_consumption": "450W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/NVIDIA GeForce RTX 4090 FE.jpg",
+      "image_sha256": "b0dfd4c79b0d97f9d205699ec8e5dc5e74ea7d9a1d59b1ff1d2da479075ccde8",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 9,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "GPU Name": "ASUS ROG Strix RTX 4090 OC",
+        "GPU Chipset / Architecture": "NVIDIA Ada Lovelace AD102",
+        "VRAM Size & Type": "24 GB GDDR6X",
+        "Memory Bus Width": "384-bit",
+        "Boost Core Clock": "2640 MHz",
+        "TDP / Power": "500W",
+        "Price (USD)": 1999.99
+      },
+      "values": {
+        "name": "ASUS ROG Strix RTX 4090 OC",
+        "brand": "ASUS",
+        "price": "1999.99",
+        "image_url": "productsdata-gpu-9.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Ada Lovelace AD102\nVRAM Size & Type: 24 GB GDDR6X\nMemory Bus Width: 384-bit\nBoost Core Clock: 2640 MHz\nTDP / Power: 500W",
+        "short_name": "ASUS ROG Strix RTX 4090 OC",
+        "vram": "24 GB GDDR6X",
+        "boost_clock": "2640 MHz",
+        "tdp": 500,
+        "power_consumption": "500W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/ASUS ROG Strix RTX 4090 OC.png",
+      "image_sha256": "05135a1ac492373493437ebf50a5bc00d433a2f439f6dffd461a5e0a89c8ebe6",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 10,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "GPU Name": "MSI GeForce RTX 4090 SUPRIM Liquid X",
+        "GPU Chipset / Architecture": "NVIDIA Ada Lovelace AD102",
+        "VRAM Size & Type": "24 GB GDDR6X",
+        "Memory Bus Width": "384-bit",
+        "Boost Core Clock": "2640 MHz",
+        "TDP / Power": "480W",
+        "Price (USD)": 1749.99
+      },
+      "values": {
+        "name": "MSI GeForce RTX 4090 SUPRIM Liquid X",
+        "brand": "MSI",
+        "price": "1749.99",
+        "image_url": "productsdata-gpu-10.jpg",
+        "description": "GPU Chipset / Architecture: NVIDIA Ada Lovelace AD102\nVRAM Size & Type: 24 GB GDDR6X\nMemory Bus Width: 384-bit\nBoost Core Clock: 2640 MHz\nTDP / Power: 480W",
+        "short_name": "MSI GeForce RTX 4090 SUPRIM Liquid X",
+        "vram": "24 GB GDDR6X",
+        "boost_clock": "2640 MHz",
+        "tdp": 480,
+        "power_consumption": "480W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/MSI GeForce RTX 4090 SUPRIM Liquid X.jpg",
+      "image_sha256": "f358a9a82cd8a862659a4a213695dc110abd9188cea0c9464dc8c7adb643ee04",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 11,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "GPU Name": "AMD Radeon RX 7900 XTX",
+        "GPU Chipset / Architecture": "AMD RDNA 3 Navi 31",
+        "VRAM Size & Type": "24 GB GDDR6",
+        "Memory Bus Width": "384-bit",
+        "Boost Core Clock": "2500 MHz",
+        "TDP / Power": "355W",
+        "Price (USD)": 929.99
+      },
+      "values": {
+        "name": "AMD Radeon RX 7900 XTX",
+        "brand": "AMD",
+        "price": "929.99",
+        "image_url": "productsdata-gpu-11.png",
+        "description": "GPU Chipset / Architecture: AMD RDNA 3 Navi 31\nVRAM Size & Type: 24 GB GDDR6\nMemory Bus Width: 384-bit\nBoost Core Clock: 2500 MHz\nTDP / Power: 355W",
+        "short_name": "AMD Radeon RX 7900 XTX",
+        "vram": "24 GB GDDR6",
+        "boost_clock": "2500 MHz",
+        "tdp": 355,
+        "power_consumption": "355W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/AMD Radeon RX 7900 XTX.png",
+      "image_sha256": "b1327b402c66f11e8c7a05de191c9570697f9fd283d747225eba02655b766a03",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 12,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "GPU Name": "Sapphire NITRO+ RX 7900 XTX Vapor-X",
+        "GPU Chipset / Architecture": "AMD RDNA 3 Navi 31",
+        "VRAM Size & Type": "24 GB GDDR6",
+        "Memory Bus Width": "384-bit",
+        "Boost Core Clock": "2680 MHz",
+        "TDP / Power": "420W",
+        "Price (USD)": 1049.99
+      },
+      "values": {
+        "name": "Sapphire NITRO+ RX 7900 XTX Vapor-X",
+        "brand": "Sapphire",
+        "price": "1049.99",
+        "image_url": "productsdata-gpu-12.jpg",
+        "description": "GPU Chipset / Architecture: AMD RDNA 3 Navi 31\nVRAM Size & Type: 24 GB GDDR6\nMemory Bus Width: 384-bit\nBoost Core Clock: 2680 MHz\nTDP / Power: 420W",
+        "short_name": "Sapphire NITRO+ RX 7900 XTX Vapor-X",
+        "vram": "24 GB GDDR6",
+        "boost_clock": "2680 MHz",
+        "tdp": 420,
+        "power_consumption": "420W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/Sapphire NITRO+ RX 7900 XTX Vapor-X.jpg",
+      "image_sha256": "703781d627238b595b13f25e751fd616c1eb7dfea91881999b65eec24bc8fa47",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 13,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "GPU Name": "NVIDIA GeForce RTX 4080 Super",
+        "GPU Chipset / Architecture": "NVIDIA Ada Lovelace AD103",
+        "VRAM Size & Type": "16 GB GDDR6X",
+        "Memory Bus Width": "256-bit",
+        "Boost Core Clock": "2550 MHz",
+        "TDP / Power": "320W",
+        "Price (USD)": 999
+      },
+      "values": {
+        "name": "NVIDIA GeForce RTX 4080 Super",
+        "brand": "NVIDIA",
+        "price": "999.00",
+        "image_url": "productsdata-gpu-13.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Ada Lovelace AD103\nVRAM Size & Type: 16 GB GDDR6X\nMemory Bus Width: 256-bit\nBoost Core Clock: 2550 MHz\nTDP / Power: 320W",
+        "short_name": "NVIDIA GeForce RTX 4080 Super",
+        "vram": "16 GB GDDR6X",
+        "boost_clock": "2550 MHz",
+        "tdp": 320,
+        "power_consumption": "320W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/NVIDIA GeForce RTX 4080 Super.png",
+      "image_sha256": "cc03808fbd3b6f225a3a8e2689745ecd01a72a25994549fbf88142889523bfe6",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 14,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "GPU Name": "ASUS TUF Gaming RTX 5080 OC",
+        "GPU Chipset / Architecture": "NVIDIA Blackwell GB203",
+        "VRAM Size & Type": "16 GB GDDR7",
+        "Memory Bus Width": "256-bit",
+        "Boost Core Clock": "2680 MHz",
+        "TDP / Power": "420W",
+        "Price (USD)": 1099.99
+      },
+      "values": {
+        "name": "ASUS TUF Gaming RTX 5080 OC",
+        "brand": "ASUS",
+        "price": "1099.99",
+        "image_url": "productsdata-gpu-14.png",
+        "description": "GPU Chipset / Architecture: NVIDIA Blackwell GB203\nVRAM Size & Type: 16 GB GDDR7\nMemory Bus Width: 256-bit\nBoost Core Clock: 2680 MHz\nTDP / Power: 420W",
+        "short_name": "ASUS TUF Gaming RTX 5080 OC",
+        "vram": "16 GB GDDR7",
+        "boost_clock": "2680 MHz",
+        "tdp": 420,
+        "power_consumption": "420W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/ASUS TUF Gaming RTX 5080 OC.png",
+      "image_sha256": "38d050083bea92cd39fe4e3211a9d577f23a7da0c82a5ed3f3b7c698406d9a3a",
+      "support": []
+    },
+    {
+      "category": "gpu",
+      "source_id": 15,
+      "source_file": "ProductsData/Video_Card/GPU.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "GPU Name": "PowerColor RED DEVIL RX 7900 XTX",
+        "GPU Chipset / Architecture": "AMD RDNA 3 Navi 31",
+        "VRAM Size & Type": "24 GB GDDR6",
+        "Memory Bus Width": "384-bit",
+        "Boost Core Clock": "2565 MHz",
+        "TDP / Power": "395W",
+        "Price (USD)": 979.99
+      },
+      "values": {
+        "name": "PowerColor RED DEVIL RX 7900 XTX",
+        "brand": "PowerColor",
+        "price": "979.99",
+        "image_url": "productsdata-gpu-15.png",
+        "description": "GPU Chipset / Architecture: AMD RDNA 3 Navi 31\nVRAM Size & Type: 24 GB GDDR6\nMemory Bus Width: 384-bit\nBoost Core Clock: 2565 MHz\nTDP / Power: 395W",
+        "short_name": "PowerColor RED DEVIL RX 7900 XTX",
+        "vram": "24 GB GDDR6",
+        "boost_clock": "2565 MHz",
+        "tdp": 395,
+        "power_consumption": "395W"
+      },
+      "image_source": "ProductsData/Video_Card/GPU_IMG/PowerColor RED DEVIL RX 7900 XTX.png",
+      "image_sha256": "245e55bb2df379113a947c109246d3454e426da3610dd9aef22c93688f0aff3d",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 1,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "Motherboard Name": "ASUS ROG Maximus Z790 Extreme",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / OLED Display",
+        "Price (USD)": 999.99
+      },
+      "values": {
+        "name": "ASUS ROG Maximus Z790 Extreme",
+        "brand": "ASUS",
+        "price": "999.99",
+        "image_url": "productsdata-mb-1.png",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / OLED Display",
+        "socket": "LGA1700",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASUS ROG Maximus Z790 Extreme.png",
+      "image_sha256": "7daf223d578dd07bf859f86d350dddc11677b02ba6090edb6c982ee1b32b797e",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 2,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "Motherboard Name": "MSI MEG Z790 GODLIKE MAX",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Dark Mirror Black",
+        "Price (USD)": 1199.99
+      },
+      "values": {
+        "name": "MSI MEG Z790 GODLIKE MAX",
+        "brand": "MSI",
+        "price": "1199.99",
+        "image_url": "productsdata-mb-2.png",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Dark Mirror Black",
+        "socket": "LGA1700",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/MSI MEG Z790 GODLIKE MAX.png",
+      "image_sha256": "916db586bf32c05a3154298345f01fc32cd94f4be35e64be97af0a75780adb1b",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 3,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "Motherboard Name": "GIGABYTE Z790 AORUS Xtreme X",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / Titanium",
+        "Price (USD)": 999
+      },
+      "values": {
+        "name": "GIGABYTE Z790 AORUS Xtreme X",
+        "brand": "GIGABYTE",
+        "price": "999.00",
+        "image_url": "productsdata-mb-3.jpg",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / Titanium",
+        "socket": "LGA1700",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/GIGABYTE Z790 AORUS Xtreme X.jpg",
+      "image_sha256": "f29951a993375cf5d818184e957e471251b44b3a1534c9e864bd41dd674ce529",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 4,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "Motherboard Name": "ASRock X670E Taichi Carrara",
+        "Socket / CPU": "AM5",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Marble White",
+        "Price (USD)": 529.99
+      },
+      "values": {
+        "name": "ASRock X670E Taichi Carrara",
+        "brand": "ASRock",
+        "price": "529.99",
+        "image_url": "productsdata-mb-4.png",
+        "description": "Socket / CPU: AM5\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Marble White",
+        "socket": "AM5",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "X670E"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASRock X670E Taichi Carrara.png",
+      "image_sha256": "e8e5b8752d685029bab66f64d8c7c2da28d3a87a6228655ca5a139d7d7e89e85",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 5,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "Motherboard Name": "ASUS ROG Crosshair X670E Extreme",
+        "Socket / CPU": "AM5",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / AniMe Matrix",
+        "Price (USD)": 999.99
+      },
+      "values": {
+        "name": "ASUS ROG Crosshair X670E Extreme",
+        "brand": "ASUS",
+        "price": "999.99",
+        "image_url": "productsdata-mb-5.png",
+        "description": "Socket / CPU: AM5\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / AniMe Matrix",
+        "socket": "AM5",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "X670E"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASUS ROG Crosshair X670E Extreme.png",
+      "image_sha256": "0407f1380216da097046da853f51254eb067366c540a7613d227ff53eaa297e1",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 6,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "Motherboard Name": "MSI MEG X670E ACE",
+        "Socket / CPU": "AM5",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / Gold Accents",
+        "Price (USD)": 699.99
+      },
+      "values": {
+        "name": "MSI MEG X670E ACE",
+        "brand": "MSI",
+        "price": "699.99",
+        "image_url": "productsdata-mb-6.png",
+        "description": "Socket / CPU: AM5\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / Gold Accents",
+        "socket": "AM5",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "X670E"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/MSI MEG X670E ACE.png",
+      "image_sha256": "63289e79a1a3556eea8b26e6c4188c7eedd9d51e8ef7dea2b86586b9c1199b8d",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 7,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "Motherboard Name": "ASUS ROG Strix Z790-E Gaming WiFi II",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / RGB",
+        "Price (USD)": 499.99
+      },
+      "values": {
+        "name": "ASUS ROG Strix Z790-E Gaming WiFi II",
+        "brand": "ASUS",
+        "price": "499.99",
+        "image_url": "productsdata-mb-7.png",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / RGB",
+        "socket": "LGA1700",
+        "size": "ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASUS ROG Strix Z790-E Gaming WiFi II.png",
+      "image_sha256": "4583f0a1e3bcc583a6ff83ea1a9a1dcd60f98094b5bcbbfade3f11102ccb7210",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 8,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "Motherboard Name": "GIGABYTE X670E AORUS Xtreme",
+        "Socket / CPU": "AM5",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / Armor Metallic",
+        "Price (USD)": 699
+      },
+      "values": {
+        "name": "GIGABYTE X670E AORUS Xtreme",
+        "brand": "GIGABYTE",
+        "price": "699.00",
+        "image_url": "productsdata-mb-8.jpg",
+        "description": "Socket / CPU: AM5\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / Armor Metallic",
+        "socket": "AM5",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "X670E"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/GIGABYTE X670E AORUS Xtreme.jpg",
+      "image_sha256": "86ef7410554ba5ddf05f384e6d867272be9b3f1b1bf168e97f5c5c781a7e0e8b",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 9,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "Motherboard Name": "ASRock Z790 Taichi Lite",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Bronze / Black",
+        "Price (USD)": 379.99
+      },
+      "values": {
+        "name": "ASRock Z790 Taichi Lite",
+        "brand": "ASRock",
+        "price": "379.99",
+        "image_url": "productsdata-mb-9.png",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Bronze / Black",
+        "socket": "LGA1700",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASRock Z790 Taichi Lite.png",
+      "image_sha256": "19430d4c4ce1fc643c5a188b363044e0650cef59d77b7c7b55f812e4ed7f6ddf",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 10,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "Motherboard Name": "ASUS ROG Hero Z790 Dark Hero",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Matte Black",
+        "Price (USD)": 649.99
+      },
+      "values": {
+        "name": "ASUS ROG Hero Z790 Dark Hero",
+        "brand": "ASUS",
+        "price": "649.99",
+        "image_url": "productsdata-mb-10.jpg",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Matte Black",
+        "socket": "LGA1700",
+        "size": "ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASUS ROG Hero Z790 Dark Hero.jpg",
+      "image_sha256": "e6b5bf6a5b9a19daded75ccff6dedfefc044cbf8523d93bdd8bcd2fe6ec6c5ae",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 11,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "Motherboard Name": "MSI MPG Z790 Carbon WiFi",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Carbon Black",
+        "Price (USD)": 449.99
+      },
+      "values": {
+        "name": "MSI MPG Z790 Carbon WiFi",
+        "brand": "MSI",
+        "price": "449.99",
+        "image_url": "productsdata-mb-11.png",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Carbon Black",
+        "socket": "LGA1700",
+        "size": "ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/MSI MPG Z790 Carbon WiFi.png",
+      "image_sha256": "dddf42dda0cd3e740a4192725d6b7963cdca1fc86a33f636aac8e4f0d34b90ff",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 12,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "Motherboard Name": "GIGABYTE Z790 AORUS Master X",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "E-ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Dark Grey / Silver",
+        "Price (USD)": 549.99
+      },
+      "values": {
+        "name": "GIGABYTE Z790 AORUS Master X",
+        "brand": "GIGABYTE",
+        "price": "549.99",
+        "image_url": "productsdata-mb-12.png",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: E-ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Dark Grey / Silver",
+        "socket": "LGA1700",
+        "size": "E-ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/GIGABYTE Z790 AORUS Master X.png",
+      "image_sha256": "5368b8a1f7c3e659c31735a7ad27cb7d9d3583b6ca8d5bc76e13bd46d539d925",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 13,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "Motherboard Name": "ASUS ROG Crosshair X670E Hero",
+        "Socket / CPU": "AM5",
+        "Form Factor": "ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Polished Black",
+        "Price (USD)": 649.99
+      },
+      "values": {
+        "name": "ASUS ROG Crosshair X670E Hero",
+        "brand": "ASUS",
+        "price": "649.99",
+        "image_url": "productsdata-mb-13.png",
+        "description": "Socket / CPU: AM5\nForm Factor: ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Polished Black",
+        "socket": "AM5",
+        "size": "ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "X670E"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASUS ROG Crosshair X670E Hero.png",
+      "image_sha256": "fa7ac8e738b68ac1a1e86895ae38792081760b4173ed718e0d5c458d8a91e2e5",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 14,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "Motherboard Name": "NZXT N7 Z790",
+        "Socket / CPU": "LGA 1700",
+        "Form Factor": "ATX",
+        "Memory Max": "128 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Matte White",
+        "Price (USD)": 299.99
+      },
+      "values": {
+        "name": "NZXT N7 Z790",
+        "brand": "NZXT",
+        "price": "299.99",
+        "image_url": "productsdata-mb-14.jpg",
+        "description": "Socket / CPU: LGA 1700\nForm Factor: ATX\nMemory Max: 128 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Matte White",
+        "socket": "LGA1700",
+        "size": "ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "Z790"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/NZXT N7 Z790.jpg",
+      "image_sha256": "bc0cf5be8b5e03c6e603e93b11b1941be99c757734b0b9b1921d7279f1e5cc38",
+      "support": []
+    },
+    {
+      "category": "mb",
+      "source_id": 15,
+      "source_file": "ProductsData/Motherboard/Motherboard.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "Motherboard Name": "ASRock X670E PG Lightning",
+        "Socket / CPU": "AM5",
+        "Form Factor": "ATX",
+        "Memory Max": "192 GB",
+        "Memory Slots": 4,
+        "DDR Support": "DDR5",
+        "Color": "Black / Cyan",
+        "Price (USD)": 259.99
+      },
+      "values": {
+        "name": "ASRock X670E PG Lightning",
+        "brand": "ASRock",
+        "price": "259.99",
+        "image_url": "productsdata-mb-15.png",
+        "description": "Socket / CPU: AM5\nForm Factor: ATX\nMemory Max: 192 GB\nMemory Slots: 4\nDDR Support: DDR5\nColor: Black / Cyan",
+        "socket": "AM5",
+        "size": "ATX",
+        "ram_slots": 4,
+        "memory_type": "DDR5",
+        "chipset": "X670E"
+      },
+      "image_source": "ProductsData/Motherboard/MB_IMG/ASRock X670E PG Lightning.png",
+      "image_sha256": "88cd3f30f528011ca07dd5aeea936dd438cf85e39b0bc6ca519bf27595bab31a",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 1,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "RAM Kit Name": "G.SKILL Trident Z5 RGB 64GB (2x32GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-8000 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL38-48-48-128",
+        "Tested Voltage": "1.45V",
+        "Price (USD)": 349.99
+      },
+      "values": {
+        "name": "G.SKILL Trident Z5 RGB 64GB (2x32GB)",
+        "brand": "G.SKILL",
+        "price": "349.99",
+        "image_url": "productsdata-memory-1.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-8000 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL38-48-48-128\nTested Voltage: 1.45V",
+        "type": "DDR5",
+        "speed": "DDR5-8000 MHz",
+        "capacity": "64 GB",
+        "latency": "CL38-48-48-128",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/G.SKILL Trident Z5 RGB.jpg",
+      "image_sha256": "5c46614e658831c6d05e4519ce31d10e7c1f565a0e64d25510dee78da10eaabe",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 2,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "RAM Kit Name": "Corsair Dominator Titanium RGB 64GB (2x32GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-7200 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL34-44-44-96",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 319.99
+      },
+      "values": {
+        "name": "Corsair Dominator Titanium RGB 64GB (2x32GB)",
+        "brand": "Corsair",
+        "price": "319.99",
+        "image_url": "productsdata-memory-2.avif",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-7200 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL34-44-44-96\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-7200 MHz",
+        "capacity": "64 GB",
+        "latency": "CL34-44-44-96",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Corsair Dominator Titanium RGB.avif",
+      "image_sha256": "cef3625f22c09d5c8bd7008a6703e39d43f6b2eb58dc90b8988547b1bff3a6a0",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 3,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "RAM Kit Name": "TeamGroup T-Force Delta RGB 48GB (2x24GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-8200 MHz",
+        "Total Capacity": "48 GB (2x24GB)",
+        "Tested Latency (CAS)": "CL38-49-49-128",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 249.99
+      },
+      "values": {
+        "name": "TeamGroup T-Force Delta RGB 48GB (2x24GB)",
+        "brand": "TeamGroup",
+        "price": "249.99",
+        "image_url": "productsdata-memory-3.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-8200 MHz\nTotal Capacity: 48 GB (2x24GB)\nTested Latency (CAS): CL38-49-49-128\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-8200 MHz",
+        "capacity": "48 GB",
+        "latency": "CL38-49-49-128",
+        "modules": "2 x 24 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/TeamGroup T-Force Delta RGB.jpg",
+      "image_sha256": "6e689b76725c7fc687acc107c2b36ec5f227b8ef7ca1401ec4496acea4fa2cd6",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 4,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "RAM Kit Name": "G.SKILL Trident Z5 Neo RGB (AMD EXPO) 64GB",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6000 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL30-40-40-96",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 219.99
+      },
+      "values": {
+        "name": "G.SKILL Trident Z5 Neo RGB (AMD EXPO) 64GB",
+        "brand": "G.SKILL",
+        "price": "219.99",
+        "image_url": "productsdata-memory-4.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6000 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL30-40-40-96\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-6000 MHz",
+        "capacity": "64 GB",
+        "latency": "CL30-40-40-96",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/G.SKILL Trident Z5 Neo RGB (AMD EXPO).jpg",
+      "image_sha256": "3807298c92e1b3ac5d3ca9a99a64fc3d0b14cdfb21323b478ae02fda6b937e9f",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 5,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "RAM Kit Name": "Corsair Vengeance RGB 96GB (2x48GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6400 MHz",
+        "Total Capacity": "96 GB (2x48GB)",
+        "Tested Latency (CAS)": "CL32-40-40-84",
+        "Tested Voltage": "1.35V",
+        "Price (USD)": 379.99
+      },
+      "values": {
+        "name": "Corsair Vengeance RGB 96GB (2x48GB)",
+        "brand": "Corsair",
+        "price": "379.99",
+        "image_url": "productsdata-memory-5.avif",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6400 MHz\nTotal Capacity: 96 GB (2x48GB)\nTested Latency (CAS): CL32-40-40-84\nTested Voltage: 1.35V",
+        "type": "DDR5",
+        "speed": "DDR5-6400 MHz",
+        "capacity": "96 GB",
+        "latency": "CL32-40-40-84",
+        "modules": "2 x 48 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Corsair Vengeance RGB.avif",
+      "image_sha256": "3fd24396afea734771b75df190d9e97d0cb81c780b4efda6c81847a50ecc8fcd",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 6,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "RAM Kit Name": "G.SKILL Trident Z5 RGB 32GB (2x16GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-7600 MHz",
+        "Total Capacity": "32 GB (2x16GB)",
+        "Tested Latency (CAS)": "CL36-46-46-121",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 179.99
+      },
+      "values": {
+        "name": "G.SKILL Trident Z5 RGB 32GB (2x16GB)",
+        "brand": "G.SKILL",
+        "price": "179.99",
+        "image_url": "productsdata-memory-6.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-7600 MHz\nTotal Capacity: 32 GB (2x16GB)\nTested Latency (CAS): CL36-46-46-121\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-7600 MHz",
+        "capacity": "32 GB",
+        "latency": "CL36-46-46-121",
+        "modules": "2 x 16 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/G.SKILL Trident Z5 RGB.jpg",
+      "image_sha256": "5c46614e658831c6d05e4519ce31d10e7c1f565a0e64d25510dee78da10eaabe",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 7,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "RAM Kit Name": "Kingston Fury Renegade RGB 64GB (2x32GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-7200 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL38-44-44-105",
+        "Tested Voltage": "1.45V",
+        "Price (USD)": 299.99
+      },
+      "values": {
+        "name": "Kingston Fury Renegade RGB 64GB (2x32GB)",
+        "brand": "Kingston",
+        "price": "299.99",
+        "image_url": "productsdata-memory-7.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-7200 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL38-44-44-105\nTested Voltage: 1.45V",
+        "type": "DDR5",
+        "speed": "DDR5-7200 MHz",
+        "capacity": "64 GB",
+        "latency": "CL38-44-44-105",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Kingston Fury Renegade RGB.jpg",
+      "image_sha256": "04c95b7d53697fe631513c85ca1be8ff00f344d8859a7a7a57a65de16cbcce1e",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 8,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "RAM Kit Name": "Corsair Dominator Platinum RGB 32GB (2x16GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6000 MHz",
+        "Total Capacity": "32 GB (2x16GB)",
+        "Tested Latency (CAS)": "CL30-36-36-76",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 169.99
+      },
+      "values": {
+        "name": "Corsair Dominator Platinum RGB 32GB (2x16GB)",
+        "brand": "Corsair",
+        "price": "169.99",
+        "image_url": "productsdata-memory-8.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6000 MHz\nTotal Capacity: 32 GB (2x16GB)\nTested Latency (CAS): CL30-36-36-76\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-6000 MHz",
+        "capacity": "32 GB",
+        "latency": "CL30-36-36-76",
+        "modules": "2 x 16 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Corsair Dominator Platinum RGB.jpg",
+      "image_sha256": "f854d373b2e8764c2ccd6a78b5c6b0f4bffd89b2fbcc484eab0bd5c3380a6e15",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 9,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "RAM Kit Name": "TeamGroup T-Force XTREEM ARGB 48GB (2x24GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-8000 MHz",
+        "Total Capacity": "48 GB (2x24GB)",
+        "Tested Latency (CAS)": "CL38-48-48-128",
+        "Tested Voltage": "1.45V",
+        "Price (USD)": 269.99
+      },
+      "values": {
+        "name": "TeamGroup T-Force XTREEM ARGB 48GB (2x24GB)",
+        "brand": "TeamGroup",
+        "price": "269.99",
+        "image_url": "productsdata-memory-9.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-8000 MHz\nTotal Capacity: 48 GB (2x24GB)\nTested Latency (CAS): CL38-48-48-128\nTested Voltage: 1.45V",
+        "type": "DDR5",
+        "speed": "DDR5-8000 MHz",
+        "capacity": "48 GB",
+        "latency": "CL38-48-48-128",
+        "modules": "2 x 24 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/TeamGroup T-Force XTREEM ARGB.jpg",
+      "image_sha256": "151f7bd4772d911829cc5ac7e08a52654b1337a9b7bc7fd3c426bff90f9d4e6d",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 10,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "RAM Kit Name": "G.SKILL Ripjaws S5 64GB (2x32GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6400 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL32-39-39-102",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 209.99
+      },
+      "values": {
+        "name": "G.SKILL Ripjaws S5 64GB (2x32GB)",
+        "brand": "G.SKILL",
+        "price": "209.99",
+        "image_url": "productsdata-memory-10.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6400 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL32-39-39-102\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-6400 MHz",
+        "capacity": "64 GB",
+        "latency": "CL32-39-39-102",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/G.SKILL Ripjaws S5 .jpg",
+      "image_sha256": "cee894bafb3ca09749c5e1e75c979a9047243a3a44aca48b97ee00bbfbfcc174",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 11,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "RAM Kit Name": "Corsair Vengeance 64GB (2x32GB) AMD EXPO",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6000 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL30-36-36-76",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 214.99
+      },
+      "values": {
+        "name": "Corsair Vengeance 64GB (2x32GB) AMD EXPO",
+        "brand": "Corsair",
+        "price": "214.99",
+        "image_url": "productsdata-memory-11.avif",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6000 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL30-36-36-76\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-6000 MHz",
+        "capacity": "64 GB",
+        "latency": "CL30-36-36-76",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Corsair Vengeance AMD EXPO.avif",
+      "image_sha256": "7a861fdd7fadc4e42f49fa8b60615c6d764e104d0a2d4b4b31a7e0daa0e71f7e",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 12,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "RAM Kit Name": "Patriot Viper Xtreme 5 RGB 32GB (2x16GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-8000 MHz",
+        "Total Capacity": "32 GB (2x16GB)",
+        "Tested Latency (CAS)": "CL38-48-48-128",
+        "Tested Voltage": "1.45V",
+        "Price (USD)": 189.99
+      },
+      "values": {
+        "name": "Patriot Viper Xtreme 5 RGB 32GB (2x16GB)",
+        "brand": "Patriot",
+        "price": "189.99",
+        "image_url": "productsdata-memory-12.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-8000 MHz\nTotal Capacity: 32 GB (2x16GB)\nTested Latency (CAS): CL38-48-48-128\nTested Voltage: 1.45V",
+        "type": "DDR5",
+        "speed": "DDR5-8000 MHz",
+        "capacity": "32 GB",
+        "latency": "CL38-48-48-128",
+        "modules": "2 x 16 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Patriot Viper Xtreme 5 RGB.jpg",
+      "image_sha256": "6a94c30f163a14fe10194960e7f59d1bf9c49ba9c02bd167f1505f69a9a19443",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 13,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "RAM Kit Name": "ADATA XPG Lancer RGB 64GB (2x32GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6000 MHz",
+        "Total Capacity": "64 GB (2x32GB)",
+        "Tested Latency (CAS)": "CL30-40-40-96",
+        "Tested Voltage": "1.35V",
+        "Price (USD)": 199.99
+      },
+      "values": {
+        "name": "ADATA XPG Lancer RGB 64GB (2x32GB)",
+        "brand": "ADATA",
+        "price": "199.99",
+        "image_url": "productsdata-memory-13.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6000 MHz\nTotal Capacity: 64 GB (2x32GB)\nTested Latency (CAS): CL30-40-40-96\nTested Voltage: 1.35V",
+        "type": "DDR5",
+        "speed": "DDR5-6000 MHz",
+        "capacity": "64 GB",
+        "latency": "CL30-40-40-96",
+        "modules": "2 x 32 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/ADATA XPG Lancer RGB.jpg",
+      "image_sha256": "483cc4b694eb2c519cc2472d4c3f3b1bcac2aeb53651b6542e734ad151b70304",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 14,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "RAM Kit Name": "Thermaltake TOUGHRAM XG RGB D5 32GB",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-7200 MHz",
+        "Total Capacity": "32 GB (2x16GB)",
+        "Tested Latency (CAS)": "CL36-46-46-115",
+        "Tested Voltage": "1.40V",
+        "Price (USD)": 159.99
+      },
+      "values": {
+        "name": "Thermaltake TOUGHRAM XG RGB D5 32GB",
+        "brand": "Thermaltake",
+        "price": "159.99",
+        "image_url": "productsdata-memory-14.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-7200 MHz\nTotal Capacity: 32 GB (2x16GB)\nTested Latency (CAS): CL36-46-46-115\nTested Voltage: 1.40V",
+        "type": "DDR5",
+        "speed": "DDR5-7200 MHz",
+        "capacity": "32 GB",
+        "latency": "CL36-46-46-115",
+        "modules": "2 x 16 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Thermaltake TOUGHRAM XG RGB D5.jpg",
+      "image_sha256": "326ffed7599252d45f77f09ad99bdc2bf76415bb8d8d8a3e5fecd350f7c515e5",
+      "support": []
+    },
+    {
+      "category": "memory",
+      "source_id": 15,
+      "source_file": "ProductsData/Memory/RAM.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "RAM Kit Name": "Crucial Pro Overclocking 32GB (2x16GB)",
+        "Memory Type": "DDR5",
+        "Memory Speed": "DDR5-6000 MHz",
+        "Total Capacity": "32 GB (2x16GB)",
+        "Tested Latency (CAS)": "CL36-38-38-80",
+        "Tested Voltage": "1.35V",
+        "Price (USD)": 104.99
+      },
+      "values": {
+        "name": "Crucial Pro Overclocking 32GB (2x16GB)",
+        "brand": "Crucial",
+        "price": "104.99",
+        "image_url": "productsdata-memory-15.jpg",
+        "description": "Memory Type: DDR5\nMemory Speed: DDR5-6000 MHz\nTotal Capacity: 32 GB (2x16GB)\nTested Latency (CAS): CL36-38-38-80\nTested Voltage: 1.35V",
+        "type": "DDR5",
+        "speed": "DDR5-6000 MHz",
+        "capacity": "32 GB",
+        "latency": "CL36-38-38-80",
+        "modules": "2 x 16 GB",
+        "module_count": 2
+      },
+      "image_source": "ProductsData/Memory/RAM_IMG/Crucial Pro Overclocking .jpg",
+      "image_sha256": "64b4e8798855463b03f1b6277c8440c91e60125a85d9eef4e7e1a69a893b5c9e",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 1,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "Storage Product Name": "Crucial T700 4TB PCIe 5.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 5.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "4 TB",
+        "Max Read Speed": "12,400 MB/s",
+        "Max Write Speed": "11,800 MB/s",
+        "Price (USD)": 499.99
+      },
+      "values": {
+        "name": "Crucial T700 4TB PCIe 5.0 NVMe M.2 SSD",
+        "brand": "Crucial",
+        "price": "499.99",
+        "image_url": "productsdata-storage-1.jpg",
+        "description": "Interface / Bus: PCIe Gen 5.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 4 TB\nMax Read Speed: 12,400 MB/s\nMax Write Speed: 11,800 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "4 TB",
+        "read_speed": "12,400 MB/s",
+        "write_speed": "11,800 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Crucial T700 4TB PCIe 5.0 NVMe M.2 SSD.jpg",
+      "image_sha256": "472b189153493713dd1746444438fe2cdadd33db023ce0912062b76f2e8ac5b4",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 2,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "Storage Product Name": "Samsung 990 PRO 4TB PCIe 4.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "4 TB",
+        "Max Read Speed": "7,450 MB/s",
+        "Max Write Speed": "6,900 MB/s",
+        "Price (USD)": 349.99
+      },
+      "values": {
+        "name": "Samsung 990 PRO 4TB PCIe 4.0 NVMe M.2 SSD",
+        "brand": "Samsung",
+        "price": "349.99",
+        "image_url": "productsdata-storage-2.jpg",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 4 TB\nMax Read Speed: 7,450 MB/s\nMax Write Speed: 6,900 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "4 TB",
+        "read_speed": "7,450 MB/s",
+        "write_speed": "6,900 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Samsung 990 PRO 4TB PCIe 4.0 NVMe M.2 SSD.jpg",
+      "image_sha256": "dddc98ffd5d075e04a7041800ba5e6e015488ae56318eda28f6a0a77f7d502a4",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 3,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "Storage Product Name": "Corsair MP700 PRO 2TB PCIe 5.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 5.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Air Cooled)",
+        "Capacity": "2 TB",
+        "Max Read Speed": "12,400 MB/s",
+        "Max Write Speed": "10,000 MB/s",
+        "Price (USD)": 289.99
+      },
+      "values": {
+        "name": "Corsair MP700 PRO 2TB PCIe 5.0 NVMe M.2 SSD",
+        "brand": "Corsair",
+        "price": "289.99",
+        "image_url": "productsdata-storage-3.avif",
+        "description": "Interface / Bus: PCIe Gen 5.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Air Cooled)\nCapacity: 2 TB\nMax Read Speed: 12,400 MB/s\nMax Write Speed: 10,000 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "2 TB",
+        "read_speed": "12,400 MB/s",
+        "write_speed": "10,000 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Corsair MP700 PRO 2TB PCIe 5.0 NVMe M.2 SSD.avif",
+      "image_sha256": "3c219b94afad22003f783fcabcd7cf2739e92f5913c89dbad6f77bebbcdfa7ea",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 4,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "Storage Product Name": "WD_BLACK SN850X 4TB NVMe M.2 Gaming SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 1.4",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "4 TB",
+        "Max Read Speed": "7,300 MB/s",
+        "Max Write Speed": "6,600 MB/s",
+        "Price (USD)": 309.99
+      },
+      "values": {
+        "name": "WD_BLACK SN850X 4TB NVMe M.2 Gaming SSD",
+        "brand": "WD",
+        "price": "309.99",
+        "image_url": "productsdata-storage-4.png",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 1.4\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 4 TB\nMax Read Speed: 7,300 MB/s\nMax Write Speed: 6,600 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "4 TB",
+        "read_speed": "7,300 MB/s",
+        "write_speed": "6,600 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/WD_BLACK SN850X 4TB NVMe M.2 Gaming SSD.png",
+      "image_sha256": "12c2c7b2861febd5a1570d4f38ba842213eac0a0a8214926752c94c3c36b9651",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 5,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "Storage Product Name": "Sabrent Rocket 5 2TB PCIe 5.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 5.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "2 TB",
+        "Max Read Speed": "14,000 MB/s",
+        "Max Write Speed": "12,000 MB/s",
+        "Price (USD)": 339.99
+      },
+      "values": {
+        "name": "Sabrent Rocket 5 2TB PCIe 5.0 NVMe M.2 SSD",
+        "brand": "Sabrent",
+        "price": "339.99",
+        "image_url": "productsdata-storage-5.jpg",
+        "description": "Interface / Bus: PCIe Gen 5.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 2 TB\nMax Read Speed: 14,000 MB/s\nMax Write Speed: 12,000 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "2 TB",
+        "read_speed": "14,000 MB/s",
+        "write_speed": "12,000 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Sabrent Rocket 5 2TB PCIe 5.0 NVMe M.2 SSD.jpg",
+      "image_sha256": "258790a06b3380af961634af52b51a784661852e92eb53603a40a1344e61d667",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 6,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "Storage Product Name": "Gigabyte AORUS Gen5 12000 SSD 2TB",
+        "Interface / Bus": "PCIe Gen 5.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (M.2 Thermal Guard)",
+        "Capacity": "2 TB",
+        "Max Read Speed": "12,000 MB/s",
+        "Max Write Speed": "9,500 MB/s",
+        "Price (USD)": 259.99
+      },
+      "values": {
+        "name": "Gigabyte AORUS Gen5 12000 SSD 2TB",
+        "brand": "GIGABYTE",
+        "price": "259.99",
+        "image_url": "productsdata-storage-6.png",
+        "description": "Interface / Bus: PCIe Gen 5.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (M.2 Thermal Guard)\nCapacity: 2 TB\nMax Read Speed: 12,000 MB/s\nMax Write Speed: 9,500 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "2 TB",
+        "read_speed": "12,000 MB/s",
+        "write_speed": "9,500 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Gigabyte AORUS Gen5 12000 SSD 2TB.png",
+      "image_sha256": "976e964286e52770137d25ba4b616fb9464179b481bdaa1a2fa83969cc794b4f",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 7,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "Storage Product Name": "Seagate FireCuda 530 4TB NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 1.4",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "4 TB",
+        "Max Read Speed": "7,300 MB/s",
+        "Max Write Speed": "6,900 MB/s",
+        "Price (USD)": 369.99
+      },
+      "values": {
+        "name": "Seagate FireCuda 530 4TB NVMe M.2 SSD",
+        "brand": "Seagate",
+        "price": "369.99",
+        "image_url": "productsdata-storage-7.jpg",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 1.4\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 4 TB\nMax Read Speed: 7,300 MB/s\nMax Write Speed: 6,900 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "4 TB",
+        "read_speed": "7,300 MB/s",
+        "write_speed": "6,900 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Seagate FireCuda 530 4TB NVMe M.2 SSD.jpg",
+      "image_sha256": "c954c0159746f1a7bd8024e4206201cf11d837ede7e24f99707071db6ef3f703",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 8,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "Storage Product Name": "TeamGroup T-Force Z540 2TB PCIe 5.0 SSD",
+        "Interface / Bus": "PCIe Gen 5.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Graphene Heatsink)",
+        "Capacity": "2 TB",
+        "Max Read Speed": "12,400 MB/s",
+        "Max Write Speed": "11,800 MB/s",
+        "Price (USD)": 249.99
+      },
+      "values": {
+        "name": "TeamGroup T-Force Z540 2TB PCIe 5.0 SSD",
+        "brand": "TeamGroup",
+        "price": "249.99",
+        "image_url": "productsdata-storage-8.jpg",
+        "description": "Interface / Bus: PCIe Gen 5.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Graphene Heatsink)\nCapacity: 2 TB\nMax Read Speed: 12,400 MB/s\nMax Write Speed: 11,800 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "2 TB",
+        "read_speed": "12,400 MB/s",
+        "write_speed": "11,800 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/TeamGroup T-Force Z540 2TB PCIe 5.0 SSD.jpg",
+      "image_sha256": "d3cfba7dce20e2aea74ddb4820e106c561efa75429ee7418973c85dc1acfacd6",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 9,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "Storage Product Name": "Kingston KC3000 4TB PCIe 4.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 1.4",
+        "Form Factor": "M.2 2280",
+        "Capacity": "4 TB",
+        "Max Read Speed": "7,000 MB/s",
+        "Max Write Speed": "7,000 MB/s",
+        "Price (USD)": 329.99
+      },
+      "values": {
+        "name": "Kingston KC3000 4TB PCIe 4.0 NVMe M.2 SSD",
+        "brand": "Kingston",
+        "price": "329.99",
+        "image_url": "productsdata-storage-9.jpg",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 1.4\nForm Factor: M.2 2280\nCapacity: 4 TB\nMax Read Speed: 7,000 MB/s\nMax Write Speed: 7,000 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "4 TB",
+        "read_speed": "7,000 MB/s",
+        "write_speed": "7,000 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Kingston KC3000 4TB PCIe 4.0 NVMe M.2 SSD.jpg",
+      "image_sha256": "961555dfbd3446841f4a668c590bf7689ca26247da5482c2b9468384748afb24",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 10,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "Storage Product Name": "Solidigm P44 Pro 2TB PCIe 4.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 1.4",
+        "Form Factor": "M.2 2280",
+        "Capacity": "2 TB",
+        "Max Read Speed": "7,000 MB/s",
+        "Max Write Speed": "6,500 MB/s",
+        "Price (USD)": 169.99
+      },
+      "values": {
+        "name": "Solidigm P44 Pro 2TB PCIe 4.0 NVMe M.2 SSD",
+        "brand": "Solidigm",
+        "price": "169.99",
+        "image_url": "productsdata-storage-10.avif",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 1.4\nForm Factor: M.2 2280\nCapacity: 2 TB\nMax Read Speed: 7,000 MB/s\nMax Write Speed: 6,500 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "2 TB",
+        "read_speed": "7,000 MB/s",
+        "write_speed": "6,500 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Solidigm P44 Pro 2TB PCIe 4.0 NVMe M.2 SSD.avif",
+      "image_sha256": "a7ffeac853adc066b636535ebf1e821b6752acca7d0e83d008004b29998e098f",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 11,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "Storage Product Name": "Samsung 870 EVO 4TB SATA III 2.5\" SSD",
+        "Interface / Bus": "SATA III 6 Gb/s",
+        "Form Factor": "2.5-inch Internal",
+        "Capacity": "4 TB",
+        "Max Read Speed": "560 MB/s",
+        "Max Write Speed": "530 MB/s",
+        "Price (USD)": 299.99
+      },
+      "values": {
+        "name": "Samsung 870 EVO 4TB SATA III 2.5\" SSD",
+        "brand": "Samsung",
+        "price": "299.99",
+        "image_url": "productsdata-storage-11.jpg",
+        "description": "Interface / Bus: SATA III 6 Gb/s\nForm Factor: 2.5-inch Internal\nCapacity: 4 TB\nMax Read Speed: 560 MB/s\nMax Write Speed: 530 MB/s",
+        "type": "SSD",
+        "interface": "SATA",
+        "capacity": "4 TB",
+        "read_speed": "560 MB/s",
+        "write_speed": "530 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Samsung 870 EVO 4TB SATA III 2.5 SSD.jpg",
+      "image_sha256": "ca5dd4840d962716512b9c72edb23a93e8a0e942766989bffc117eba7f6b2ba5",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 12,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "Storage Product Name": "WD Gold 22TB Enterprise SATA HDD",
+        "Interface / Bus": "SATA III 6 Gb/s",
+        "Form Factor": "3.5-inch HDD",
+        "Capacity": "22 TB",
+        "Max Read Speed": "291 MB/s",
+        "Max Write Speed": "291 MB/s",
+        "Price (USD)": 499.99
+      },
+      "values": {
+        "name": "WD Gold 22TB Enterprise SATA HDD",
+        "brand": "WD",
+        "price": "499.99",
+        "image_url": "productsdata-storage-12.png",
+        "description": "Interface / Bus: SATA III 6 Gb/s\nForm Factor: 3.5-inch HDD\nCapacity: 22 TB\nMax Read Speed: 291 MB/s\nMax Write Speed: 291 MB/s",
+        "type": "HDD",
+        "interface": "SATA",
+        "capacity": "22 TB",
+        "read_speed": "291 MB/s",
+        "write_speed": "291 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/WD Gold 22TB Enterprise SATA HDD.png",
+      "image_sha256": "26a5fa557885892575201d40df6de884cc9fbc3fe1216d7820c4bba410d4772f",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 13,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "Storage Product Name": "Seagate IronWolf Pro 20TB NAS HDD",
+        "Interface / Bus": "SATA III 6 Gb/s",
+        "Form Factor": "3.5-inch HDD",
+        "Capacity": "20 TB",
+        "Max Read Speed": "285 MB/s",
+        "Max Write Speed": "285 MB/s",
+        "Price (USD)": 399.99
+      },
+      "values": {
+        "name": "Seagate IronWolf Pro 20TB NAS HDD",
+        "brand": "Seagate",
+        "price": "399.99",
+        "image_url": "productsdata-storage-13.avif",
+        "description": "Interface / Bus: SATA III 6 Gb/s\nForm Factor: 3.5-inch HDD\nCapacity: 20 TB\nMax Read Speed: 285 MB/s\nMax Write Speed: 285 MB/s",
+        "type": "HDD",
+        "interface": "SATA",
+        "capacity": "20 TB",
+        "read_speed": "285 MB/s",
+        "write_speed": "285 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Seagate IronWolf Pro 20TB NAS HDD.avif",
+      "image_sha256": "55c7045724952daa8980be7e31b1e66af56554638c67594fadfb154ec9f386a4",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 14,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "Storage Product Name": "Crucial T500 2TB Gen4 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "2 TB",
+        "Max Read Speed": "7,400 MB/s",
+        "Max Write Speed": "7,000 MB/s",
+        "Price (USD)": 154.99
+      },
+      "values": {
+        "name": "Crucial T500 2TB Gen4 NVMe M.2 SSD",
+        "brand": "Crucial",
+        "price": "154.99",
+        "image_url": "productsdata-storage-14.jpg",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 2 TB\nMax Read Speed: 7,400 MB/s\nMax Write Speed: 7,000 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "2 TB",
+        "read_speed": "7,400 MB/s",
+        "write_speed": "7,000 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Crucial T500 2TB Gen4 NVMe M.2 SSD.jpg",
+      "image_sha256": "007fb7b2890af34702097bedc6fe845b3dcad125182cdb12dc5e65552d4dfe94",
+      "support": []
+    },
+    {
+      "category": "storage",
+      "source_id": 15,
+      "source_file": "ProductsData/Storage/ROM.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "Storage Product Name": "Lexar NM790 4TB PCIe 4.0 NVMe M.2 SSD",
+        "Interface / Bus": "PCIe Gen 4.0 x4, NVMe 2.0",
+        "Form Factor": "M.2 2280 (Heatsink)",
+        "Capacity": "4 TB",
+        "Max Read Speed": "7,400 MB/s",
+        "Max Write Speed": "6,500 MB/s",
+        "Price (USD)": 249.99
+      },
+      "values": {
+        "name": "Lexar NM790 4TB PCIe 4.0 NVMe M.2 SSD",
+        "brand": "Lexar",
+        "price": "249.99",
+        "image_url": "productsdata-storage-15.png",
+        "description": "Interface / Bus: PCIe Gen 4.0 x4, NVMe 2.0\nForm Factor: M.2 2280 (Heatsink)\nCapacity: 4 TB\nMax Read Speed: 7,400 MB/s\nMax Write Speed: 6,500 MB/s",
+        "type": "SSD",
+        "interface": "NVMe",
+        "capacity": "4 TB",
+        "read_speed": "7,400 MB/s",
+        "write_speed": "6,500 MB/s"
+      },
+      "image_source": "ProductsData/Storage/ROM_IMG/Lexar NM790 4TB PCIe 4.0 NVMe M.2 SSD.png",
+      "image_sha256": "7f0ecc1133b741c938e91ff94f2e176e8cf807d6db31dd825cf78807187098c9",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 1,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "Power Supply Model": "Corsair AX1600i 1600W Titanium",
+        "Wattage": "1600 W",
+        "Efficiency Rating": "80 PLUS Titanium",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 609.99
+      },
+      "values": {
+        "name": "Corsair AX1600i 1600W Titanium",
+        "brand": "Corsair",
+        "price": "609.99",
+        "image_url": "productsdata-psu-1.avif",
+        "description": "Wattage: 1600 W\nEfficiency Rating: 80 PLUS Titanium\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1600 W",
+        "wattage_watts": 1600,
+        "rating": "80 PLUS Titanium",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Corsair AX1600i 1600W Titanium.avif",
+      "image_sha256": "b3fc0a12d34243cf7def9045496c6c615d22b5c8000bc1d1674c5e83b7048c4e",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 2,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "Power Supply Model": "Seasonic PRIME TX-1600 ATX 3.0",
+        "Wattage": "1600 W",
+        "Efficiency Rating": "80 PLUS Titanium",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 559.99
+      },
+      "values": {
+        "name": "Seasonic PRIME TX-1600 ATX 3.0",
+        "brand": "Seasonic",
+        "price": "559.99",
+        "image_url": "productsdata-psu-2.jpg",
+        "description": "Wattage: 1600 W\nEfficiency Rating: 80 PLUS Titanium\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1600 W",
+        "wattage_watts": 1600,
+        "rating": "80 PLUS Titanium",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Seasonic PRIME TX-1600 ATX 3.0.jpg",
+      "image_sha256": "e811a1c6b408745f7522fdfe30a51532a55b9fbfc2fe0e395ac6b162078be647",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 3,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "Power Supply Model": "be quiet! Dark Power Pro 13 1600W",
+        "Wattage": "1600 W",
+        "Efficiency Rating": "80 PLUS Titanium",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Silent Wings Frameless",
+        "Price (USD)": 449.99
+      },
+      "values": {
+        "name": "be quiet! Dark Power Pro 13 1600W",
+        "brand": "be quiet!",
+        "price": "449.99",
+        "image_url": "productsdata-psu-3.jpg",
+        "description": "Wattage: 1600 W\nEfficiency Rating: 80 PLUS Titanium\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Silent Wings Frameless",
+        "wattage": "1600 W",
+        "wattage_watts": 1600,
+        "rating": "80 PLUS Titanium",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/be quiet! Dark Power Pro 13 1600W.jpg",
+      "image_sha256": "c007a0234cd602e4cd311ac2148ee4ec324dc72878e30f33405039d2888e9702",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 4,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "Power Supply Model": "ASUS ROG Thor 1200W Platinum II",
+        "Wattage": "1200 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Dual Ball Bearing",
+        "Price (USD)": 359.99
+      },
+      "values": {
+        "name": "ASUS ROG Thor 1200W Platinum II",
+        "brand": "ASUS",
+        "price": "359.99",
+        "image_url": "productsdata-psu-4.png",
+        "description": "Wattage: 1200 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Dual Ball Bearing",
+        "wattage": "1200 W",
+        "wattage_watts": 1200,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/ASUS ROG Thor 1200W Platinum II.png",
+      "image_sha256": "2b29e2fa40927212040c864015f1cfe2f792a08d721dab82d454268c580f43a1",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 5,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "Power Supply Model": "Corsair RM1000x Shift 1000W Gold",
+        "Wattage": "1000 W",
+        "Efficiency Rating": "80 PLUS Gold",
+        "Modularity": "Full Modular (Side Connect)",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 209.99
+      },
+      "values": {
+        "name": "Corsair RM1000x Shift 1000W Gold",
+        "brand": "Corsair",
+        "price": "209.99",
+        "image_url": "productsdata-psu-5.avif",
+        "description": "Wattage: 1000 W\nEfficiency Rating: 80 PLUS Gold\nModularity: Full Modular (Side Connect)\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1000 W",
+        "wattage_watts": 1000,
+        "rating": "80 PLUS Gold",
+        "modularity": "Full Modular (Side Connect)"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Corsair RM1000x Shift 1000W Gold.avif",
+      "image_sha256": "3b99e539c442df620fa99acb549ee76f5c2d14355f5f1cc5ae380370054fed87",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 6,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "Power Supply Model": "MSI MEG Ai1300P PCIE5 1300W",
+        "Wattage": "1300 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Hydro-Dynamic Bearing",
+        "Price (USD)": 319.99
+      },
+      "values": {
+        "name": "MSI MEG Ai1300P PCIE5 1300W",
+        "brand": "MSI",
+        "price": "319.99",
+        "image_url": "productsdata-psu-6.png",
+        "description": "Wattage: 1300 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Hydro-Dynamic Bearing",
+        "wattage": "1300 W",
+        "wattage_watts": 1300,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/MSI MEG Ai1300P PCIE5 1300W.png",
+      "image_sha256": "0cbc4ee39f719d3b2969e3ae4dbd9c6a8dba65c934c01803f8f4a11a3c68544a",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 7,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "Power Supply Model": "Thermaltake Toughpower GF3 1200W",
+        "Wattage": "1200 W",
+        "Efficiency Rating": "80 PLUS Gold",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 229.99
+      },
+      "values": {
+        "name": "Thermaltake Toughpower GF3 1200W",
+        "brand": "Thermaltake",
+        "price": "229.99",
+        "image_url": "productsdata-psu-7.jpg",
+        "description": "Wattage: 1200 W\nEfficiency Rating: 80 PLUS Gold\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1200 W",
+        "wattage_watts": 1200,
+        "rating": "80 PLUS Gold",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Thermaltake Toughpower GF3 1200W.jpg",
+      "image_sha256": "922b4bf9ac25f17c844f575bb13d9a4dfe5c535b3571fde053be2c94523759f2",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 8,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "Power Supply Model": "EVGA SuperNOVA 1300 P+ 1300W",
+        "Wattage": "1300 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 2.52",
+        "Fan Bearing": "Double Ball Bearing",
+        "Price (USD)": 279.99
+      },
+      "values": {
+        "name": "EVGA SuperNOVA 1300 P+ 1300W",
+        "brand": "EVGA",
+        "price": "279.99",
+        "image_url": "productsdata-psu-8.jpg",
+        "description": "Wattage: 1300 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: ATX 2.52\nFan Bearing: Double Ball Bearing",
+        "wattage": "1300 W",
+        "wattage_watts": 1300,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/EVGA SuperNOVA 1300 P+ 1300W.jpg",
+      "image_sha256": "7bb1123075838d388ef17430368d42fda6cd9f1f6cdfeaa82ae322471b3b62e3",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 9,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "Power Supply Model": "Seasonic Focus GX-1000 ATX 3.0",
+        "Wattage": "1000 W",
+        "Efficiency Rating": "80 PLUS Gold",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 179.99
+      },
+      "values": {
+        "name": "Seasonic Focus GX-1000 ATX 3.0",
+        "brand": "Seasonic",
+        "price": "179.99",
+        "image_url": "productsdata-psu-9.jpg",
+        "description": "Wattage: 1000 W\nEfficiency Rating: 80 PLUS Gold\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1000 W",
+        "wattage_watts": 1000,
+        "rating": "80 PLUS Gold",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Seasonic Focus GX-1000 ATX 3.0.jpg",
+      "image_sha256": "7a8a1b692f5aea3a48fcc3b4bf4a9253dc2db2241e3cd033060f2aa4d00ef7db",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 10,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "Power Supply Model": "Corsair HX1500i 1500W Platinum",
+        "Wattage": "1500 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 399.99
+      },
+      "values": {
+        "name": "Corsair HX1500i 1500W Platinum",
+        "brand": "Corsair",
+        "price": "399.99",
+        "image_url": "productsdata-psu-10.avif",
+        "description": "Wattage: 1500 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1500 W",
+        "wattage_watts": 1500,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Corsair HX1500i 1500W Platinum.avif",
+      "image_sha256": "3fbe53cb1188b39442f36f89369d695f4cf65b3af50873a265879bb27472a750",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 11,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "Power Supply Model": "ASUS ROG Loki SFX-L 1000W Platinum",
+        "Wattage": "1000 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "SFX-L / ATX 3.0",
+        "Fan Bearing": "Dual Ball Bearing",
+        "Price (USD)": 269.99
+      },
+      "values": {
+        "name": "ASUS ROG Loki SFX-L 1000W Platinum",
+        "brand": "ASUS",
+        "price": "269.99",
+        "image_url": "productsdata-psu-11.png",
+        "description": "Wattage: 1000 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: SFX-L / ATX 3.0\nFan Bearing: Dual Ball Bearing",
+        "wattage": "1000 W",
+        "wattage_watts": 1000,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/ASUS ROG Loki SFX-L 1000W Platinum.png",
+      "image_sha256": "78ef1864b779619c5a552bdca31e681137a00ae954a5f17feb95eed9555fc1b7",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 12,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "Power Supply Model": "be quiet! Straight Power 12 1200W",
+        "Wattage": "1200 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Silent Wings 135mm",
+        "Price (USD)": 249.99
+      },
+      "values": {
+        "name": "be quiet! Straight Power 12 1200W",
+        "brand": "be quiet!",
+        "price": "249.99",
+        "image_url": "productsdata-psu-12.avif",
+        "description": "Wattage: 1200 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Silent Wings 135mm",
+        "wattage": "1200 W",
+        "wattage_watts": 1200,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/be quiet! Straight Power 12 1200W.avif",
+      "image_sha256": "36b8c436648f8e0eba1aa90a8717f395c8f668afe7fac859a2516a6d06119b10",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 13,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "Power Supply Model": "Cooler Master V850 Gold i Multi 850W",
+        "Wattage": "850 W",
+        "Efficiency Rating": "80 PLUS Gold",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 159.99
+      },
+      "values": {
+        "name": "Cooler Master V850 Gold i Multi 850W",
+        "brand": "Cooler Master",
+        "price": "159.99",
+        "image_url": "productsdata-psu-13.jpg",
+        "description": "Wattage: 850 W\nEfficiency Rating: 80 PLUS Gold\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "850 W",
+        "wattage_watts": 850,
+        "rating": "80 PLUS Gold",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Cooler Master V850 Gold i Multi 850W.jpg",
+      "image_sha256": "fc7bda55a9dbbbe1b69fa22337311a2ecd456847e636df7b7f2ee4a56fc3674c",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 14,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "Power Supply Model": "SilverStone Hela 1200R Platinum",
+        "Wattage": "1200 W",
+        "Efficiency Rating": "80 PLUS Platinum",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 289.99
+      },
+      "values": {
+        "name": "SilverStone Hela 1200R Platinum",
+        "brand": "SilverStone",
+        "price": "289.99",
+        "image_url": "productsdata-psu-14.jpg",
+        "description": "Wattage: 1200 W\nEfficiency Rating: 80 PLUS Platinum\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1200 W",
+        "wattage_watts": 1200,
+        "rating": "80 PLUS Platinum",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/SilverStone Hela 1200R Platinum.jpg",
+      "image_sha256": "9672fcbb1895581342035f70f30bce02ab6426022a803ec06b9475cf55742092",
+      "support": []
+    },
+    {
+      "category": "psu",
+      "source_id": 15,
+      "source_file": "ProductsData/Power_Supply/PSU.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "Power Supply Model": "Super Flower Leadex VII Gold 1000W",
+        "Wattage": "1000 W",
+        "Efficiency Rating": "80 PLUS Gold",
+        "Modularity": "Full Modular",
+        "ATX / PCIe Standard": "ATX 3.0 / PCIe 5.0",
+        "Fan Bearing": "Fluid Dynamic Bearing",
+        "Price (USD)": 189.99
+      },
+      "values": {
+        "name": "Super Flower Leadex VII Gold 1000W",
+        "brand": "Super Flower",
+        "price": "189.99",
+        "image_url": "productsdata-psu-15.jpg",
+        "description": "Wattage: 1000 W\nEfficiency Rating: 80 PLUS Gold\nModularity: Full Modular\nATX / PCIe Standard: ATX 3.0 / PCIe 5.0\nFan Bearing: Fluid Dynamic Bearing",
+        "wattage": "1000 W",
+        "wattage_watts": 1000,
+        "rating": "80 PLUS Gold",
+        "modularity": "Full Modular"
+      },
+      "image_source": "ProductsData/Power_Supply/PS_IMG/Super Flower Leadex VII Gold 1000W.jpg",
+      "image_sha256": "5fe4d0cf9a06c0ac98f05517984f6a124eb571067da884ba9632ce38f39e67ac",
+      "support": []
+    },
+    {
+      "category": "case_box",
+      "source_id": 1,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "PC Case Model Name": "Lian Li O11 Dynamic EVO XL",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass (Front & Side)",
+        "Included Fans": "0 (Modular bracket layout)",
+        "Max GPU Clearance": "460 mm",
+        "Price (USD)": 239.99
+      },
+      "values": {
+        "name": "Lian Li O11 Dynamic EVO XL",
+        "brand": "Lian Li",
+        "price": "239.99",
+        "image_url": "productsdata-case_box-1.jpg",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass (Front & Side)\nIncluded Fans: 0 (Modular bracket layout)\nMax GPU Clearance: 460 mm",
+        "size": "Full Tower",
+        "side_panel": "Tempered Glass (Front & Side)",
+        "max_gpu_length": 460
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Lian Li O11 Dynamic EVO XL.jpg",
+      "image_sha256": "999d43dad2497f1bc6001f4aab21e2fa232c261207d658e86b7d9da521f4a684",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 2,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "PC Case Model Name": "HYTE Y70 Touch",
+        "Form Factor": "Dual Chamber Mid-Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass + Integrated 4K Touch Screen",
+        "Included Fans": "0",
+        "Max GPU Clearance": "390 mm",
+        "Price (USD)": 359.99
+      },
+      "values": {
+        "name": "HYTE Y70 Touch",
+        "brand": "HYTE",
+        "price": "359.99",
+        "image_url": "productsdata-case_box-2.jpg",
+        "description": "Form Factor: Dual Chamber Mid-Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass + Integrated 4K Touch Screen\nIncluded Fans: 0\nMax GPU Clearance: 390 mm",
+        "size": "Dual Chamber Mid-Tower",
+        "side_panel": "Tempered Glass + Integrated 4K Touch Screen",
+        "max_gpu_length": 390
+      },
+      "image_source": "ProductsData/Case/Case_IMG/HYTE Y70 Touch.jpg",
+      "image_sha256": "4c07c3981ca02c98bfa4e33f7fc7aacccbc947c98c3174180e44838d688da1de",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 3,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "PC Case Model Name": "Corsair 7000D AIRFLOW",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass",
+        "Included Fans": "3x 140mm AirGuide",
+        "Max GPU Clearance": "450 mm",
+        "Price (USD)": 269.99
+      },
+      "values": {
+        "name": "Corsair 7000D AIRFLOW",
+        "brand": "Corsair",
+        "price": "269.99",
+        "image_url": "productsdata-case_box-3.avif",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass\nIncluded Fans: 3x 140mm AirGuide\nMax GPU Clearance: 450 mm",
+        "size": "Full Tower",
+        "side_panel": "Tempered Glass",
+        "max_gpu_length": 450
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Corsair 7000D AIRFLOW.avif",
+      "image_sha256": "7f21ad563a6a44474b6c7462012a64c3c770c1a5eb6836097163097b8648aa33",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 4,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "PC Case Model Name": "Fractal Design North XL Mesh",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Mesh (Real Walnut/Oak Wood Front)",
+        "Included Fans": "3x 140mm Aspect 14 PWM",
+        "Max GPU Clearance": "413 mm",
+        "Price (USD)": 179.99
+      },
+      "values": {
+        "name": "Fractal Design North XL Mesh",
+        "brand": "Fractal Design",
+        "price": "179.99",
+        "image_url": "productsdata-case_box-4.avif",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Mesh (Real Walnut/Oak Wood Front)\nIncluded Fans: 3x 140mm Aspect 14 PWM\nMax GPU Clearance: 413 mm",
+        "size": "Full Tower",
+        "side_panel": "Mesh (Real Walnut/Oak Wood Front)",
+        "max_gpu_length": 413
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Fractal Design North XL Mesh.avif",
+      "image_sha256": "0e43ae3d1e98e77cc0f62c4e461e1121feceaf427cd3ae7aa5175c4464d2896d",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 5,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "PC Case Model Name": "Phanteks NV9 Premium Dual-Chamber",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Seamless Tempered Glass",
+        "Included Fans": "0",
+        "Max GPU Clearance": "440 mm",
+        "Price (USD)": 249.99
+      },
+      "values": {
+        "name": "Phanteks NV9 Premium Dual-Chamber",
+        "brand": "Phanteks",
+        "price": "249.99",
+        "image_url": "productsdata-case_box-5.jpg",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Seamless Tempered Glass\nIncluded Fans: 0\nMax GPU Clearance: 440 mm",
+        "size": "Full Tower",
+        "side_panel": "Seamless Tempered Glass",
+        "max_gpu_length": 440
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Phanteks NV9 Premium Dual-Chamber.jpg",
+      "image_sha256": "d07499c11ad8c5d0b9b6ab3e4787806b295333ace4206d370eebc6cc28b04ab0",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 6,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "PC Case Model Name": "NZXT H9 Elite",
+        "Form Factor": "Dual-Chamber Mid-Tower",
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass (Top, Front, Side)",
+        "Included Fans": "3x 120mm F120 RGB Duo + 1x 120mm F120Q",
+        "Max GPU Clearance": "435 mm",
+        "Price (USD)": 239.99
+      },
+      "values": {
+        "name": "NZXT H9 Elite",
+        "brand": "NZXT",
+        "price": "239.99",
+        "image_url": "productsdata-case_box-6.jpg",
+        "description": "Form Factor: Dual-Chamber Mid-Tower\nMotherboard Support: ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass (Top, Front, Side)\nIncluded Fans: 3x 120mm F120 RGB Duo + 1x 120mm F120Q\nMax GPU Clearance: 435 mm",
+        "size": "Dual-Chamber Mid-Tower",
+        "side_panel": "Tempered Glass (Top, Front, Side)",
+        "max_gpu_length": 435
+      },
+      "image_source": "ProductsData/Case/Case_IMG/NZXT H9 Elite.jpg",
+      "image_sha256": "9fcd689d4def2c37592acb2f7694a29b2cc56fde8bb179cd9980b535ef191ec5",
+      "support": [
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 7,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "PC Case Model Name": "Cooler Master Cosmos C700P Black Edition",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Curved Tempered Glass",
+        "Included Fans": "4x 140mm 1200RPM Fans",
+        "Max GPU Clearance": "490 mm",
+        "Price (USD)": 349.99
+      },
+      "values": {
+        "name": "Cooler Master Cosmos C700P Black Edition",
+        "brand": "Cooler Master",
+        "price": "349.99",
+        "image_url": "productsdata-case_box-7.png",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Curved Tempered Glass\nIncluded Fans: 4x 140mm 1200RPM Fans\nMax GPU Clearance: 490 mm",
+        "size": "Full Tower",
+        "side_panel": "Curved Tempered Glass",
+        "max_gpu_length": 490
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Cooler Master Cosmos C700P Black Edition.png",
+      "image_sha256": "1c40566399cdc9d013d9715a4e3cc6bddd433c2df9ffd46e5ac9a8223c4f82e8",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 8,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "PC Case Model Name": "ASUS ROG Hyperion GR701",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Hinged Tempered Glass",
+        "Included Fans": "4x 140mm PWM Fans",
+        "Max GPU Clearance": "460 mm",
+        "Price (USD)": 499.99
+      },
+      "values": {
+        "name": "ASUS ROG Hyperion GR701",
+        "brand": "ASUS",
+        "price": "499.99",
+        "image_url": "productsdata-case_box-8.jpg",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Hinged Tempered Glass\nIncluded Fans: 4x 140mm PWM Fans\nMax GPU Clearance: 460 mm",
+        "size": "Full Tower",
+        "side_panel": "Hinged Tempered Glass",
+        "max_gpu_length": 460
+      },
+      "image_source": "ProductsData/Case/Case_IMG/ASUS ROG Hyperion GR701.jpg",
+      "image_sha256": "14a7d81c95f083b53b6c96428ad7ae07934e6f3f135f93d896e661701e1abc99",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 9,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "PC Case Model Name": "Fractal Design Torrent",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX, SSI-EEB",
+        "Side Panel / Finish": "Tempered Glass",
+        "Included Fans": "2x 180mm + 3x 140mm Dynamic GP",
+        "Max GPU Clearance": "461 mm",
+        "Price (USD)": 189.99
+      },
+      "values": {
+        "name": "Fractal Design Torrent",
+        "brand": "Fractal Design",
+        "price": "189.99",
+        "image_url": "productsdata-case_box-9.jpg",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX, SSI-EEB\nSide Panel / Finish: Tempered Glass\nIncluded Fans: 2x 180mm + 3x 140mm Dynamic GP\nMax GPU Clearance: 461 mm",
+        "size": "Full Tower",
+        "side_panel": "Tempered Glass",
+        "max_gpu_length": 461
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Fractal Design Torrent.jpg",
+      "image_sha256": "8e84c7844f274faa6b95ea006255320cafd529d67938f13ffc092af03df45f0a",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX",
+        "SSI-EEB"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 10,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "PC Case Model Name": "Lian Li LANCOOL III RGB",
+        "Form Factor": "Mid Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Dual Hinged Tempered Glass",
+        "Included Fans": "4x 140mm ARGB PWM Fans",
+        "Max GPU Clearance": "435 mm",
+        "Price (USD)": 159.99
+      },
+      "values": {
+        "name": "Lian Li LANCOOL III RGB",
+        "brand": "Lian Li",
+        "price": "159.99",
+        "image_url": "productsdata-case_box-10.jpg",
+        "description": "Form Factor: Mid Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Dual Hinged Tempered Glass\nIncluded Fans: 4x 140mm ARGB PWM Fans\nMax GPU Clearance: 435 mm",
+        "size": "Mid Tower",
+        "side_panel": "Dual Hinged Tempered Glass",
+        "max_gpu_length": 435
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Lian Li LANCOOL III RGB.jpg",
+      "image_sha256": "9b0f6b86daa6db9454d051bd9f565fe623d40c3d71a9c218f55b7e4c33427e0f",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 11,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "PC Case Model Name": "be quiet! Dark Base Pro 901",
+        "Form Factor": "Full Tower",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass",
+        "Included Fans": "3x Silent Wings 4 140mm PWM",
+        "Max GPU Clearance": "495 mm",
+        "Price (USD)": 299.99
+      },
+      "values": {
+        "name": "be quiet! Dark Base Pro 901",
+        "brand": "be quiet!",
+        "price": "299.99",
+        "image_url": "productsdata-case_box-11.jpg",
+        "description": "Form Factor: Full Tower\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass\nIncluded Fans: 3x Silent Wings 4 140mm PWM\nMax GPU Clearance: 495 mm",
+        "size": "Full Tower",
+        "side_panel": "Tempered Glass",
+        "max_gpu_length": 495
+      },
+      "image_source": "ProductsData/Case/Case_IMG/be quiet! Dark Base Pro 901.jpg",
+      "image_sha256": "426acf079348833b9dc46885120c0dc6e7a6705a8bb11bd77b46eeda17c8b341",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 12,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "PC Case Model Name": "SSUPD Meshlicious",
+        "Form Factor": "Small Form Factor (SFF)",
+        "Motherboard Support": "Mini-ITX",
+        "Side Panel / Finish": "Full Mesh",
+        "Included Fans": "0",
+        "Max GPU Clearance": "336 mm",
+        "Price (USD)": 119.99
+      },
+      "values": {
+        "name": "SSUPD Meshlicious",
+        "brand": "SSUPD",
+        "price": "119.99",
+        "image_url": "productsdata-case_box-12.jpg",
+        "description": "Form Factor: Small Form Factor (SFF)\nMotherboard Support: Mini-ITX\nSide Panel / Finish: Full Mesh\nIncluded Fans: 0\nMax GPU Clearance: 336 mm",
+        "size": "Small Form Factor (SFF)",
+        "side_panel": "Full Mesh",
+        "max_gpu_length": 336
+      },
+      "image_source": "ProductsData/Case/Case_IMG/SSUPD Meshlicious.jpg",
+      "image_sha256": "fcdfce49cef8988c74a200c975170a46387df03096c4093385d91c9c39ac6550",
+      "support": [
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 13,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "PC Case Model Name": "Corsair 5000D AIRFLOW",
+        "Form Factor": "Mid Tower",
+        "Motherboard Support": "ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass",
+        "Included Fans": "2x 120mm AirGuide Fans",
+        "Max GPU Clearance": "420 mm",
+        "Price (USD)": 174.99
+      },
+      "values": {
+        "name": "Corsair 5000D AIRFLOW",
+        "brand": "Corsair",
+        "price": "174.99",
+        "image_url": "productsdata-case_box-13.avif",
+        "description": "Form Factor: Mid Tower\nMotherboard Support: ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass\nIncluded Fans: 2x 120mm AirGuide Fans\nMax GPU Clearance: 420 mm",
+        "size": "Mid Tower",
+        "side_panel": "Tempered Glass",
+        "max_gpu_length": 420
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Corsair 5000D AIRFLOW.avif",
+      "image_sha256": "39f039428ef4c1ce73d3adc6329e51e8c7d8275d11c41d7c670c830c2a2f496b",
+      "support": [
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 14,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "PC Case Model Name": "Thermaltake CTE C750 TG ARGB",
+        "Form Factor": "Full Tower (Central Thermal)",
+        "Motherboard Support": "E-ATX, ATX, Micro-ATX, Mini-ITX",
+        "Side Panel / Finish": "Tempered Glass",
+        "Included Fans": "3x 140mm CT140 ARGB Fans",
+        "Max GPU Clearance": "420 mm",
+        "Price (USD)": 189.99
+      },
+      "values": {
+        "name": "Thermaltake CTE C750 TG ARGB",
+        "brand": "Thermaltake",
+        "price": "189.99",
+        "image_url": "productsdata-case_box-14.jpg",
+        "description": "Form Factor: Full Tower (Central Thermal)\nMotherboard Support: E-ATX, ATX, Micro-ATX, Mini-ITX\nSide Panel / Finish: Tempered Glass\nIncluded Fans: 3x 140mm CT140 ARGB Fans\nMax GPU Clearance: 420 mm",
+        "size": "Full Tower (Central Thermal)",
+        "side_panel": "Tempered Glass",
+        "max_gpu_length": 420
+      },
+      "image_source": "ProductsData/Case/Case_IMG/Thermaltake CTE C750 TG ARGB.jpg",
+      "image_sha256": "7151212d025d2bed646c870877e1ac65a723e072548eefc22af5859ce9a994d1",
+      "support": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "case_box",
+      "source_id": 15,
+      "source_file": "ProductsData/Case/Case.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "PC Case Model Name": "FormD T1 v2.1",
+        "Form Factor": "Small Form Factor (SFF)",
+        "Motherboard Support": "Mini-ITX",
+        "Side Panel / Finish": "CNC Aluminum Mesh",
+        "Included Fans": "0",
+        "Max GPU Clearance": "325 mm",
+        "Price (USD)": 219.99
+      },
+      "values": {
+        "name": "FormD T1 v2.1",
+        "brand": "FormD",
+        "price": "219.99",
+        "image_url": "productsdata-case_box-15.jpg",
+        "description": "Form Factor: Small Form Factor (SFF)\nMotherboard Support: Mini-ITX\nSide Panel / Finish: CNC Aluminum Mesh\nIncluded Fans: 0\nMax GPU Clearance: 325 mm",
+        "size": "Small Form Factor (SFF)",
+        "side_panel": "CNC Aluminum Mesh",
+        "max_gpu_length": 325
+      },
+      "image_source": "ProductsData/Case/Case_IMG/FormD T1 v2.1.jpg",
+      "image_sha256": "fdd6f40cfb51caae660782dc5da90a85df556b8ac69f2f9b02f87e56bd0e1e01",
+      "support": [
+        "Mini-ITX"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 1,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "CPU Cooler Name": "Corsair iCUE Link H150i RGB",
+        "Fan RPM": "480 – 2400 RPM",
+        "Noise Level": "10 – 37 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 239.99
+      },
+      "values": {
+        "name": "Corsair iCUE Link H150i RGB",
+        "brand": "Corsair",
+        "price": "239.99",
+        "image_url": "productsdata-cooling-1.avif",
+        "description": "Fan RPM: 480 – 2400 RPM\nNoise Level: 10 – 37 dBA\nColor: Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/Corsair iCUE Link H150i RGB.avif",
+      "image_sha256": "d38770f175f388584768678409cea63df496f9b10bf749ff62b82fd27e0247f8",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 2,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "CPU Cooler Name": "NZXT Kraken Elite 360 RGB",
+        "Fan RPM": "500 – 1800 RPM",
+        "Noise Level": "17.9 – 30.6 dBA",
+        "Color": "Matte Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 299.99
+      },
+      "values": {
+        "name": "NZXT Kraken Elite 360 RGB",
+        "brand": "NZXT",
+        "price": "299.99",
+        "image_url": "productsdata-cooling-2.jpg",
+        "description": "Fan RPM: 500 – 1800 RPM\nNoise Level: 17.9 – 30.6 dBA\nColor: Matte Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/NZXT Kraken Elite 360 RGB.jpg",
+      "image_sha256": "9ed3ac00c6a7a68d2a75141469fb93e863ba3719b6a100f54cab84e602204311",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 3,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "CPU Cooler Name": "ASUS ROG Ryujin III 360 ARGB",
+        "Fan RPM": "600 – 2200 RPM",
+        "Noise Level": "15 – 36.45 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 349.99
+      },
+      "values": {
+        "name": "ASUS ROG Ryujin III 360 ARGB",
+        "brand": "ASUS",
+        "price": "349.99",
+        "image_url": "productsdata-cooling-3.png",
+        "description": "Fan RPM: 600 – 2200 RPM\nNoise Level: 15 – 36.45 dBA\nColor: Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/ASUS ROG Ryujin III 360 ARGB.png",
+      "image_sha256": "f899543c6d6b200536ea5739e8e4dea7d27d808f83aa4f2e78becef0f10b3959",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 4,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "CPU Cooler Name": "Noctua NH-D15 chromax.black",
+        "Fan RPM": "300 – 1500 RPM",
+        "Noise Level": "19.2 – 24.6 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "None (Air Cooler)",
+        "Price (USD)": 119.95
+      },
+      "values": {
+        "name": "Noctua NH-D15 chromax.black",
+        "brand": "Noctua",
+        "price": "119.95",
+        "image_url": "productsdata-cooling-4.jpg",
+        "description": "Fan RPM: 300 – 1500 RPM\nNoise Level: 19.2 – 24.6 dBA\nColor: Black\nRadiator Size (If Contain): None (Air Cooler)",
+        "type": "Air cooler",
+        "size": null,
+        "radiator_size_mm": null
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/Noctua NH-D15 chromax.black.jpg",
+      "image_sha256": "aa2a3d2497c30d800ff2fe322859a779fe52b2d2e29d5cbe33f11c9034bedcfd",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 5,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "CPU Cooler Name": "Lian Li GA II Trinity Performance 360",
+        "Fan RPM": "2300 – 3000 RPM",
+        "Noise Level": "20 – 39.9 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 169.99
+      },
+      "values": {
+        "name": "Lian Li GA II Trinity Performance 360",
+        "brand": "Lian Li",
+        "price": "169.99",
+        "image_url": "productsdata-cooling-5.jpg",
+        "description": "Fan RPM: 2300 – 3000 RPM\nNoise Level: 20 – 39.9 dBA\nColor: Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/Lian Li GA II Trinity Performance 360.jpg",
+      "image_sha256": "df1928ddcb25cb0385b4b88fcda9e6a35af2abd88dcd82c03a70f60c6cd45edd",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 6,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "CPU Cooler Name": "DeepCool LT720 WH",
+        "Fan RPM": "500 – 2250 RPM",
+        "Noise Level": "10 – 32.9 dBA",
+        "Color": "White",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 139.99
+      },
+      "values": {
+        "name": "DeepCool LT720 WH",
+        "brand": "DeepCool",
+        "price": "139.99",
+        "image_url": "productsdata-cooling-6.avif",
+        "description": "Fan RPM: 500 – 2250 RPM\nNoise Level: 10 – 32.9 dBA\nColor: White\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/DeepCool LT720 WH.avif",
+      "image_sha256": "6c4ce1e19a3e3644693bc1d787503a5329c61e9b04d307eb270401e7a5055745",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 7,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "CPU Cooler Name": "ARCTIC Liquid Freezer III 420 A-RGB",
+        "Fan RPM": "200 – 1900 RPM",
+        "Noise Level": "10.5 – 22.5 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "420 mm (Included)",
+        "Price (USD)": 149.99
+      },
+      "values": {
+        "name": "ARCTIC Liquid Freezer III 420 A-RGB",
+        "brand": "ARCTIC",
+        "price": "149.99",
+        "image_url": "productsdata-cooling-7.jpg",
+        "description": "Fan RPM: 200 – 1900 RPM\nNoise Level: 10.5 – 22.5 dBA\nColor: Black\nRadiator Size (If Contain): 420 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "420 mm",
+        "radiator_size_mm": 420
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/ARCTIC Liquid Freezer III 420 A-RGB.jpg",
+      "image_sha256": "2a12eac2f945e7bbc9d6a37a114dad8fab380a94052985f7da313157f58c9172",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 8,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "CPU Cooler Name": "MSI MAG CoreLiquid E360",
+        "Fan RPM": "600 – 1800 RPM",
+        "Noise Level": "11.2 – 32.5 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 139.99
+      },
+      "values": {
+        "name": "MSI MAG CoreLiquid E360",
+        "brand": "MSI",
+        "price": "139.99",
+        "image_url": "productsdata-cooling-8.png",
+        "description": "Fan RPM: 600 – 1800 RPM\nNoise Level: 11.2 – 32.5 dBA\nColor: Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/MSI MAG CoreLiquid E360.png",
+      "image_sha256": "1c56e798058b11c86f3df22904defaadd014a731efba0e95aac78d4803e173cc",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 9,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "CPU Cooler Name": "be quiet! Dark Rock Elite",
+        "Fan RPM": "1500 – 2000 RPM",
+        "Noise Level": "11 – 25.8 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "None (Air Cooler)",
+        "Price (USD)": 114.9
+      },
+      "values": {
+        "name": "be quiet! Dark Rock Elite",
+        "brand": "be quiet!",
+        "price": "114.90",
+        "image_url": "productsdata-cooling-9.jpg",
+        "description": "Fan RPM: 1500 – 2000 RPM\nNoise Level: 11 – 25.8 dBA\nColor: Black\nRadiator Size (If Contain): None (Air Cooler)",
+        "type": "Air cooler",
+        "size": null,
+        "radiator_size_mm": null
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/be quiet! Dark Rock Elite.jpg",
+      "image_sha256": "4d38f37155150003737ced6e21f0164efb963f1494d19ad9ea8f69d0da6fb7e7",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 10,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "CPU Cooler Name": "Corsair iCUE H170i LCD XT",
+        "Fan RPM": "550 – 1700 RPM",
+        "Noise Level": "5 – 34.1 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "420 mm (Included)",
+        "Price (USD)": 309.99
+      },
+      "values": {
+        "name": "Corsair iCUE H170i LCD XT",
+        "brand": "Corsair",
+        "price": "309.99",
+        "image_url": "productsdata-cooling-10.avif",
+        "description": "Fan RPM: 550 – 1700 RPM\nNoise Level: 5 – 34.1 dBA\nColor: Black\nRadiator Size (If Contain): 420 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "420 mm",
+        "radiator_size_mm": 420
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/Corsair iCUE H170i LCD XT.avif",
+      "image_sha256": "45351ee6613153f18fa4697b6f73a4bde16951fe11ec4310505fc610aae15615",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 11,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "CPU Cooler Name": "Thermalright Peerless Assassin 120 SE",
+        "Fan RPM": "600 – 1550 RPM",
+        "Noise Level": "15 – 25.6 dBA",
+        "Color": "Black / Silver",
+        "Radiator Size (If Contain)": "None (Air Cooler)",
+        "Price (USD)": 33.9
+      },
+      "values": {
+        "name": "Thermalright Peerless Assassin 120 SE",
+        "brand": "Thermalright",
+        "price": "33.90",
+        "image_url": "productsdata-cooling-11.jpg",
+        "description": "Fan RPM: 600 – 1550 RPM\nNoise Level: 15 – 25.6 dBA\nColor: Black / Silver\nRadiator Size (If Contain): None (Air Cooler)",
+        "type": "Air cooler",
+        "size": null,
+        "radiator_size_mm": null
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/Thermalright Peerless Assassin 120 SE.jpg",
+      "image_sha256": "9bb75f6b9b2c6e82aea84accfe956b98baa5741c26137f7ddc5e46f1553fb083",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 12,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "CPU Cooler Name": "NZXT Kraken Elite 280 RGB",
+        "Fan RPM": "500 – 1500 RPM",
+        "Noise Level": "19.4 – 32.1 dBA",
+        "Color": "Matte White",
+        "Radiator Size (If Contain)": "280 mm (Included)",
+        "Price (USD)": 259.99
+      },
+      "values": {
+        "name": "NZXT Kraken Elite 280 RGB",
+        "brand": "NZXT",
+        "price": "259.99",
+        "image_url": "productsdata-cooling-12.jpg",
+        "description": "Fan RPM: 500 – 1500 RPM\nNoise Level: 19.4 – 32.1 dBA\nColor: Matte White\nRadiator Size (If Contain): 280 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "280 mm",
+        "radiator_size_mm": 280
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/NZXT Kraken Elite 280 RGB.jpg",
+      "image_sha256": "7b12f3031a07063d0dcfa648fefd3cecebc0471c21930b5afbb8f3ea27a68733",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 13,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "CPU Cooler Name": "EKWB EK-Nucleus AIO CR360 Lux D-RGB",
+        "Fan RPM": "550 – 2300 RPM",
+        "Noise Level": "12 – 36 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 163.99
+      },
+      "values": {
+        "name": "EKWB EK-Nucleus AIO CR360 Lux D-RGB",
+        "brand": "EKWB",
+        "price": "163.99",
+        "image_url": "productsdata-cooling-13.jpeg",
+        "description": "Fan RPM: 550 – 2300 RPM\nNoise Level: 12 – 36 dBA\nColor: Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/EKWB EK-Nucleus AIO CR360 Lux D-RGB.jpeg",
+      "image_sha256": "871416dd5adfb4253d1fe36e58614c3b1e34253fe833801c7864cdbef6af3c75",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 14,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "CPU Cooler Name": "Phanteks Glacier One 360 T30 V2",
+        "Fan RPM": "1200 – 3000 RPM",
+        "Noise Level": "11.1 – 39.7 dBA",
+        "Color": "Black",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 259.99
+      },
+      "values": {
+        "name": "Phanteks Glacier One 360 T30 V2",
+        "brand": "Phanteks",
+        "price": "259.99",
+        "image_url": "productsdata-cooling-14.jpg",
+        "description": "Fan RPM: 1200 – 3000 RPM\nNoise Level: 11.1 – 39.7 dBA\nColor: Black\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/Phanteks Glacier One 360 T30 V2.jpg",
+      "image_sha256": "3b71fee33433d8864e2422d98420e9571f458cb8b69dcd8bb881569db0957c41",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "cooling",
+      "source_id": 15,
+      "source_file": "ProductsData/CPU_Cooler/CPU_Cooler.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "CPU Cooler Name": "be quiet! Pure Loop 2 FX 360mm",
+        "Fan RPM": "600 – 2500 RPM",
+        "Noise Level": "16.8 – 34 dBA",
+        "Color": "Black / ARGB",
+        "Radiator Size (If Contain)": "360 mm (Included)",
+        "Price (USD)": 159.9
+      },
+      "values": {
+        "name": "be quiet! Pure Loop 2 FX 360mm",
+        "brand": "be quiet!",
+        "price": "159.90",
+        "image_url": "productsdata-cooling-15.jpg",
+        "description": "Fan RPM: 600 – 2500 RPM\nNoise Level: 16.8 – 34 dBA\nColor: Black / ARGB\nRadiator Size (If Contain): 360 mm (Included)",
+        "type": "Liquid AIO cooler",
+        "size": "360 mm",
+        "radiator_size_mm": 360
+      },
+      "image_source": "ProductsData/CPU_Cooler/CPU_Cooler_IMG/be quiet! Pure Loop 2 FX 360mm.jpg",
+      "image_sha256": "9cd1ae5d0159e6695962f072574ca21696afa2dca141f4b3a301466fb4bdade3",
+      "support": [
+        "LGA1700",
+        "AM5"
+      ]
+    },
+    {
+      "category": "monitor",
+      "source_id": 1,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 8,
+      "source_values": {
+        "ID": 1,
+        "Monitor Model Name": "ASUS ROG Swift OLED PG32UCDM",
+        "Screen Size": "32\"",
+        "Panel Type": "QD-OLED",
+        "Resolution": "3840 x 2160 (4K UHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | HDR TRUE BLACK 400",
+        "Price (USD)": 1299.99
+      },
+      "values": {
+        "name": "ASUS ROG Swift OLED PG32UCDM",
+        "brand": "ASUS",
+        "price": "1299.99",
+        "image_url": "productsdata-monitor-1.jpg",
+        "description": "Screen Size: 32\"\nPanel Type: QD-OLED\nResolution: 3840 x 2160 (4K UHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | HDR TRUE BLACK 400",
+        "screen_size": "32\"",
+        "panel_type": "QD-OLED",
+        "resolution": "3840 x 2160 (4K UHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | HDR TRUE BLACK 400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/ASUS ROG Swift OLED PG32UCDM.jpg",
+      "image_sha256": "eb390505be036032e99b069ccc824cea9cc53781bdf6bd60873ec5746d341301",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 2,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 9,
+      "source_values": {
+        "ID": 2,
+        "Monitor Model Name": "Dell Alienware AW3225QF",
+        "Screen Size": "32\"",
+        "Panel Type": "Curved QD-OLED (1700R)",
+        "Resolution": "3840 x 2160 (4K UHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | Dolby Vision / HDR400",
+        "Price (USD)": 1199.99
+      },
+      "values": {
+        "name": "Dell Alienware AW3225QF",
+        "brand": "Dell",
+        "price": "1199.99",
+        "image_url": "productsdata-monitor-2.avif",
+        "description": "Screen Size: 32\"\nPanel Type: Curved QD-OLED (1700R)\nResolution: 3840 x 2160 (4K UHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | Dolby Vision / HDR400",
+        "screen_size": "32\"",
+        "panel_type": "Curved QD-OLED (1700R)",
+        "resolution": "3840 x 2160 (4K UHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | Dolby Vision / HDR400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Dell Alienware AW3225QF.avif",
+      "image_sha256": "3d1bcd1298bdb8d2571cad7080c7f4f17aee3217ef6868f9de44ed1d3ea294d7",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 3,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 10,
+      "source_values": {
+        "ID": 3,
+        "Monitor Model Name": "LG UltraGear 32GS95UE-B",
+        "Screen Size": "32\"",
+        "Panel Type": "WOLED",
+        "Resolution": "4K 240Hz / FHD 480Hz",
+        "Refresh Rate": "240 Hz / 480 Hz Dual",
+        "Response Time / HDR": "0.03 ms GTG | DisplayHDR True Black 400",
+        "Price (USD)": 1399.99
+      },
+      "values": {
+        "name": "LG UltraGear 32GS95UE-B",
+        "brand": "LG",
+        "price": "1399.99",
+        "image_url": "productsdata-monitor-3.avif",
+        "description": "Screen Size: 32\"\nPanel Type: WOLED\nResolution: 4K 240Hz / FHD 480Hz\nRefresh Rate: 240 Hz / 480 Hz Dual\nResponse Time / HDR: 0.03 ms GTG | DisplayHDR True Black 400",
+        "screen_size": "32\"",
+        "panel_type": "WOLED",
+        "resolution": "4K 240Hz / FHD 480Hz",
+        "refresh_rate": "240 Hz / 480 Hz Dual",
+        "response_time_hdr": "0.03 ms GTG | DisplayHDR True Black 400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/LG UltraGear 32GS95UE-B.avif",
+      "image_sha256": "576c2437ea02b9b335a6f7ab01cfa37158ca09c5f72e2182a40543a2f950473b",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 4,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 11,
+      "source_values": {
+        "ID": 4,
+        "Monitor Model Name": "MSI MPG 321URX QD-OLED",
+        "Screen Size": "32\"",
+        "Panel Type": "QD-OLED",
+        "Resolution": "3840 x 2160 (4K UHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | ClearMR 13000 / HDR400",
+        "Price (USD)": 949.99
+      },
+      "values": {
+        "name": "MSI MPG 321URX QD-OLED",
+        "brand": "MSI",
+        "price": "949.99",
+        "image_url": "productsdata-monitor-4.jpg",
+        "description": "Screen Size: 32\"\nPanel Type: QD-OLED\nResolution: 3840 x 2160 (4K UHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | ClearMR 13000 / HDR400",
+        "screen_size": "32\"",
+        "panel_type": "QD-OLED",
+        "resolution": "3840 x 2160 (4K UHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | ClearMR 13000 / HDR400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/MSI MPG 321URX QD-OLED.jpg",
+      "image_sha256": "4a7e1a02c3f42b0276c51ec438d7086480f23df37b3008d38cdf9d2ec3d5f6f3",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 5,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 12,
+      "source_values": {
+        "ID": 5,
+        "Monitor Model Name": "Samsung Odyssey OLED G9 (G95SC)",
+        "Screen Size": "49\"",
+        "Panel Type": "Curved QD-OLED (1800R)",
+        "Resolution": "5120 x 1440 (Dual QHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | DisplayHDR True Black 400",
+        "Price (USD)": 1799.99
+      },
+      "values": {
+        "name": "Samsung Odyssey OLED G9 (G95SC)",
+        "brand": "Samsung",
+        "price": "1799.99",
+        "image_url": "productsdata-monitor-5.jpg",
+        "description": "Screen Size: 49\"\nPanel Type: Curved QD-OLED (1800R)\nResolution: 5120 x 1440 (Dual QHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | DisplayHDR True Black 400",
+        "screen_size": "49\"",
+        "panel_type": "Curved QD-OLED (1800R)",
+        "resolution": "5120 x 1440 (Dual QHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | DisplayHDR True Black 400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Samsung Odyssey OLED G9 (G95SC).jpg",
+      "image_sha256": "6b9c1a32c88d27998885093d4e986e180d64bc60890494fc14bf2fef1df889e2",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 6,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 13,
+      "source_values": {
+        "ID": 6,
+        "Monitor Model Name": "Samsung Odyssey Neo G9 (G95NC)",
+        "Screen Size": "57\"",
+        "Panel Type": "Curved Mini-LED (1000R)",
+        "Resolution": "7680 x 2160 (Dual UHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "1 ms GTG | DisplayHDR 1000",
+        "Price (USD)": 2499.99
+      },
+      "values": {
+        "name": "Samsung Odyssey Neo G9 (G95NC)",
+        "brand": "Samsung",
+        "price": "2499.99",
+        "image_url": "productsdata-monitor-6.jpg",
+        "description": "Screen Size: 57\"\nPanel Type: Curved Mini-LED (1000R)\nResolution: 7680 x 2160 (Dual UHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 1 ms GTG | DisplayHDR 1000",
+        "screen_size": "57\"",
+        "panel_type": "Curved Mini-LED (1000R)",
+        "resolution": "7680 x 2160 (Dual UHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "1 ms GTG | DisplayHDR 1000"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Samsung Odyssey Neo G9 (G95NC).jpg",
+      "image_sha256": "3acb74f9514c437ed9373ea8aa3f623a08717523ae6268f61cce5aab01de2f24",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 7,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 14,
+      "source_values": {
+        "ID": 7,
+        "Monitor Model Name": "ASUS ROG Swift Pro PG248QP",
+        "Screen Size": "24.1\"",
+        "Panel Type": "E-TN",
+        "Resolution": "1920 x 1080 (FHD)",
+        "Refresh Rate": "540 Hz",
+        "Response Time / HDR": "0.2 ms GTG | DisplayHDR 400",
+        "Price (USD)": 899.99
+      },
+      "values": {
+        "name": "ASUS ROG Swift Pro PG248QP",
+        "brand": "ASUS",
+        "price": "899.99",
+        "image_url": "productsdata-monitor-7.jpg",
+        "description": "Screen Size: 24.1\"\nPanel Type: E-TN\nResolution: 1920 x 1080 (FHD)\nRefresh Rate: 540 Hz\nResponse Time / HDR: 0.2 ms GTG | DisplayHDR 400",
+        "screen_size": "24.1\"",
+        "panel_type": "E-TN",
+        "resolution": "1920 x 1080 (FHD)",
+        "refresh_rate": "540 Hz",
+        "response_time_hdr": "0.2 ms GTG | DisplayHDR 400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/ASUS ROG Swift Pro PG248QP.jpg",
+      "image_sha256": "715218bcecf17a4f4181d706fef3fefad59ab479bc403f8329962f762231ac47",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 8,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 15,
+      "source_values": {
+        "ID": 8,
+        "Monitor Model Name": "Dell Alienware AW2725DF",
+        "Screen Size": "27\"",
+        "Panel Type": "QD-OLED",
+        "Resolution": "2560 x 1440 (QHD)",
+        "Refresh Rate": "360 Hz",
+        "Response Time / HDR": "0.03 ms GTG | DisplayHDR True Black 400",
+        "Price (USD)": 899.99
+      },
+      "values": {
+        "name": "Dell Alienware AW2725DF",
+        "brand": "Dell",
+        "price": "899.99",
+        "image_url": "productsdata-monitor-8.jpg",
+        "description": "Screen Size: 27\"\nPanel Type: QD-OLED\nResolution: 2560 x 1440 (QHD)\nRefresh Rate: 360 Hz\nResponse Time / HDR: 0.03 ms GTG | DisplayHDR True Black 400",
+        "screen_size": "27\"",
+        "panel_type": "QD-OLED",
+        "resolution": "2560 x 1440 (QHD)",
+        "refresh_rate": "360 Hz",
+        "response_time_hdr": "0.03 ms GTG | DisplayHDR True Black 400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Dell Alienware AW2725DF.jpg",
+      "image_sha256": "0ec80dc3c58282265b9d2801ef2bdc7c3773204c525c8e64ae6456bc24565dc2",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 9,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 16,
+      "source_values": {
+        "ID": 9,
+        "Monitor Model Name": "Gigabyte AORUS FO32U2P",
+        "Screen Size": "32\"",
+        "Panel Type": "QD-OLED (DP 2.1 Native)",
+        "Resolution": "3840 x 2160 (4K UHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | DisplayHDR True Black 400",
+        "Price (USD)": 1299.99
+      },
+      "values": {
+        "name": "Gigabyte AORUS FO32U2P",
+        "brand": "GIGABYTE",
+        "price": "1299.99",
+        "image_url": "productsdata-monitor-9.png",
+        "description": "Screen Size: 32\"\nPanel Type: QD-OLED (DP 2.1 Native)\nResolution: 3840 x 2160 (4K UHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | DisplayHDR True Black 400",
+        "screen_size": "32\"",
+        "panel_type": "QD-OLED (DP 2.1 Native)",
+        "resolution": "3840 x 2160 (4K UHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | DisplayHDR True Black 400"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Gigabyte AORUS FO32U2P.png",
+      "image_sha256": "8cd75668b52edfe1dc3c95d2100f411ec37054cf692878d9898d52615d9cfb64",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 10,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 17,
+      "source_values": {
+        "ID": 10,
+        "Monitor Model Name": "BenQ ZOWIE XL2566K",
+        "Screen Size": "24.5\"",
+        "Panel Type": "TN (DyAc+)",
+        "Resolution": "1920 x 1080 (FHD)",
+        "Refresh Rate": "360 Hz",
+        "Response Time / HDR": "0.5 ms GTG | N/A (Esports Tuned)",
+        "Price (USD)": 599.99
+      },
+      "values": {
+        "name": "BenQ ZOWIE XL2566K",
+        "brand": "BenQ",
+        "price": "599.99",
+        "image_url": "productsdata-monitor-10.avif",
+        "description": "Screen Size: 24.5\"\nPanel Type: TN (DyAc+)\nResolution: 1920 x 1080 (FHD)\nRefresh Rate: 360 Hz\nResponse Time / HDR: 0.5 ms GTG | N/A (Esports Tuned)",
+        "screen_size": "24.5\"",
+        "panel_type": "TN (DyAc+)",
+        "resolution": "1920 x 1080 (FHD)",
+        "refresh_rate": "360 Hz",
+        "response_time_hdr": "0.5 ms GTG | N/A (Esports Tuned)"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/BenQ ZOWIE XL2566K.avif",
+      "image_sha256": "7d37519f2d97a2ebafd7e617be27495cf11d7b7dda1058405382836391cff79c",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 11,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 18,
+      "source_values": {
+        "ID": 11,
+        "Monitor Model Name": "LG UltraGear 27GR95QE-B",
+        "Screen Size": "27\"",
+        "Panel Type": "OLED",
+        "Resolution": "2560 x 1440 (QHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | HDR10",
+        "Price (USD)": 799.99
+      },
+      "values": {
+        "name": "LG UltraGear 27GR95QE-B",
+        "brand": "LG",
+        "price": "799.99",
+        "image_url": "productsdata-monitor-11.avif",
+        "description": "Screen Size: 27\"\nPanel Type: OLED\nResolution: 2560 x 1440 (QHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | HDR10",
+        "screen_size": "27\"",
+        "panel_type": "OLED",
+        "resolution": "2560 x 1440 (QHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | HDR10"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/LG UltraGear 27GR95QE-B.avif",
+      "image_sha256": "443949a93e66254b009ab7c6b4173799e700c10cff0150b0f5cd61f378f1f7d9",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 12,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 19,
+      "source_values": {
+        "ID": 12,
+        "Monitor Model Name": "Corsair XENEON FLEX 45WQHD240",
+        "Screen Size": "45\"",
+        "Panel Type": "Bendable OLED (Flat to 800R)",
+        "Resolution": "3440 x 1440 (UWQHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | HDR10",
+        "Price (USD)": 1699.99
+      },
+      "values": {
+        "name": "Corsair XENEON FLEX 45WQHD240",
+        "brand": "Corsair",
+        "price": "1699.99",
+        "image_url": "productsdata-monitor-12.jpg",
+        "description": "Screen Size: 45\"\nPanel Type: Bendable OLED (Flat to 800R)\nResolution: 3440 x 1440 (UWQHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | HDR10",
+        "screen_size": "45\"",
+        "panel_type": "Bendable OLED (Flat to 800R)",
+        "resolution": "3440 x 1440 (UWQHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | HDR10"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Corsair XENEON FLEX 45WQHD240.jpg",
+      "image_sha256": "c40f1d0a5d0e999f9e1b1a365b5888ea9c3c01330c5a0655c508ed81f984c4b4",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 13,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 20,
+      "source_values": {
+        "ID": 13,
+        "Monitor Model Name": "ASUS ROG Swift PG27AQDM",
+        "Screen Size": "27\"",
+        "Panel Type": "OLED",
+        "Resolution": "2560 x 1440 (QHD)",
+        "Refresh Rate": "240 Hz",
+        "Response Time / HDR": "0.03 ms GTG | HDR10",
+        "Price (USD)": 899.99
+      },
+      "values": {
+        "name": "ASUS ROG Swift PG27AQDM",
+        "brand": "ASUS",
+        "price": "899.99",
+        "image_url": "productsdata-monitor-13.jpg",
+        "description": "Screen Size: 27\"\nPanel Type: OLED\nResolution: 2560 x 1440 (QHD)\nRefresh Rate: 240 Hz\nResponse Time / HDR: 0.03 ms GTG | HDR10",
+        "screen_size": "27\"",
+        "panel_type": "OLED",
+        "resolution": "2560 x 1440 (QHD)",
+        "refresh_rate": "240 Hz",
+        "response_time_hdr": "0.03 ms GTG | HDR10"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/ASUS ROG Swift PG27AQDM.jpg",
+      "image_sha256": "8f1d1e0c801574e6947c26fdadcee2d0024b8f813f6ee8108f3d3d7186ee2f13",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 14,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 21,
+      "source_values": {
+        "ID": 14,
+        "Monitor Model Name": "Acer Predator X32 FP",
+        "Screen Size": "32\"",
+        "Panel Type": "Mini-LED IPS",
+        "Resolution": "3840 x 2160 (4K UHD)",
+        "Refresh Rate": "160 Hz",
+        "Response Time / HDR": "0.7 ms GTG | DisplayHDR 1000",
+        "Price (USD)": 1199.99
+      },
+      "values": {
+        "name": "Acer Predator X32 FP",
+        "brand": "Acer",
+        "price": "1199.99",
+        "image_url": "productsdata-monitor-14.jpg",
+        "description": "Screen Size: 32\"\nPanel Type: Mini-LED IPS\nResolution: 3840 x 2160 (4K UHD)\nRefresh Rate: 160 Hz\nResponse Time / HDR: 0.7 ms GTG | DisplayHDR 1000",
+        "screen_size": "32\"",
+        "panel_type": "Mini-LED IPS",
+        "resolution": "3840 x 2160 (4K UHD)",
+        "refresh_rate": "160 Hz",
+        "response_time_hdr": "0.7 ms GTG | DisplayHDR 1000"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Acer Predator X32 FP.jpg",
+      "image_sha256": "d841ff6915b5265ba7c801c9de2c20b177feb5876a0373fc3264086ee8c33d68",
+      "support": []
+    },
+    {
+      "category": "monitor",
+      "source_id": 15,
+      "source_file": "ProductsData/Monitor/Monitor.xlsx",
+      "source_row": 22,
+      "source_values": {
+        "ID": 15,
+        "Monitor Model Name": "Apple Studio Display - Nano-Texture",
+        "Screen Size": "27\"",
+        "Panel Type": "IPS LCD",
+        "Resolution": "5120 x 2880 (5K Retina)",
+        "Refresh Rate": "60 Hz",
+        "Response Time / HDR": "5 ms GTG | 600 nits Brightness",
+        "Price (USD)": 1899.99
+      },
+      "values": {
+        "name": "Apple Studio Display - Nano-Texture",
+        "brand": "Apple",
+        "price": "1899.99",
+        "image_url": "productsdata-monitor-15.jpg",
+        "description": "Screen Size: 27\"\nPanel Type: IPS LCD\nResolution: 5120 x 2880 (5K Retina)\nRefresh Rate: 60 Hz\nResponse Time / HDR: 5 ms GTG | 600 nits Brightness",
+        "screen_size": "27\"",
+        "panel_type": "IPS LCD",
+        "resolution": "5120 x 2880 (5K Retina)",
+        "refresh_rate": "60 Hz",
+        "response_time_hdr": "5 ms GTG | 600 nits Brightness"
+      },
+      "image_source": "ProductsData/Monitor/Monitor_IMG/Apple Studio Display - Nano-Texture.jpg",
+      "image_sha256": "ddc57f11743fd4f377fb1c515535c661f7d21041b4acdeae175bbb387a898838",
+      "support": []
+    }
+  ]
+}

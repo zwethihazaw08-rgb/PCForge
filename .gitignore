@@ -1,0 +1,17 @@
+# Local image-processing runtime and model cache (not needed to run the PHP site).
+.tools/
+
+# Database exports contain accounts, orders, and other private records.
+Database/backups/*
+!Database/backups/.htaccess
+
+# Local environment and secret files.
+.env
+.env.*
+!.env.example
+config/oauth.local.php
+
+# OS/editor noise.
+.DS_Store
+Thumbs.db
+*.swp

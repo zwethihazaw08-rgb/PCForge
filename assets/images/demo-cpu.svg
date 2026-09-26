@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration of a desktop processor</title>
+  <desc id="desc">A monochrome processor with a cooling fan and contact pins.</desc>
+  <g fill="none" stroke="#202020" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="205" y="105" width="390" height="390" rx="28" fill="#e8e8e8" stroke-width="12"/>
+    <rect x="275" y="175" width="250" height="250" rx="18" fill="#303030" stroke-width="10"/>
+    <circle cx="400" cy="300" r="86" fill="#ededed" stroke-width="9"/>
+    <path d="M400 222c-19 0-36 35-36 78s17 78 36 78 36-35 36-78-17-78-36-78Z" fill="#bdbdbd" stroke-width="6"/>
+    <path d="M322 300c0-19 35-36 78-36s78 17 78 36-35 36-78 36-78-17-78-36Z" fill="#bdbdbd" stroke-width="6"/>
+    <circle cx="400" cy="300" r="16" fill="#202020" stroke-width="5"/>
+    <path d="M205 160h-48M205 220h-48M205 280h-48M205 340h-48M205 400h-48M205 460h-48M595 160h48M595 220h48M595 280h48M595 340h48M595 400h48M595 460h48" stroke-width="10"/>
+    <path d="M260 105v-48M320 105v-48M380 105v-48M440 105v-48M500 105v-48M260 495v48M320 495v48M380 495v48M440 495v48M500 495v48" stroke-width="10"/>
+  </g>
+</svg>

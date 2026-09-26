@@ -1,0 +1,2 @@
+# XAMPP's bundled MIME table predates the supplied AVIF product photographs.
+AddType image/avif .avif

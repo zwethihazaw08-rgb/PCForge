@@ -1,0 +1,10 @@
+# Configure these in Apache/PHP environment settings on the host.
+# Do not rename this file to .env: the application reads environment variables,
+# not files in the public project directory.
+
+PCFORGE_GOOGLE_CLIENT_ID=
+PCFORGE_GOOGLE_CLIENT_SECRET=
+PCFORGE_GOOGLE_REDIRECT_URI=http://localhost/PCForge/auth/google-callback.php
+
+GROQ_API_KEY=
+GROQ_MODEL=openai/gpt-oss-20b
