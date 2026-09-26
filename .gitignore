@@ -4,6 +4,7 @@
 # Database exports contain accounts, orders, and other private records.
 Database/backups/*
 !Database/backups/.htaccess
+Database/pcforge.sql
 
 # Local environment and secret files.
 .env
