@@ -19,24 +19,26 @@ PCForge is a PHP and MariaDB PC component catalog, compatibility builder, compar
 - Apache and MariaDB/MySQL, such as XAMPP.
 - PHP 8.2 or newer with PDO MySQL, cURL, and mbstring enabled.
 - A database named `pcforge`.
-- Python 3.11 or newer only when rebuilding the supplied product manifest or image cutouts.
 
 The current local configuration uses Apache on port 80 and MariaDB on port 3307. Change [`config/database.php`](config/database.php) if the destination machine uses different settings.
 
 ## Local setup
 
-Copy the project folder to the web root, keeping the folder name `PCForge` unless you also change the base path in [`includes/functions.php`](includes/functions.php). Start Apache and MariaDB, create an empty `pcforge` database, and import [`Database/schema.sql`](Database/schema.sql).
-
-The supplied catalog can then be loaded from the `ProductsData` source files:
+Clone into your web root. Use a shallow clone to download the current version without the old source images and database exports retained in Git history:
 
 ```powershell
-python Database/prepare_products_data.py
-C:/xampp/php/php.exe Database/import_products_data.php --dry-run
-C:/xampp/php/php.exe Database/import_products_data.php --apply
-C:/xampp/php/php.exe Database/import_products_data.php --verify
+cd C:/xampp/htdocs
+git clone --depth 1 https://github.com/zwethihazaw08-rgb/PCForge.git
 ```
 
-To use the same assumed project availability shown in the current catalog, run [`Database/migrations/20260925_project_stock.sql`](Database/migrations/20260925_project_stock.sql) after the product import. The source spreadsheets contain no inventory counts, so imported products are initialized to 10 units as a project assumption.
+Keep the folder name `PCForge` unless you also change the base path in [`includes/functions.php`](includes/functions.php). Start Apache and MariaDB and update [`config/database.php`](config/database.php) to match your database port and credentials.
+
+In phpMyAdmin, create an empty `pcforge` database, select it, and import these two files in order:
+
+1. [`Database/schema.sql`](Database/schema.sql) — application tables and default settings.
+2. [`Database/catalog.sql`](Database/catalog.sql) — the 135 supplied products, image references, and known compatibility support.
+
+Import the catalog only once into a fresh installation. No Python, original spreadsheets, image processing, or additional SQL files are required. Existing installations should keep their database; these files are not an upgrade or a reset.
 
 Open:
 
@@ -44,15 +46,15 @@ Open:
 http://localhost/PCForge/
 ```
 
-The admin workspace is at `/PCForge/admin/dashboard.php`. It requires an active account with the `admin` role.
+The admin workspace is at `/PCForge/admin/dashboard.php`. It requires an active account with the `admin` role. Fresh installations contain no accounts; after registering your own account, assign its `role` to `admin` in phpMyAdmin if you need administrator access.
 
 ## Real product data
 
-The `ProductsData` folder is the source catalog, not a live database connection. [`Database/prepare_products_data.py`](Database/prepare_products_data.py) validates the workbooks and images and writes [`Database/products_data.json`](Database/products_data.json). [`Database/import_products_data.php`](Database/import_products_data.php) maps the manifest into the category tables and records the original spreadsheet row in `product_data_sources`.
+The catalog contains 15 products in each of nine categories. No supplied case-fan data was available. Prices are in USD. Stock is a snapshot of the project's inventory, originally based on assumed quantities because the source spreadsheets contained no inventory counts. It does not represent verified supplier availability.
 
-The current catalog contains 135 supplied products: 15 each in nine categories. The old sample products remain in the database as inactive historical records. No supplied case-fan data was available. Re-running the importer matches category plus source ID, preserves database IDs, stock, and publication status, and updates the supplied fields.
+The website reads products from MariaDB and final images from `assets/images`. All 135 final images are included: 90 transparent PNG derivatives and 45 images that already had transparency. The original `ProductsData` folder, duplicate photos, import tools, and local `.tools` runtime are excluded from the current repository files and are not required to run the website.
 
-Product images used by the site are stored in `assets/images`. The 90 opaque supplied photos have transparent PNG derivatives, while 45 supplied images were already transparent. Originals in `ProductsData` are retained. The site does not need the local `.tools` image-processing runtime to display these derivatives.
+Use Admin > Products and Admin > Inventory to edit the running catalog. The bundled SQL is an installation snapshot; admin edits do not automatically update it. See [`docs/products-data.md`](docs/products-data.md) for details.
 
 ## Environment configuration
 
@@ -81,11 +83,13 @@ GROQ_MODEL
 
 For XAMPP, set these in private Apache/PHP configuration and restart Apache. Never place API keys in PHP, JavaScript, HTML, SQL exports, or the public project directory. See [`docs/ai-assistant.md`](docs/ai-assistant.md) for the Groq setup and limits.
 
+Email/password registration sends an email verification code. Configure PHP's mail delivery on the destination machine; for XAMPP this includes `php.ini` and `sendmail/sendmail.ini`. Set `PCFORGE_MAIL_FROM` to your sender address. See [`config/mail.php`](config/mail.php) for the application mail settings.
+
 ## Moving or restoring the database
 
-The current database contains product data, users, orders, saved builds, and settings. Export it separately and import that private SQL dump into the destination MariaDB database. The current dump is intentionally ignored by Git because it contains private records.
+To transfer an existing installation with its users, orders, saved builds, and settings, export its database separately and import that private SQL dump into the destination MariaDB database. Full exports are excluded from the current repository files because they contain private records.
 
-For a fresh database containing only the supplied catalog, use `schema.sql` followed by the importer commands above. For a complete restoration, import the private database export instead of using the legacy `sample_data.sql` fixtures.
+For a fresh installation containing only the supplied catalog, use `schema.sql` followed by `catalog.sql`. For a complete restoration, use your private database export instead of these setup files.
 
 ## Validation
 
@@ -93,18 +97,21 @@ Useful checks include:
 
 ```powershell
 C:/xampp/php/php.exe -l product.php
-C:/xampp/php/php.exe Database/import_products_data.php --verify
-.tools/background-removal/Scripts/python.exe tests/product-images.py --http
+C:/xampp/php/php.exe tests/catalog-install.php
 C:/xampp/php/php.exe tests/order-workflow.php
 C:/xampp/php/php.exe tests/admin-database.php
 C:/xampp/php/php.exe tests/admin-workflows.php
 ```
 
-The HTTP workflow tests require Apache and MariaDB to be running. Do not run integration tests against a production database.
+The catalog installation check creates a randomly named temporary database, imports both SQL files, checks products and images, and drops that temporary database. It does not modify the configured database. The configured database user needs permission to create and drop databases.
+
+The other workflow tests require MariaDB, and HTTP tests also require Apache. Run them against a development installation, not a production database.
 
 ## Git and deployment notes
 
-The repository should contain source code, `ProductsData`, catalog assets, and import metadata. `.gitignore` excludes the local image-processing runtime, database backups, and the private current database export. Keep a current database export outside Git.
+The current repository includes application code, final catalog images, documentation, and the two setup SQL files. `.gitignore` excludes original source material, preparation tools, obsolete SQL files, database backups, and private exports. Keep your backups outside Git.
+
+Files removed from the current version may still exist in older Git commits. The shallow clone command above avoids downloading that old history; downloading the current branch as a ZIP also includes only current files.
 
 Bootstrap CSS and JavaScript are loaded from jsDelivr, so the default site requires internet access for the full styling and navigation experience. The optional Google and Groq integrations also require outbound HTTPS access.
 

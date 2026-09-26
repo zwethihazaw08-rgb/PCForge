@@ -1,6 +1,7 @@
 -- PCForge: select an empty database in phpMyAdmin, then import this file.
 -- CREATE TABLE IF NOT EXISTS does not upgrade existing tables.
--- Existing installations need a separate migration; no data is deleted here.
+-- After this schema, import catalog.sql once to load the supplied products.
+-- Existing installations should keep their database; no reset is needed.
 -- NULL means unknown. Do not treat missing specifications as compatible.
 SET NAMES utf8mb4;
 
@@ -17,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Run once on existing PCForge databases; safe to run again.
 CREATE TABLE IF NOT EXISTS `user_shipping_details` (
   `user_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -250,10 +250,6 @@ CREATE TABLE IF NOT EXISTS `cooling_socket_support` (
   FOREIGN KEY (`cooling_id`) REFERENCES `cooling` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- PCForge admin foundation migration. MariaDB 10.4+.
--- Additive and safe to run again; no existing rows are deleted.
-SET NAMES utf8mb4;
-
 CREATE TABLE IF NOT EXISTS orders (
  id int(11) NOT NULL AUTO_INCREMENT,
  order_number varchar(40) NOT NULL,
@@ -286,12 +282,12 @@ CREATE TABLE IF NOT EXISTS orders (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Each row is one component, including components purchased within a build.
--- Product references span nine tables, so PHP must validate category + product_id.
+-- Product references span ten tables, so PHP must validate category + product_id.
 -- Snapshot name and price remain valid when a product is renamed or disabled.
 CREATE TABLE IF NOT EXISTS order_items (
  id int(11) NOT NULL AUTO_INCREMENT,
  order_id int(11) NOT NULL,
- category enum('cpu','gpu','mb','memory','storage','psu','case_box','cooling','fans') NOT NULL,
+ category enum('cpu','gpu','mb','memory','storage','psu','case_box','cooling','fans','monitor') NOT NULL,
  product_id int(11) NOT NULL,
  product_name varchar(255) NOT NULL,
  quantity int unsigned NOT NULL,
@@ -304,7 +300,7 @@ CREATE TABLE IF NOT EXISTS order_items (
  CONSTRAINT order_items_amounts_check CHECK (quantity > 0 AND unit_price >= 0 AND line_total = quantity * unit_price)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- One row represents this store; settings UI will update it in a later stage.
+-- One row represents this store; administrators can update it through Settings.
 CREATE TABLE IF NOT EXISTS store_settings (
  id tinyint unsigned NOT NULL,
  store_name varchar(100) NOT NULL DEFAULT 'PCForge',
@@ -320,7 +316,6 @@ CREATE TABLE IF NOT EXISTS store_settings (
 
 INSERT INTO store_settings (id) SELECT 1 WHERE NOT EXISTS (SELECT 1 FROM store_settings WHERE id = 1);
 
--- Real product import support; additive and safe to run again.
 CREATE TABLE IF NOT EXISTS monitor (
  id int(11) NOT NULL AUTO_INCREMENT,
  name varchar(255) NOT NULL,
@@ -351,5 +346,3 @@ CREATE TABLE IF NOT EXISTS product_data_sources (
  PRIMARY KEY (category, source_id),
  UNIQUE KEY source_product (category, product_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-ALTER TABLE order_items MODIFY category enum('cpu','gpu','mb','memory','storage','psu','case_box','cooling','fans','monitor') NOT NULL;
