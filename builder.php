@@ -230,7 +230,59 @@ foreach ($availableProducts as $candidate) {
 }
 $badgeLabels = ['compatible' => '✓ Basic checks passed', 'unknown' => '? Needs check', 'warning' => '! Warning', 'incompatible' => '✕ Incompatible'];
 
+$filterDefinitions = [
+    'cpu' => ['brand' => 'Manufacturer', 'series' => 'Series', 'socket' => 'Socket'],
+    'mb' => ['brand' => 'Manufacturer', 'chipset' => 'Chipset', 'size' => 'Form factor'],
+    'memory' => ['brand' => 'Manufacturer', 'type' => 'Memory type', 'capacity' => 'Capacity'],
+    'gpu' => ['brand' => 'Manufacturer', 'vram' => 'VRAM', 'ports' => 'Ports'],
+    'storage' => ['brand' => 'Manufacturer', 'type' => 'Drive type', 'interface' => 'Interface'],
+    'cooling' => ['brand' => 'Manufacturer', 'type' => 'Cooling type', 'size' => 'Size'],
+    'psu' => ['brand' => 'Manufacturer', 'rating' => 'Rating', 'modularity' => 'Modularity'],
+    'case_box' => ['brand' => 'Manufacturer', 'size' => 'Size', 'color' => 'Color'],
+];
+$currentFilterDefinitions = $filterDefinitions[$currentCategory] ?? ['brand' => 'Manufacturer'];
+$filterOptions = [];
+$activeFilters = [];
+foreach ($currentFilterDefinitions as $field => $label) {
+    $values = [];
+    foreach ($availableProducts as $product) {
+        $value = trim((string) ($product[$field] ?? ''));
+        if ($value !== '') $values[$value] = $value;
+    }
+    natcasesort($values);
+    $filterOptions[$field] = array_values($values);
+    $requestedValue = trim((string) ($_GET['filter_' . $field] ?? ''));
+    $activeFilters[$field] = in_array($requestedValue, $filterOptions[$field], true) ? $requestedValue : '';
+}
+$sortOptions = ['name' => 'Best match', 'price_low' => 'Price: low to high', 'price_high' => 'Price: high to low'];
+$sort = array_key_exists((string) ($_GET['sort'] ?? ''), $sortOptions) ? (string) $_GET['sort'] : 'name';
+$availableProducts = array_values(array_filter($availableProducts, static function (array $product) use ($activeFilters): bool {
+    foreach ($activeFilters as $field => $value) {
+        if ($value !== '' && (string) ($product[$field] ?? '') !== $value) return false;
+    }
+    return true;
+}));
+usort($availableProducts, static function (array $left, array $right) use ($sort): int {
+    if ($sort === 'price_low' || $sort === 'price_high') {
+        $comparison = (float) ($left['price'] ?? 0) <=> (float) ($right['price'] ?? 0);
+        return $sort === 'price_high' ? -$comparison : $comparison;
+    }
+    return strnatcasecmp((string) ($left['name'] ?? ''), (string) ($right['name'] ?? ''));
+});
+$builderImageUrl = static function (array $product): ?string {
+    $storedImage = (string) ($product['image_url'] ?? '');
+    if (filter_var($storedImage, FILTER_VALIDATE_URL) && strtolower(parse_url($storedImage, PHP_URL_SCHEME) ?? '') === 'https') {
+        return $storedImage;
+    }
+    if ($storedImage !== '' && is_file(__DIR__ . '/assets/images/' . basename($storedImage))) {
+        return url('assets/images/' . rawurlencode(basename($storedImage)));
+    }
+    return null;
+};
+
 $pageTitle = 'Build Your PC';
+require __DIR__ . '/includes/builder-view.php';
+exit;
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
@@ -238,6 +290,7 @@ require_once __DIR__ . '/includes/navbar.php';
 <main id="main-content" tabindex="-1">
     <style>
         .builder-page { width: calc(100% - 2rem); max-width: 1600px; margin-inline: auto; }
+        .builder-page :is(a, button, input, select, summary) { touch-action: manipulation; }
         .builder-layout { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1rem; }
         .builder-layout > * { min-width: 0; }
         .builder-sidebar {
@@ -251,7 +304,7 @@ require_once __DIR__ . '/includes/navbar.php';
             border-radius: 1rem;
             background: var(--forge-surface-raised);
         }
-        .builder-sidebar .btn { display: block; width: 100%; padding: 0.75rem; text-align: left; }
+        .builder-sidebar .btn { display: block; width: 100%; padding: 0.75rem; text-align: left; touch-action: manipulation; }
         .builder-catalog {
             height: clamp(360px, 65vh, 720px);
             overflow-y: auto;
@@ -273,10 +326,10 @@ require_once __DIR__ . '/includes/navbar.php';
         .builder-product-body { flex: 1; min-width: 0; }
         .builder-product-body h3 { margin: 0 0 0.35rem; overflow-wrap: anywhere; }
         .builder-quick-specs { color: #606060; font-size: 0.8rem; margin-bottom: 0.35rem; overflow-wrap: anywhere; }
-        .builder-details-button { border: 0; padding: 0.2rem 0; background: transparent; color: #505050; font-size: 0.8rem; text-decoration: underline; text-underline-offset: 3px; }
+        .builder-details-button { border: 0; padding: 0.2rem 0; background: transparent; color: #505050; font-size: 0.8rem; text-decoration: underline; text-underline-offset: 3px; touch-action: manipulation; }
         .builder-product-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; flex: 0 0 auto; }
         .builder-product-actions .product-price { font-size: 1rem; margin: 0; }
-        .builder-product-actions .btn { padding: 0.4rem 0.8rem; min-width: 100px; font-size: 0.8rem; }
+        .builder-product-actions .btn { padding: 0.4rem 0.8rem; min-width: 100px; font-size: 0.8rem; touch-action: manipulation; }
         .builder-hint { padding: 0.75rem 1rem; border: 1px solid #dedede; border-radius: 0.75rem; background: #f5f5f5; font-size: 0.85rem; }
         .builder-check .compatibility-status { font-size: 0.7rem; padding: 0.2rem 0.45rem; }
         .builder-check button { cursor: help; }
@@ -288,6 +341,12 @@ require_once __DIR__ . '/includes/navbar.php';
             overflow-y: auto;
         }
         .builder-summary-drawer { --bs-offcanvas-width: min(90vw, 390px); }
+        .builder-native-backdrop { position: fixed; inset: 0; z-index: 1040; background: #0008; }
+        .builder-native-modal { display: block !important; position: fixed; inset: 0; z-index: 1055; overflow-y: auto; padding: 1rem; background: #0008; }
+        .builder-native-modal .modal-dialog { min-height: calc(100% - 2rem); display: flex; align-items: center; }
+        .builder-native-drawer { position: fixed !important; inset: 0 auto 0 0; z-index: 1045; width: min(90vw, 390px); max-width: 100%; overflow: hidden; background: var(--forge-surface-raised); transform: translateX(-100%); visibility: hidden; transition: transform 180ms ease, visibility 180ms ease; }
+        .builder-native-drawer.is-open { transform: translateX(0); visibility: visible; }
+        .builder-summary-drawer:not(.show):not(.is-open), .modal:not(.show):not(.builder-native-modal) { pointer-events: none; }
         .builder-summary-toggle {
             position: fixed;
             left: 0;
@@ -307,6 +366,7 @@ require_once __DIR__ . '/includes/navbar.php';
             color: #ffffff;
             box-shadow: 2px 3px 12px #00000020;
             font-size: 0.65rem;
+            touch-action: manipulation;
         }
         @media (max-width: 991.98px) {
             .builder-summary-drawer .offcanvas-body { display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
@@ -505,78 +565,55 @@ require_once __DIR__ . '/includes/navbar.php';
             const main = document.querySelector('#main-content');
             if (!main || main.dataset.ajaxReady === 'true') return;
             main.dataset.ajaxReady = 'true';
-            // Attach to body so the catalog's scroll boundary cannot clip the box.
-            const issueTooltips = window.bootstrap ? [...main.querySelectorAll('[data-builder-issue]')].map((badge) =>
+
+            // Keep the builder's touch controls usable if Bootstrap's optional
+            // CDN JavaScript is unavailable. Desktop browsers with Bootstrap
+            // continue to use its native modal/offcanvas components.
+            if (!window.bootstrap) {
+                let backdrop = null;
+                const closeNative = () => {
+                    main.querySelectorAll('.builder-native-modal').forEach((modal) => {
+                        modal.classList.remove('builder-native-modal');
+                        modal.setAttribute('aria-hidden', 'true');
+                    });
+                    main.querySelector('#builder-summary-drawer')?.classList.remove('builder-native-drawer', 'is-open');
+                    backdrop?.remove();
+                    backdrop = null;
+                    document.body.classList.remove('modal-open');
+                };
+                const openNative = (target, type) => {
+                    if (!target) return;
+                    closeNative();
+                    if (type === 'modal') {
+                        target.classList.add('builder-native-modal');
+                        target.removeAttribute('aria-hidden');
+                    } else {
+                        target.classList.add('builder-native-drawer', 'is-open');
+                    }
+                    backdrop = document.createElement('div');
+                    backdrop.className = 'builder-native-backdrop';
+                    backdrop.addEventListener('click', closeNative, { once: true });
+                    document.body.append(backdrop);
+                    document.body.classList.add('modal-open');
+                };
+                main.querySelectorAll('[data-bs-toggle="modal"]').forEach((trigger) => trigger.addEventListener('click', () => {
+                    openNative(document.querySelector(trigger.dataset.bsTarget), 'modal');
+                }));
+                main.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach((trigger) => trigger.addEventListener('click', () => {
+                    openNative(document.querySelector(trigger.dataset.bsTarget), 'offcanvas');
+                }));
+                main.querySelectorAll('[data-bs-dismiss="modal"], [data-bs-dismiss="offcanvas"]').forEach((trigger) => trigger.addEventListener('click', closeNative));
+                document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeNative(); }, { once: false });
+            }
+
+            // Keep links and forms native. This lets touch browsers deliver the
+            // click/submit without an AJAX handler swallowing the interaction.
+            if (window.bootstrap) [...main.querySelectorAll('[data-builder-issue]')].forEach((badge) =>
                 new bootstrap.Tooltip(badge, {
                     container: 'body', boundary: document.body, placement: 'top',
                     trigger: 'hover focus', customClass: 'builder-issue-tooltip', html: false,
                 })
-            ) : [];
-
-            const loadBuilderPage = async (url, options = {}) => {
-                const previousScrollY = window.scrollY;
-                const previousCatalogScroll = main.querySelector('#builder-catalog')?.scrollTop || 0;
-                main.setAttribute('aria-busy', 'true');
-                try {
-                    const response = await fetch(url, {
-                        ...options,
-                        headers: { 'X-Requested-With': 'XMLHttpRequest', ...(options.headers || {}) },
-                    });
-                    if (!response.ok) throw new Error('Builder request failed');
-
-                    const html = await response.text();
-                    const parsed = new DOMParser().parseFromString(html, 'text/html');
-                    const nextMain = parsed.querySelector('#main-content');
-                    if (!nextMain) throw new Error('Builder content was not returned');
-
-                    // Close the drawer before replacing it so its backdrop and
-                    // scroll lock do not remain attached to the old page content.
-                    const drawer = main.querySelector('#builder-summary-drawer');
-                    const drawerInstance = drawer && window.bootstrap?.Offcanvas.getInstance(drawer);
-                    if (drawerInstance) {
-                        if (drawer.classList.contains('show')) {
-                            await new Promise((resolve) => {
-                                drawer.addEventListener('hidden.bs.offcanvas', resolve, { once: true });
-                                drawerInstance.hide();
-                            });
-                        }
-                        drawerInstance.dispose();
-                    }
-                    issueTooltips.forEach((tooltip) => tooltip.dispose());
-                    main.replaceWith(nextMain);
-                    // POST selections redirect to the clean step URL on the server.
-                    // Use the final response URL so the address bar stays shareable.
-                    window.history.pushState({}, '', response.url);
-                    bindBuilderNavigation();
-                    const catalog = nextMain.querySelector('#builder-catalog');
-                    if (catalog && options.method === 'POST') catalog.scrollTop = previousCatalogScroll;
-                    window.scrollTo(0, previousScrollY);
-                    const heading = document.querySelector('#parts-heading');
-                    if (heading) heading.focus({ preventScroll: true });
-                } catch (error) {
-                    // A normal navigation remains the safe fallback if JavaScript fails.
-                    window.location.href = url;
-                }
-            };
-
-            main.querySelectorAll('a[href]').forEach((link) => {
-                const target = new URL(link.href, window.location.href);
-                if (target.origin !== window.location.origin || target.hash) return;
-                link.addEventListener('click', (event) => {
-                    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-                    event.preventDefault();
-                    loadBuilderPage(target.href);
-                });
-            });
-
-            main.querySelectorAll('form[method="post"]:not([data-ai-form])').forEach((form) => {
-                form.addEventListener('submit', (event) => {
-                    event.preventDefault();
-                    // The hidden input named "action" shadows form.action.
-                    const submitUrl = new URL(form.getAttribute('action'), window.location.href);
-                    loadBuilderPage(submitUrl.href, { method: 'POST', body: new FormData(form) });
-                });
-            });
+            );
         };
 
         if (document.readyState === 'loading') {
@@ -584,7 +621,6 @@ require_once __DIR__ . '/includes/navbar.php';
         } else {
             bindBuilderNavigation();
         }
-        window.addEventListener('popstate', () => window.location.reload());
     })();
 </script>
 

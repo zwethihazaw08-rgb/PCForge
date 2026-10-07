@@ -467,37 +467,6 @@ html[data-theme="dark"] .table {
 }
 
 /* Dark theme overrides for the page-specific inline styles. */
-html[data-theme="dark"] .forge-nav {
-  background: rgba(29, 29, 29, 0.94);
-  border-color: var(--forge-border);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-}
-
-html[data-theme="dark"] .forge-nav .navbar-brand,
-html[data-theme="dark"] .forge-nav .nav-link,
-html[data-theme="dark"] .forge-nav .nav-account-toggle {
-  color: #f1f1f1;
-}
-
-html[data-theme="dark"] .forge-nav .nav-link:hover,
-html[data-theme="dark"] .forge-nav .nav-link:focus-visible,
-html[data-theme="dark"] .forge-nav .nav-account-toggle:hover,
-html[data-theme="dark"] .forge-nav .nav-account-toggle:focus-visible {
-  color: #ffffff;
-}
-
-html[data-theme="dark"] .forge-nav-indicator {
-  background: transparent;
-}
-
-html[data-theme="dark"] .forge-nav .navbar-toggler {
-  border-color: #555555;
-}
-
-html[data-theme="dark"] .forge-nav .navbar-toggler-icon {
-  filter: invert(1);
-}
-
 html[data-theme="dark"] .hero,
 html[data-theme="dark"] .builder-product,
 html[data-theme="dark"] .builder-hint,
@@ -646,7 +615,6 @@ html[data-theme="dark"] .component-carousel-dot[aria-current="true"] {
 }
 
 /* Keep the transparent black logo visible on dark surfaces. */
-html[data-theme="dark"] .forge-nav-logo-image,
 html[data-theme="dark"] .forge-footer-logo-image {
   filter: invert(1);
 }

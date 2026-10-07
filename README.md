@@ -2,6 +2,14 @@
 
 PCForge is a PHP and MariaDB PC component catalog, compatibility builder, comparison tool, shopping cart, demo checkout, customer account area, and administrator workspace. It is designed for a local XAMPP deployment and a school project; no real payments are processed.
 
+## Laravel migration
+
+The Laravel application is being developed in [`PCForge-Laravel`](PCForge-Laravel/README.md)
+with a separate database. Its catalog, email-verified accounts, account settings,
+and administrator overview are implemented. The builder, shopping workflows,
+admin management pages, and external integrations remain in this PHP application.
+See the Laravel README for startup, email configuration, tests, and administrator setup.
+
 ## Features
 
 - Catalog browsing for CPUs, GPUs, motherboards, memory, storage, power supplies, cases, CPU cooling, and monitors.

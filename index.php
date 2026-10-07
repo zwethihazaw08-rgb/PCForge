@@ -480,7 +480,18 @@ require_once __DIR__ . '/includes/navbar.php';
                 restart();
                 window.setTimeout(() => { suppressClick = false; }, 0);
             });
-            ['pointercancel', 'lostpointercapture'].forEach(name => track.addEventListener(name, () => { drag = null; restart(); }));
+            track.addEventListener('pointercancel', event => {
+                if (!drag || drag.id !== event.pointerId) return;
+                drag = null;
+                restart();
+            });
+            track.addEventListener('lostpointercapture', event => {
+                // Touch starts with implicit capture on the card's child element.
+                // Its capture loss bubbles here when the track takes over a swipe.
+                if (event.target !== track || !drag || drag.id !== event.pointerId) return;
+                drag = null;
+                restart();
+            });
             [root].forEach(element => {
                 ['pointerenter', 'pointerleave', 'focusin'].forEach(name => element.addEventListener(name, restart));
                 element.addEventListener('focusout', () => window.setTimeout(restart, 0));
