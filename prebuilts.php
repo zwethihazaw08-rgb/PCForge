@@ -8,23 +8,24 @@ $partLabels = [
     'storage' => 'Storage', 'cooling' => 'Cooling', 'psu' => 'Power supply', 'case_box' => 'Case',
 ];
 
-// Edit these component IDs to curate builds. Names, prices and specifications
-// always come from the catalogue; these are never copied from a submitted form.
+// Edit these current catalogue IDs to curate builds. Names, prices and
+// specifications always come from the catalogue; these are never copied from
+// a submitted form.
 $templates = [
-    'everyday' => [
-        'name' => 'Forge Everyday', 'use' => 'Everyday', 'number' => '01',
-        'description' => 'A compact starting point for your desk, daily tasks, and downtime.',
-        'ids' => ['cpu' => 8, 'mb' => 3, 'memory' => 2, 'gpu' => 3, 'storage' => 1, 'cooling' => 1, 'psu' => 1, 'case_box' => 2],
+    'apex' => [
+        'name' => 'Forge Apex', 'use' => 'Gaming', 'number' => '01',
+        'description' => 'A high-refresh gaming build pairing the Ryzen 7 7800X3D with an RTX 5080 and fast 2 TB NVMe storage.',
+        'ids' => ['cpu' => 24, 'mb' => 28, 'memory' => 15, 'gpu' => 18, 'storage' => 26, 'cooling' => 22, 'psu' => 24, 'case_box' => 24],
     ],
-    'play' => [
-        'name' => 'Forge Play', 'use' => 'Gaming', 'number' => '02',
-        'description' => 'Build around your games with dedicated graphics and room to make it yours.',
-        'ids' => ['cpu' => 1, 'mb' => 1, 'memory' => 1, 'gpu' => 5, 'storage' => 1, 'cooling' => 1, 'psu' => 1, 'case_box' => 1],
+    'creator' => [
+        'name' => 'Forge Creator', 'use' => 'Creator', 'number' => '02',
+        'description' => 'A capable production system with 96 GB of memory, 4 TB of NVMe storage, and the Ryzen 9 7950X.',
+        'ids' => ['cpu' => 22, 'mb' => 26, 'memory' => 16, 'gpu' => 24, 'storage' => 14, 'cooling' => 12, 'psu' => 20, 'case_box' => 15],
     ],
-    'studio' => [
-        'name' => 'Forge Studio', 'use' => 'Creating', 'number' => '03',
-        'description' => 'More memory and storage for the projects you want to bring to life.',
-        'ids' => ['cpu' => 5, 'mb' => 5, 'memory' => 4, 'gpu' => 6, 'storage' => 4, 'cooling' => 2, 'psu' => 5, 'case_box' => 3],
+    'titan' => [
+        'name' => 'Forge Titan', 'use' => 'Workstation', 'number' => '03',
+        'description' => 'A flagship workstation built around the Core i9-14900KS, RTX 5090, 64 GB of DDR5, and 4 TB of NVMe storage.',
+        'ids' => ['cpu' => 19, 'mb' => 14, 'memory' => 12, 'gpu' => 14, 'storage' => 16, 'cooling' => 13, 'psu' => 17, 'case_box' => 12],
     ],
 ];
 
@@ -239,7 +240,7 @@ require_once __DIR__ . '/includes/navbar.php';
         <?php if (!$loadFailed): ?>
             <div class="prebuilt-toolbar">
                 <div class="prebuilt-filters" role="group" aria-label="Filter builds by use" hidden>
-                    <?php foreach (['All', 'Everyday', 'Gaming', 'Creating'] as $use): ?>
+                    <?php foreach (['All', 'Gaming', 'Creator', 'Workstation'] as $use): ?>
                         <button class="prebuilt-filter" type="button" data-build-filter="<?= e($use) ?>" aria-pressed="<?= $use === 'All' ? 'true' : 'false' ?>"><?= e($use) ?></button>
                     <?php endforeach; ?>
                 </div>
