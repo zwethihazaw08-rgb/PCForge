@@ -116,60 +116,90 @@ require_once __DIR__ . '/includes/navbar.php';
 
 <main id="main-content" tabindex="-1">
     <style>
-        .review-status { position: relative; }
-        .review-status .compatibility-status { font-size: 0.7rem; padding: 0.2rem 0.45rem; cursor: help; }
-        .review-status-tip {
-            display: none; position: absolute; top: 100%; left: 0; z-index: 10;
-            width: min(280px, 75vw); padding: 0.75rem; border: 1px solid #dedede;
-            border-radius: 0.6rem; background: #ffffff; color: #202020;
-            box-shadow: 0 6px 20px #00000015; font-size: 0.8rem;
-        }
-        .review-status:hover .review-status-tip,
-        .review-status:focus-within .review-status-tip { display: block; }
+    .review-status {
+        position: relative;
+    }
+
+    .review-status .compatibility-status {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.45rem;
+        cursor: help;
+    }
+
+    .review-status-tip {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 10;
+        width: min(280px, 75vw);
+        padding: 0.75rem;
+        border: 1px solid #dedede;
+        border-radius: 0.6rem;
+        background: #ffffff;
+        color: #202020;
+        box-shadow: 0 6px 20px #00000015;
+        font-size: 0.8rem;
+    }
+
+    .review-status:hover .review-status-tip,
+    .review-status:focus-within .review-status-tip {
+        display: block;
+    }
     </style>
     <div class="container section-padding">
         <p class="small fw-semibold text-uppercase text-secondary">Your PC, in detail</p>
         <h1>Review your build</h1>
         <p class="lead text-secondary">Check your parts, budget, and compatibility before moving on.</p>
         <a class="forge-save-btn mb-4" href="<?= e(url('saved-builds.php')) ?>">
-            <span class="forge-save-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1z"/></svg>Save build</span>
+            <span class="forge-save-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1z" />
+                </svg>Save build</span>
         </a>
         <a class="ms-3" href="<?= e(url('saved-builds.php')) ?>">View saved builds</a>
         <?php if ($databaseError): ?>
-            <div class="alert alert-secondary" role="alert">Your build could not be loaded. Please try again later.</div>
+        <div class="alert alert-secondary" role="alert">Your build could not be loaded. Please try again later.</div>
         <?php elseif (!$parts): ?>
-            <div class="border rounded-4 p-5 text-center">
-                <h2 class="h4">Your build is waiting for its first part.</h2>
-                <p class="text-secondary"><?= $unavailable ? 'Previously selected parts are no longer available. Choose replacements in the builder.' : 'Start with a processor, then choose the components around it.' ?></p>
-                <a class="btn btn-primary" href="<?= e(url('builder.php')) ?>">Start building &rarr;</a>
-            </div>
+        <div class="border rounded-4 p-5 text-center">
+            <h2 class="h4">Your build is waiting for its first part.</h2>
+            <p class="text-secondary">
+                <?= $unavailable ? 'Previously selected parts are no longer available. Choose replacements in the builder.' : 'Start with a processor, then choose the components around it.' ?>
+            </p>
+            <a class="btn btn-primary" href="<?= e(url('builder.php')) ?>">Start building &rarr;</a>
+        </div>
         <?php else: ?>
-            <?php if ($unavailable): ?>
-                <p class="alert alert-warning">Unavailable selections: <?= e(implode(', ', $unavailable)) ?>. Choose replacements below.</p>
-            <?php endif; ?>
-            <div class="d-flex flex-wrap gap-2 mb-4">
-                <span class="badge bg-dark"><?= count($parts) ?> / <?= count($categories) ?> parts selected</span>
-                <span class="compatibility-status <?= $issues ? 'incompatible' : ($needsReview ? 'unknown' : 'compatible') ?>">
-                    <?= $issues ? $issues . ' compatibility issue(s)' : ($needsReview ? 'Checks need attention' : 'Basic checks passed') ?>
-                </span>
-            </div>
-            <div class="row g-4 align-items-start">
-                <section class="col-lg-8" aria-labelledby="review-parts-heading">
-                    <h2 id="review-parts-heading" class="h4 mb-3">Your components</h2>
-                    <div class="border rounded-4">
-                        <?php foreach ($categories as $category => $label): ?>
-                            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 px-3 py-2 border-bottom">
-                                <div class="flex-grow-1">
-                                    <p class="small text-secondary mb-1"><?= e($label) ?></p>
-                                    <p class="fw-semibold mb-0"><?= e($parts[$category]['name'] ?? 'Not selected') ?></p>
-                                    <?php if (isset($parts[$category])): ?>
-                                        <small class="text-secondary"><?= $parts[$category]['stock'] === null ? 'Availability unconfirmed' : ((int) $parts[$category]['stock'] > 0 ? 'In stock' : 'Out of stock') ?></small>
-                                    <?php endif; ?>
-                                </div>
-                                <span><?= isset($parts[$category]) ? e(money($parts[$category]['price'])) : '—' ?></span>
-                                <a class="btn btn-sm btn-outline-dark" href="<?= e(url('builder.php?category=' . $category)) ?>" aria-label="<?= e('Change ' . $label) ?>"><?= isset($parts[$category]) ? 'Change' : 'Choose' ?></a>
-                                <?php if (isset($parts[$category])): ?>
-                                    <?php
+        <?php if ($unavailable): ?>
+        <p class="alert alert-warning">Unavailable selections: <?= e(implode(', ', $unavailable)) ?>. Choose
+            replacements below.</p>
+        <?php endif; ?>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-dark"><?= count($parts) ?> / <?= count($categories) ?> parts selected</span>
+            <span
+                class="compatibility-status <?= $issues ? 'incompatible' : ($needsReview ? 'unknown' : 'compatible') ?>">
+                <?= $issues ? $issues . ' compatibility issue(s)' : ($needsReview ? 'Checks need attention' : 'Basic checks passed') ?>
+            </span>
+        </div>
+        <div class="row g-4 align-items-start">
+            <section class="col-lg-8" aria-labelledby="review-parts-heading">
+                <h2 id="review-parts-heading" class="h4 mb-3">Your components</h2>
+                <div class="border rounded-4">
+                    <?php foreach ($categories as $category => $label): ?>
+                    <div
+                        class="d-flex flex-wrap align-items-center justify-content-between gap-2 px-3 py-2 border-bottom">
+                        <div class="flex-grow-1">
+                            <p class="small text-secondary mb-1"><?= e($label) ?></p>
+                            <p class="fw-semibold mb-0"><?= e($parts[$category]['name'] ?? 'Not selected') ?></p>
+                            <?php if (isset($parts[$category])): ?>
+                            <small
+                                class="text-secondary"><?= $parts[$category]['stock'] === null ? 'Availability unconfirmed' : ((int) $parts[$category]['stock'] > 0 ? 'In stock' : 'Out of stock') ?></small>
+                            <?php endif; ?>
+                        </div>
+                        <span><?= isset($parts[$category]) ? e(money($parts[$category]['price'])) : '—' ?></span>
+                        <a class="btn btn-sm btn-outline-dark" href="<?= e(url('builder.php?category=' . $category)) ?>"
+                            aria-label="<?= e('Change ' . $label) ?>"><?= isset($parts[$category]) ? 'Change' : 'Choose' ?></a>
+                        <?php if (isset($parts[$category])): ?>
+                        <?php
                                     $rowStatus = 'compatible';
                                     $severity = ['compatible' => 0, 'unknown' => 1, 'warning' => 2, 'incompatible' => 3];
                                     $rowMessages = [];
@@ -179,61 +209,76 @@ require_once __DIR__ . '/includes/navbar.php';
                                         if ($check['status'] !== 'compatible') $rowMessages[] = $check['message'];
                                     }
                                     ?>
-                                    <div class="review-status">
-                                        <button type="button" class="compatibility-status <?= e($rowStatus) ?>" aria-describedby="review-tip-<?= e($category) ?>" aria-label="<?= e($label . ': ' . $statusLabels[$rowStatus]) ?>"><?= e($statusLabels[$rowStatus]) ?></button>
-                                        <div class="review-status-tip" id="review-tip-<?= e($category) ?>" role="tooltip">
-                                            <?php foreach ($rowMessages ?: ['Basic checks passed for the selected parts.'] as $rowMessage): ?>
-                                                <p class="mb-1"><?= e($rowMessage) ?></p>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                <?php else: ?>
-                                    <span class="small text-secondary">Not checked</span>
-                                <?php endif; ?>
+                        <div class="review-status">
+                            <button type="button" class="compatibility-status <?= e($rowStatus) ?>"
+                                aria-describedby="review-tip-<?= e($category) ?>"
+                                aria-label="<?= e($label . ': ' . $statusLabels[$rowStatus]) ?>"><?= e($statusLabels[$rowStatus]) ?></button>
+                            <div class="review-status-tip" id="review-tip-<?= e($category) ?>" role="tooltip">
+                                <?php foreach ($rowMessages ?: ['Basic checks passed for the selected parts.'] as $rowMessage): ?>
+                                <p class="mb-1"><?= e($rowMessage) ?></p>
+                                <?php endforeach; ?>
                             </div>
-                        <?php endforeach; ?>
+                        </div>
+                        <?php else: ?>
+                        <span class="small text-secondary">Not checked</span>
+                        <?php endif; ?>
                     </div>
-                    <details class="mt-3">
-                        <summary class="fw-semibold">View all compatibility checks</summary>
-                        <?php foreach ($checks as $name => $check): ?>
-                            <div class="py-3 border-bottom">
-                                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
-                                    <h3 class="h6 mb-0"><?= e($name) ?></h3>
-                                    <span class="compatibility-status <?= e($check['status']) ?>"><?= e(ucfirst($check['status'])) ?></span>
-                                </div>
-                                <p class="small text-secondary mb-0"><?= e($check['message']) ?></p>
-                            </div>
-                        <?php endforeach; ?>
-                        <p class="small text-secondary mt-3">Basic checks do not cover BIOS versions, PSU connectors, or PCIe lane sharing. Confirm exact manufacturer specifications before purchasing.</p>
-                    </details>
-                </section>
-                <aside class="col-lg-4" aria-labelledby="review-total-heading">
-                    <div class="build-summary">
-                        <h2 id="review-total-heading" class="h4">Build totals</h2>
-                        <p class="small text-secondary mb-1"><?= $missingPrices ? 'Known-price subtotal' : 'Selected parts total' ?></p>
-                        <p class="fs-2 fw-bold mb-3"><?= e(money($total)) ?></p>
-                        <?php if ($missingPrices): ?><p class="small">Prices unavailable for <?= e(implode(', ', $missingPrices)) ?>. The total is incomplete.</p><?php endif; ?>
-                        <?php if ($missingParts): ?><p class="small text-secondary">Choose <?= e(implode(', ', $missingParts)) ?> to complete these builder steps.</p><?php endif; ?>
-                        <h3 class="h6 mt-4">Estimated system power</h3>
-                        <dl class="small mb-3">
-                            <?php foreach ($powerRows as $category => $power): ?>
-                                <div class="d-flex justify-content-between gap-2 py-1">
-                                    <dt class="fw-normal"><?= e($categories[$category]) ?><?= $power['fallback'] ? ' (estimate)' : '' ?></dt>
-                                    <dd class="mb-0"><?= $power['watts'] ?> W</dd>
-                                </div>
-                            <?php endforeach; ?>
-                        </dl>
-                        <div class="d-flex justify-content-between border-top pt-2"><span>Estimated load</span><strong><?= $estimatedWatts ?> W</strong></div>
-                        <div class="d-flex justify-content-between gap-2 mt-2"><span>Recommended PSU</span><strong><?= $recommendedWatts ? $recommendedWatts . ' W' : 'Pending' ?></strong></div>
-                        <p class="small text-secondary mt-3">Adds 35% headroom, rounds up to a 50 W step, and respects the GPU's listed PSU recommendation. Based on selected parts only; this is not a wall-power measurement.</p>
-                        <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
-                            <?= csrf_field() ?><input type="hidden" name="action" value="add_build">
-                            <button class="btn btn-primary w-100" type="submit" <?= $missingParts || $missingPrices || $unavailable ? 'disabled' : '' ?>>Add to cart</button>
-                        </form>
-                        <a class="btn btn-outline-dark w-100" href="<?= e(url('builder.php')) ?>">Continue editing</a>
+                    <?php endforeach; ?>
+                </div>
+                <details class="mt-3">
+                    <summary class="fw-semibold">View all compatibility checks</summary>
+                    <?php foreach ($checks as $name => $check): ?>
+                    <div class="py-3 border-bottom">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                            <h3 class="h6 mb-0"><?= e($name) ?></h3>
+                            <span
+                                class="compatibility-status <?= e($check['status']) ?>"><?= e(ucfirst($check['status'])) ?></span>
+                        </div>
+                        <p class="small text-secondary mb-0"><?= e($check['message']) ?></p>
                     </div>
-                </aside>
-            </div>
+                    <?php endforeach; ?>
+                    <p class="small text-secondary mt-3">Basic checks do not cover BIOS versions, PSU connectors, or
+                        PCIe lane sharing. Confirm exact manufacturer specifications before purchasing.</p>
+                </details>
+            </section>
+            <aside class="col-lg-4" aria-labelledby="review-total-heading">
+                <div class="build-summary">
+                    <h2 id="review-total-heading" class="h4">Build totals</h2>
+                    <p class="small text-secondary mb-1">
+                        <?= $missingPrices ? 'Known-price subtotal' : 'Selected parts total' ?></p>
+                    <p class="fs-2 fw-bold mb-3"><?= e(money($total)) ?></p>
+                    <?php if ($missingPrices): ?><p class="small">Prices unavailable for
+                        <?= e(implode(', ', $missingPrices)) ?>. The total is incomplete.</p><?php endif; ?>
+                    <?php if ($missingParts): ?><p class="small text-secondary">Choose
+                        <?= e(implode(', ', $missingParts)) ?> to complete these builder steps.</p><?php endif; ?>
+                    <h3 class="h6 mt-4">Estimated system power</h3>
+                    <dl class="small mb-3">
+                        <?php foreach ($powerRows as $category => $power): ?>
+                        <div class="d-flex justify-content-between gap-2 py-1">
+                            <dt class="fw-normal">
+                                <?= e($categories[$category]) ?><?= $power['fallback'] ? ' (estimate)' : '' ?></dt>
+                            <dd class="mb-0"><?= $power['watts'] ?> W</dd>
+                        </div>
+                        <?php endforeach; ?>
+                    </dl>
+                    <div class="d-flex justify-content-between border-top pt-2"><span>Estimated
+                            load</span><strong><?= $estimatedWatts ?> W</strong></div>
+                    <div class="d-flex justify-content-between gap-2 mt-2"><span>Recommended
+                            PSU</span><strong><?= $recommendedWatts ? $recommendedWatts . ' W' : 'Pending' ?></strong>
+                    </div>
+                    <p class="small text-secondary mt-3">Adds 35% headroom, rounds up to a 50 W step, and respects the
+                        GPU's listed PSU recommendation. Based on selected parts only; this is not a wall-power
+                        measurement.</p>
+                    <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
+                        <?= csrf_field() ?><input type="hidden" name="action" value="add_build">
+                        <button class="btn btn-primary w-100" type="submit"
+                            <?= $missingParts || $missingPrices || $unavailable ? 'disabled' : '' ?>>Add to
+                            cart</button>
+                    </form>
+                    <a class="btn btn-outline-dark w-100" href="<?= e(url('builder.php')) ?>">Continue editing</a>
+                </div>
+            </aside>
+        </div>
         <?php endif; ?>
     </div>
 </main>

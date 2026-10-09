@@ -7,5 +7,33 @@ $orders = admin_query('SELECT id,order_number,total,currency,status,created_at F
 $builds = admin_query('SELECT id,build_name,created_at FROM saved_builds WHERE user_id = ? ORDER BY id DESC LIMIT 10',[$id])->fetchAll();
 admin_start($user['username'],'Account details and recent activity.');
 ?>
-<section class="admin-panel"><dl class="spec-grid"><?php foreach ($user as $key=>$value): ?><div><dt><?= e(ucwords(str_replace('_',' ',$key))) ?></dt><dd><?= e((string)$value) ?></dd></div><?php endforeach; ?></dl><h2 class="h5">Shipping details</h2><?php if ($shipping): ?><dl class="spec-grid"><?php foreach ($shipping as $key=>$value): ?><div><dt><?= e(ucwords(str_replace('_',' ',$key))) ?></dt><dd><?= e($value) ?></dd></div><?php endforeach; ?></dl><?php else: ?><p class="text-muted">No saved shipping details.</p><?php endif; ?></section>
-<div class="row g-4 mt-1"><div class="col-lg-6"><section class="admin-panel"><h2 class="h5">Recent orders</h2><?php foreach ($orders as $order): ?><div class="activity-row"><a href="order-view.php?id=<?= (int)$order['id'] ?>"><?= e($order['order_number']) ?></a><span><?= e(admin_money($order['total'],$order['currency'])) ?> <?= admin_badge($order['status']) ?></span></div><?php endforeach; if (!$orders): ?><p class="text-muted">This customer has no orders.</p><?php endif; ?><a href="orders.php?user_id=<?= $id ?>">All orders →</a></section></div><div class="col-lg-6"><section class="admin-panel"><h2 class="h5">Recent saved builds</h2><?php foreach ($builds as $build): ?><div class="activity-row"><a href="build-view.php?id=<?= (int)$build['id'] ?>"><?= e($build['build_name']) ?></a><span><?= e($build['created_at']) ?></span></div><?php endforeach; if (!$builds): ?><p class="text-muted">This customer has no saved builds.</p><?php endif; ?><a href="builds.php?user_id=<?= $id ?>">All builds →</a></section></div></div><?php admin_end(); ?>
+<section class="admin-panel">
+    <dl class="spec-grid"><?php foreach ($user as $key=>$value): ?><div>
+            <dt><?= e(ucwords(str_replace('_',' ',$key))) ?></dt>
+            <dd><?= e((string)$value) ?></dd>
+        </div><?php endforeach; ?></dl>
+    <h2 class="h5">Shipping details</h2><?php if ($shipping): ?><dl class="spec-grid">
+        <?php foreach ($shipping as $key=>$value): ?><div>
+            <dt><?= e(ucwords(str_replace('_',' ',$key))) ?></dt>
+            <dd><?= e($value) ?></dd>
+        </div><?php endforeach; ?></dl><?php else: ?><p class="text-muted">No saved shipping details.</p><?php endif; ?>
+</section>
+<div class="row g-4 mt-1">
+    <div class="col-lg-6">
+        <section class="admin-panel">
+            <h2 class="h5">Recent orders</h2><?php foreach ($orders as $order): ?><div class="activity-row"><a
+                    href="order-view.php?id=<?= (int)$order['id'] ?>"><?= e($order['order_number']) ?></a><span><?= e(admin_money($order['total'],$order['currency'])) ?>
+                    <?= admin_badge($order['status']) ?></span></div><?php endforeach; if (!$orders): ?><p
+                class="text-muted">This customer has no orders.</p><?php endif; ?><a
+                href="orders.php?user_id=<?= $id ?>">All orders →</a>
+        </section>
+    </div>
+    <div class="col-lg-6">
+        <section class="admin-panel">
+            <h2 class="h5">Recent saved builds</h2><?php foreach ($builds as $build): ?><div class="activity-row"><a
+                    href="build-view.php?id=<?= (int)$build['id'] ?>"><?= e($build['build_name']) ?></a><span><?= e($build['created_at']) ?></span>
+            </div><?php endforeach; if (!$builds): ?><p class="text-muted">This customer has no saved builds.</p>
+            <?php endif; ?><a href="builds.php?user_id=<?= $id ?>">All builds →</a>
+        </section>
+    </div>
+</div><?php admin_end(); ?>

@@ -161,85 +161,114 @@ require_once __DIR__ . '/includes/navbar.php';
         <?php if ($notice): ?><p class="alert alert-secondary" role="status"><?= e($notice) ?></p><?php endif; ?>
         <?php if ($error): ?><p class="alert alert-warning" role="alert"><?= e($error) ?></p><?php endif; ?>
         <?php if ($pendingProduct): ?>
-            <form method="post" action="<?= e(url('cart.php')) ?>" class="border rounded-4 p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
-                <?= csrf_field() ?>
-                <input type="hidden" name="action" value="add_product">
-                <input type="hidden" name="category" value="<?= e($pendingCategory) ?>">
-                <input type="hidden" name="id" value="<?= (int) $pendingProduct['id'] ?>">
-                <div><strong><?= e($pendingProduct['name']) ?></strong><p class="mb-0 text-secondary"><?= e(money($pendingProduct['price'])) ?></p></div>
-                <button class="btn btn-primary" type="submit">Add this component</button>
-            </form>
+        <form method="post" action="<?= e(url('cart.php')) ?>"
+            class="border rounded-4 p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <?= csrf_field() ?>
+            <input type="hidden" name="action" value="add_product">
+            <input type="hidden" name="category" value="<?= e($pendingCategory) ?>">
+            <input type="hidden" name="id" value="<?= (int) $pendingProduct['id'] ?>">
+            <div><strong><?= e($pendingProduct['name']) ?></strong>
+                <p class="mb-0 text-secondary"><?= e(money($pendingProduct['price'])) ?></p>
+            </div>
+            <button class="btn btn-primary" type="submit">Add this component</button>
+        </form>
         <?php endif; ?>
         <div class="row g-4 align-items-start">
             <section class="col-lg-8" aria-label="Cart items">
-                <?php if (!$rows): ?><div class="border rounded-4 p-5 text-center"><h2 class="h4">Your cart is empty</h2><p class="text-secondary">Choose a component or finish a custom build.</p><a class="btn btn-outline-dark" href="<?= e(url('products.php')) ?>">Browse components</a></div><?php endif; ?>
+                <?php if (!$rows): ?><div class="border rounded-4 p-5 text-center">
+                    <h2 class="h4">Your cart is empty</h2>
+                    <p class="text-secondary">Choose a component or finish a custom build.</p><a
+                        class="btn btn-outline-dark" href="<?= e(url('products.php')) ?>">Browse components</a>
+                </div><?php endif; ?>
                 <?php foreach ($rows as $row): ?>
-                    <article class="border rounded-4 p-3 p-md-4 mb-3">
-                        <div class="d-flex flex-wrap justify-content-between gap-3">
-                            <h2 class="h5"><?= e($row['name']) ?></h2>
-                            <strong><?= $row['unavailable'] ? 'Price unavailable' : e(cartMoney($row['cents'] * $row['quantity'])) ?></strong>
-                        </div>
-                        <?php if ($row['type'] === 'build'): ?>
-                            <details class="small mb-3"><summary>View the <?= count($row['parts']) ?> included parts</summary><ul class="mt-2"><?php foreach ($row['parts'] as $part): ?><li><?= e($categories[$part['category']] . ': ' . $part['name']) ?></li><?php endforeach; ?></ul></details>
-                        <?php endif; ?>
-                        <p class="small text-secondary"><?= $row['unavailable'] ? 'Remove this item and choose available parts with prices.' : e(cartMoney($row['cents'])) . ' per item' ?></p>
-                        <div class="d-flex flex-wrap align-items-end gap-3">
-                            <form method="post" action="<?= e(url('cart.php')) ?>" class="cart-quantity-form d-flex align-items-end gap-2">
-                                <?= csrf_field() ?><input type="hidden" name="action" value="update"><input type="hidden" name="item" value="<?= e($row['key']) ?>">
-                                <div><label class="small form-label" for="quantity-<?= e($row['key']) ?>">Quantity</label><input class="form-control" style="width: 85px" type="number" min="1" max="99" required name="quantity" id="quantity-<?= e($row['key']) ?>" value="<?= (int) $row['quantity'] ?>"></div>
-                                <span class="small text-secondary cart-save-status" aria-live="polite"></span>
-                            </form>
-                            <form method="post" action="<?= e(url('cart.php')) ?>">
-                                <?= csrf_field() ?><input type="hidden" name="action" value="remove"><input type="hidden" name="item" value="<?= e($row['key']) ?>"><button class="btn btn-outline-secondary" type="submit" aria-label="<?= e('Remove ' . $row['name']) ?>">Remove</button>
-                            </form>
-                        </div>
-                    </article>
+                <article class="border rounded-4 p-3 p-md-4 mb-3">
+                    <div class="d-flex flex-wrap justify-content-between gap-3">
+                        <h2 class="h5"><?= e($row['name']) ?></h2>
+                        <strong><?= $row['unavailable'] ? 'Price unavailable' : e(cartMoney($row['cents'] * $row['quantity'])) ?></strong>
+                    </div>
+                    <?php if ($row['type'] === 'build'): ?>
+                    <details class="small mb-3">
+                        <summary>View the <?= count($row['parts']) ?> included parts</summary>
+                        <ul class="mt-2"><?php foreach ($row['parts'] as $part): ?><li>
+                                <?= e($categories[$part['category']] . ': ' . $part['name']) ?></li><?php endforeach; ?>
+                        </ul>
+                    </details>
+                    <?php endif; ?>
+                    <p class="small text-secondary">
+                        <?= $row['unavailable'] ? 'Remove this item and choose available parts with prices.' : e(cartMoney($row['cents'])) . ' per item' ?>
+                    </p>
+                    <div class="d-flex flex-wrap align-items-end gap-3">
+                        <form method="post" action="<?= e(url('cart.php')) ?>"
+                            class="cart-quantity-form d-flex align-items-end gap-2">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="update"><input type="hidden"
+                                name="item" value="<?= e($row['key']) ?>">
+                            <div><label class="small form-label"
+                                    for="quantity-<?= e($row['key']) ?>">Quantity</label><input class="form-control"
+                                    style="width: 85px" type="number" min="1" max="99" required name="quantity"
+                                    id="quantity-<?= e($row['key']) ?>" value="<?= (int) $row['quantity'] ?>"></div>
+                            <span class="small text-secondary cart-save-status" aria-live="polite"></span>
+                        </form>
+                        <form method="post" action="<?= e(url('cart.php')) ?>">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="remove"><input type="hidden"
+                                name="item" value="<?= e($row['key']) ?>"><button class="btn btn-outline-secondary"
+                                type="submit" aria-label="<?= e('Remove ' . $row['name']) ?>">Remove</button>
+                        </form>
+                    </div>
+                </article>
                 <?php endforeach; ?>
             </section>
             <aside class="col-lg-4" aria-labelledby="cart-total-heading">
                 <div class="border rounded-4 p-4">
                     <h2 id="cart-total-heading" class="h4">Cart summary</h2>
                     <p><?= $quantityTotal ?> item(s)</p>
-                    <div class="d-flex justify-content-between gap-2 border-top pt-3"><span><?= $totalIncomplete ? 'Known-price subtotal' : 'Subtotal' ?></span><strong><?= e(cartMoney($totalCents)) ?></strong></div>
-                    <p class="small text-secondary mt-3">Component prices only. Delivery and any applicable taxes are not included.</p>
-                    <?php foreach ($stockWarnings as $warning): ?><p class="small text-warning-emphasis"><?= e($warning) ?></p><?php endforeach; ?>
-                    <?php if ($totalIncomplete): ?><p class="small">Some items could not be priced. This subtotal is incomplete.</p><?php endif; ?>
+                    <div class="d-flex justify-content-between gap-2 border-top pt-3">
+                        <span><?= $totalIncomplete ? 'Known-price subtotal' : 'Subtotal' ?></span><strong><?= e(cartMoney($totalCents)) ?></strong>
+                    </div>
+                    <p class="small text-secondary mt-3">Component prices only. Delivery and any applicable taxes are
+                        not included.</p>
+                    <?php foreach ($stockWarnings as $warning): ?><p class="small text-warning-emphasis">
+                        <?= e($warning) ?></p><?php endforeach; ?>
+                    <?php if ($totalIncomplete): ?><p class="small">Some items could not be priced. This subtotal is
+                        incomplete.</p><?php endif; ?>
                     <?php if ($rows && !$totalIncomplete): ?>
-                        <a class="btn btn-primary w-100 mt-3" href="<?= e(url('checkout.php')) ?>">Proceed to checkout</a>
+                    <a class="btn btn-primary w-100 mt-3" href="<?= e(url('checkout.php')) ?>">Proceed to checkout</a>
                     <?php elseif ($rows): ?>
-                        <p class="small text-warning-emphasis mt-3 mb-0">Remove unavailable items before checkout.</p>
+                    <p class="small text-warning-emphasis mt-3 mb-0">Remove unavailable items before checkout.</p>
                     <?php endif; ?>
                     <?php if (!empty($_SESSION['build'])): ?>
-                        <form method="post" action="<?= e(url('cart.php')) ?>" class="mt-2">
-                            <?= csrf_field() ?><input type="hidden" name="action" value="add_build"><button class="btn btn-primary w-100" type="submit">Add current PC build</button>
-                        </form>
-                        <a class="d-block small mt-2" href="<?= e(url('build-summary.php')) ?>">Review build compatibility</a>
+                    <form method="post" action="<?= e(url('cart.php')) ?>" class="mt-2">
+                        <?= csrf_field() ?><input type="hidden" name="action" value="add_build"><button
+                            class="btn btn-primary w-100" type="submit">Add current PC build</button>
+                    </form>
+                    <a class="d-block small mt-2" href="<?= e(url('build-summary.php')) ?>">Review build
+                        compatibility</a>
                     <?php endif; ?>
-                    <a class="btn btn-outline-dark w-100 mt-3" href="<?= e(url('products.php')) ?>">Continue shopping</a>
+                    <a class="btn btn-outline-dark w-100 mt-3" href="<?= e(url('products.php')) ?>">Continue
+                        shopping</a>
                 </div>
             </aside>
         </div>
     </div>
 </main>
 <script>
-    document.querySelectorAll('.cart-quantity-form').forEach((form) => {
-        const input = form.querySelector('input[name="quantity"]');
-        const status = form.querySelector('.cart-save-status');
-        let timer;
-        let saving = false;
-        const saveQuantity = () => {
-            if (!input.checkValidity() || saving) return;
-            clearTimeout(timer);
-            timer = window.setTimeout(() => {
-                saving = true;
-                status.textContent = 'Saving…';
-                // Read-only keeps the quantity in the submitted form payload.
-                input.readOnly = true;
-                form.requestSubmit();
-            }, 250);
-        };
-        input.addEventListener('change', saveQuantity);
-        input.addEventListener('blur', saveQuantity);
-    });
+document.querySelectorAll('.cart-quantity-form').forEach((form) => {
+    const input = form.querySelector('input[name="quantity"]');
+    const status = form.querySelector('.cart-save-status');
+    let timer;
+    let saving = false;
+    const saveQuantity = () => {
+        if (!input.checkValidity() || saving) return;
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+            saving = true;
+            status.textContent = 'Saving…';
+            // Read-only keeps the quantity in the submitted form payload.
+            input.readOnly = true;
+            form.requestSubmit();
+        }, 250);
+    };
+    input.addEventListener('change', saveQuantity);
+    input.addEventListener('blur', saveQuantity);
+});
 </script>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

@@ -112,66 +112,106 @@ require_once __DIR__ . '/includes/navbar.php';
 ?>
 
 <main id="main-content" tabindex="-1">
-    <?php if ($confirmation): ?><link rel="stylesheet" href="<?= e(url('assets/css/receipt.css')) ?>"><?php endif; ?>
+    <?php if ($confirmation): ?>
+    <link rel="stylesheet" href="<?= e(url('assets/css/receipt.css')) ?>"><?php endif; ?>
     <div class="container section-padding">
-        <?php if ($errors): ?><div class="alert alert-warning" role="alert"><ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
+        <?php if ($errors): ?><div class="alert alert-warning" role="alert">
+            <ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul>
+        </div><?php endif; ?>
         <?php if ($confirmation): ?>
-            <div class="border rounded-4 p-4 p-md-5 text-center mx-auto" style="max-width: 700px">
-                <span class="compatibility-status compatible">Demo order created</span>
-                <h1 class="mt-3">Thanks, <?= e($confirmation['customer_name']) ?>.</h1>
-                <p class="lead text-secondary">Your demonstration order has been saved for administrator review.</p>
-                <div class="bg-light rounded-4 p-4 text-start my-4">
-                    <div class="d-flex justify-content-between gap-3"><span>Order number</span><strong><?= e($confirmation['order_number']) ?></strong></div>
-                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Components</span><strong><?= (int) array_sum(array_column($confirmation['items'], 'quantity')) ?></strong></div>
-                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Demo total</span><strong><?= e(receipt_money($confirmation['total'], $confirmation['currency'])) ?></strong></div>
-                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Status at checkout</span><strong>Pending review</strong></div>
+        <div class="border rounded-4 p-4 p-md-5 text-center mx-auto" style="max-width: 700px">
+            <span class="compatibility-status compatible">Demo order created</span>
+            <h1 class="mt-3">Thanks, <?= e($confirmation['customer_name']) ?>.</h1>
+            <p class="lead text-secondary">Your demonstration order has been saved for administrator review.</p>
+            <div class="bg-light rounded-4 p-4 text-start my-4">
+                <div class="d-flex justify-content-between gap-3"><span>Order
+                        number</span><strong><?= e($confirmation['order_number']) ?></strong></div>
+                <div class="d-flex justify-content-between gap-3 mt-2">
+                    <span>Components</span><strong><?= (int) array_sum(array_column($confirmation['items'], 'quantity')) ?></strong>
                 </div>
-                <p class="small text-secondary">No payment was taken. This demo order is saved in PCForge; stock is deducted when an administrator completes it.</p>
-                <?php $receiptUrl = url('receipt.php?order=' . rawurlencode($confirmation['order_number'])); $receiptQrUrl = public_url('receipt.php?order=' . rawurlencode($confirmation['order_number'])); require __DIR__ . '/includes/receipt-qr.php'; ?>
-                <a class="btn btn-primary mt-3" href="<?= e($receiptUrl) ?>">View / print receipt</a>
-                <div class="d-flex flex-wrap justify-content-center gap-2 mt-4"><a class="btn btn-primary" href="<?= e(url('products.php')) ?>">Continue shopping</a><a class="btn btn-outline-dark" href="<?= e(url('builder.php')) ?>">Build another PC</a></div>
+                <div class="d-flex justify-content-between gap-3 mt-2"><span>Demo
+                        total</span><strong><?= e(receipt_money($confirmation['total'], $confirmation['currency'])) ?></strong>
+                </div>
+                <div class="d-flex justify-content-between gap-3 mt-2"><span>Status at checkout</span><strong>Pending
+                        review</strong></div>
             </div>
+            <p class="small text-secondary">No payment was taken. This demo order is saved in PCForge; stock is deducted
+                when an administrator completes it.</p>
+            <?php $receiptUrl = url('receipt.php?order=' . rawurlencode($confirmation['order_number'])); $receiptQrUrl = public_url('receipt.php?order=' . rawurlencode($confirmation['order_number'])); require __DIR__ . '/includes/receipt-qr.php'; ?>
+            <a class="btn btn-primary mt-3" href="<?= e($receiptUrl) ?>">View / print receipt</a>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-4"><a class="btn btn-primary"
+                    href="<?= e(url('products.php')) ?>">Continue shopping</a><a class="btn btn-outline-dark"
+                    href="<?= e(url('builder.php')) ?>">Build another PC</a></div>
+        </div>
         <?php elseif (!$items || $cartInvalid): ?>
-            <div class="border rounded-4 p-5 text-center">
-                <h1 class="h3">Your cart needs attention</h1>
-                <p class="text-secondary">Add available items to your cart before opening checkout.</p>
-                <a class="btn btn-primary" href="<?= e(url('cart.php')) ?>">Return to cart</a>
-            </div>
+        <div class="border rounded-4 p-5 text-center">
+            <h1 class="h3">Your cart needs attention</h1>
+            <p class="text-secondary">Add available items to your cart before opening checkout.</p>
+            <a class="btn btn-primary" href="<?= e(url('cart.php')) ?>">Return to cart</a>
+        </div>
         <?php else: ?>
-            <p class="small text-secondary text-uppercase fw-semibold">Demo checkout</p>
-            <h1>Complete your order</h1>
-            <p class="lead text-secondary">This checkout demonstrates the order flow. It does not process a real payment.</p>
-            <form method="post" action="<?= e(url('checkout.php')) ?>" class="row g-4">
-                <section class="col-lg-7" aria-labelledby="details-heading">
-                    <div class="border rounded-4 p-4">
-                        <h2 id="details-heading" class="h4">Customer and delivery details</h2>
-                        <?= csrf_field() ?>
-                        <div class="row g-3 mt-1">
-                            <div class="col-12"><label class="form-label" for="name">Full name</label><input class="form-control" id="name" name="name" maxlength="160" required value="<?= e(checkoutInput('name', (string)($shippingDefaults['name'] ?? $currentUser['username'] ?? ''))) ?>"></div>
-                            <div class="col-12"><label class="form-label" for="email">Email</label><input class="form-control" type="email" id="email" name="email" maxlength="160" required value="<?= e(checkoutInput('email', (string)($currentUser['email'] ?? ''))) ?>"></div>
-                            <div class="col-12"><label class="form-label" for="address">Address</label><input class="form-control" id="address" name="address" maxlength="262" required value="<?= e(checkoutInput('address', (string)($shippingDefaults['address'] ?? ''))) ?>"></div>
-                            <div class="col-md-8"><label class="form-label" for="city">City</label><input class="form-control" id="city" name="city" maxlength="160" required value="<?= e(checkoutInput('city', (string)($shippingDefaults['city'] ?? ''))) ?>"></div>
-                            <div class="col-md-4"><label class="form-label" for="postal_code">Postal code</label><input class="form-control" id="postal_code" name="postal_code" maxlength="30" required value="<?= e(checkoutInput('postal_code', (string)($shippingDefaults['postal_code'] ?? ''))) ?>"></div>
-                            <?php foreach (['phone'=>'Phone (optional)','region'=>'Region (optional)','country'=>'Country (optional)'] as $field=>$label): ?>
-                            <div class="col-md-4">
-                                <label class="form-label" for="<?= e($field) ?>"><?= e($label) ?></label>
-                                <input class="form-control" id="<?= e($field) ?>" name="<?= e($field) ?>" maxlength="<?= $field === 'phone' ? 30 : 100 ?>" value="<?= e(checkoutInput($field, (string)($shippingDefaults[$field] ?? ''))) ?>">
-                            </div>
-                            <?php endforeach; ?>
+        <p class="small text-secondary text-uppercase fw-semibold">Demo checkout</p>
+        <h1>Complete your order</h1>
+        <p class="lead text-secondary">This checkout demonstrates the order flow. It does not process a real payment.
+        </p>
+        <form method="post" action="<?= e(url('checkout.php')) ?>" class="row g-4">
+            <section class="col-lg-7" aria-labelledby="details-heading">
+                <div class="border rounded-4 p-4">
+                    <h2 id="details-heading" class="h4">Customer and delivery details</h2>
+                    <?= csrf_field() ?>
+                    <div class="row g-3 mt-1">
+                        <div class="col-12"><label class="form-label" for="name">Full name</label><input
+                                class="form-control" id="name" name="name" maxlength="160" required
+                                value="<?= e(checkoutInput('name', (string)($shippingDefaults['name'] ?? $currentUser['username'] ?? ''))) ?>">
                         </div>
-                        <h2 class="h4 mt-5">Payment method</h2>
-                        <div class="border rounded-3 p-3"><div class="form-check"><input class="form-check-input" type="radio" name="payment_method" id="demo-payment" value="demo" checked><label class="form-check-label" for="demo-payment"><strong>Demo Payment</strong><br><small class="text-secondary">No payment service is connected. This only demonstrates checkout.</small></label></div></div>
+                        <div class="col-12"><label class="form-label" for="email">Email</label><input
+                                class="form-control" type="email" id="email" name="email" maxlength="160" required
+                                value="<?= e(checkoutInput('email', (string)($currentUser['email'] ?? ''))) ?>"></div>
+                        <div class="col-12"><label class="form-label" for="address">Address</label><input
+                                class="form-control" id="address" name="address" maxlength="262" required
+                                value="<?= e(checkoutInput('address', (string)($shippingDefaults['address'] ?? ''))) ?>">
+                        </div>
+                        <div class="col-md-8"><label class="form-label" for="city">City</label><input
+                                class="form-control" id="city" name="city" maxlength="160" required
+                                value="<?= e(checkoutInput('city', (string)($shippingDefaults['city'] ?? ''))) ?>">
+                        </div>
+                        <div class="col-md-4"><label class="form-label" for="postal_code">Postal code</label><input
+                                class="form-control" id="postal_code" name="postal_code" maxlength="30" required
+                                value="<?= e(checkoutInput('postal_code', (string)($shippingDefaults['postal_code'] ?? ''))) ?>">
+                        </div>
+                        <?php foreach (['phone'=>'Phone (optional)','region'=>'Region (optional)','country'=>'Country (optional)'] as $field=>$label): ?>
+                        <div class="col-md-4">
+                            <label class="form-label" for="<?= e($field) ?>"><?= e($label) ?></label>
+                            <input class="form-control" id="<?= e($field) ?>" name="<?= e($field) ?>"
+                                maxlength="<?= $field === 'phone' ? 30 : 100 ?>"
+                                value="<?= e(checkoutInput($field, (string)($shippingDefaults[$field] ?? ''))) ?>">
+                        </div>
+                        <?php endforeach; ?>
                     </div>
-                </section>
-                <aside class="col-lg-5" aria-labelledby="order-summary-heading">
-                    <div class="build-summary"><h2 id="order-summary-heading" class="h4">Order summary</h2>
-                        <?php foreach ($items as $item): ?><div class="d-flex justify-content-between gap-3 py-2 border-bottom"><span><?= e($item['name']) ?><small class="d-block text-secondary">Qty <?= (int) $item['quantity'] ?></small></span><strong><?= e(checkoutMoney($item['cents'] * $item['quantity'])) ?></strong></div><?php endforeach; ?>
-                        <div class="d-flex justify-content-between gap-3 pt-3"><span>Demo total</span><strong><?= e(checkoutMoney($totalCents)) ?></strong></div>
-                        <button class="btn btn-primary w-100 mt-4" type="submit">Place demo order</button>
-                        <a class="btn btn-outline-dark w-100 mt-2" href="<?= e(url('cart.php')) ?>">Back to cart</a>
+                    <h2 class="h4 mt-5">Payment method</h2>
+                    <div class="border rounded-3 p-3">
+                        <div class="form-check"><input class="form-check-input" type="radio" name="payment_method"
+                                id="demo-payment" value="demo" checked><label class="form-check-label"
+                                for="demo-payment"><strong>Demo Payment</strong><br><small class="text-secondary">No
+                                    payment service is connected. This only demonstrates checkout.</small></label></div>
                     </div>
-                </aside>
-            </form>
+                </div>
+            </section>
+            <aside class="col-lg-5" aria-labelledby="order-summary-heading">
+                <div class="build-summary">
+                    <h2 id="order-summary-heading" class="h4">Order summary</h2>
+                    <?php foreach ($items as $item): ?><div
+                        class="d-flex justify-content-between gap-3 py-2 border-bottom">
+                        <span><?= e($item['name']) ?><small class="d-block text-secondary">Qty
+                                <?= (int) $item['quantity'] ?></small></span><strong><?= e(checkoutMoney($item['cents'] * $item['quantity'])) ?></strong>
+                    </div><?php endforeach; ?>
+                    <div class="d-flex justify-content-between gap-3 pt-3"><span>Demo
+                            total</span><strong><?= e(checkoutMoney($totalCents)) ?></strong></div>
+                    <button class="btn btn-primary w-100 mt-4" type="submit">Place demo order</button>
+                    <a class="btn btn-outline-dark w-100 mt-2" href="<?= e(url('cart.php')) ?>">Back to cart</a>
+                </div>
+            </aside>
+        </form>
         <?php endif; ?>
     </div>
 </main>

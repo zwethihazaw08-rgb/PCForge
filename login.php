@@ -47,7 +47,8 @@ $pageTitle = 'Sign In';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
-<link rel="stylesheet" href="<?= e(url('assets/css/auth.css?v=' . (string) filemtime(__DIR__ . '/assets/css/auth.css'))) ?>">
+<link rel="stylesheet"
+    href="<?= e(url('assets/css/auth.css?v=' . (string) filemtime(__DIR__ . '/assets/css/auth.css'))) ?>">
 
 <main id="main-content" class="auth-page" tabindex="-1">
     <div class="auth-container">
@@ -57,32 +58,40 @@ require_once __DIR__ . '/includes/navbar.php';
             <p class="lead text-secondary">Sign in to continue to checkout and access your account.</p>
         </div>
 
-            <?php if ($errors): ?>
-                <div class="alert alert-warning" role="alert">
-                    <ul class="mb-0">
-                        <?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php endif; ?>
-            <?php if ($oauthMessage): ?><div class="alert alert-info" role="status"><?= e($oauthMessage) ?></div><?php endif; ?>
-
-            <form method="post" action="<?= e(url('login.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
-                <?= csrf_field() ?>
-                <input type="hidden" name="redirect" value="<?= e($target) ?>">
-                <div class="mb-3">
-                    <label class="form-label" for="login">Username or email</label>
-                    <input class="form-control" type="text" id="login" name="login" autocomplete="username" required value="<?= e($login) ?>">
-                </div>
-                <div class="mb-4">
-                    <label class="form-label" for="password">Password</label>
-                    <input class="form-control" type="password" id="password" name="password" autocomplete="current-password" required>
-                </div>
-                <button class="btn btn-primary w-100" type="submit">Sign in</button>
-                <div class="d-flex align-items-center gap-3 my-4"><hr class="flex-grow-1"><span class="small text-secondary">or</span><hr class="flex-grow-1"></div>
-                <a class="btn btn-outline-dark w-100" href="<?= e(url('auth/google-start.php?redirect=' . rawurlencode($target))) ?>">Continue with Google</a>
-                <p class="small text-secondary text-center mt-4 mb-0">Need an account? <a href="<?= e(url('register.php?redirect=' . rawurlencode($target))) ?>">Create one</a></p>
-            </form>
+        <?php if ($errors): ?>
+        <div class="alert alert-warning" role="alert">
+            <ul class="mb-0">
+                <?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?>
+            </ul>
         </div>
+        <?php endif; ?>
+        <?php if ($oauthMessage): ?><div class="alert alert-info" role="status"><?= e($oauthMessage) ?></div>
+        <?php endif; ?>
+
+        <form method="post" action="<?= e(url('login.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
+            <?= csrf_field() ?>
+            <input type="hidden" name="redirect" value="<?= e($target) ?>">
+            <div class="mb-3">
+                <label class="form-label" for="login">Username or email</label>
+                <input class="form-control" type="text" id="login" name="login" autocomplete="username" required
+                    value="<?= e($login) ?>">
+            </div>
+            <div class="mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password"
+                    autocomplete="current-password" required>
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Sign in</button>
+            <div class="d-flex align-items-center gap-3 my-4">
+                <hr class="flex-grow-1"><span class="small text-secondary">or</span>
+                <hr class="flex-grow-1">
+            </div>
+            <a class="btn btn-outline-dark w-100"
+                href="<?= e(url('auth/google-start.php?redirect=' . rawurlencode($target))) ?>">Continue with Google</a>
+            <p class="small text-secondary text-center mt-4 mb-0">Need an account? <a
+                    href="<?= e(url('register.php?redirect=' . rawurlencode($target))) ?>">Create one</a></p>
+        </form>
+    </div>
     </div>
 </main>
 

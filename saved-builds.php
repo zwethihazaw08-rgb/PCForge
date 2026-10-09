@@ -106,27 +106,131 @@ require_once __DIR__ . '/includes/navbar.php';
 ?>
 <main id="main-content" tabindex="-1">
     <style>
-        .saved-build-page { padding-inline: 1rem; }
-        .saved-build-panel { padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--forge-border); border-radius: 1.25rem; background: var(--forge-surface-raised); }
-        .saved-build-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin: 2rem 0 3rem; }
-        .saved-build-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
-        .saved-build-card { min-width: 0; display: flex; flex-direction: column; }
-        .saved-build-card h3 { overflow-wrap: anywhere; }
-        .saved-build-images { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.65rem; margin: 1.25rem 0; }
-        .saved-build-image { min-width: 0; text-align: center; color: var(--forge-muted); font-size: 0.7rem; }
-        .saved-build-image-box { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; margin-bottom: 0.4rem; border-radius: 0.65rem; overflow: hidden; background: var(--forge-surface); }
-        .saved-build-image img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0.5rem; object-fit: contain; background: var(--forge-surface); }
-        .saved-build-part { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 0.75rem; padding: 0.65rem 0; border-bottom: 1px solid var(--forge-border); font-size: 0.85rem; overflow-wrap: anywhere; }
-        .saved-build-part dt { color: var(--forge-muted); font-weight: 400; }
-        .saved-build-part dd { margin: 0; }
-        .saved-build-total { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-top: auto; padding: 1.25rem 0; }
-        .saved-build-manage { margin-top: 1rem; font-size: 0.85rem; }
-        .saved-build-manage summary { cursor: pointer; color: var(--forge-muted); }
-        @media (max-width: 767.98px) {
-            .saved-build-intro, .saved-build-grid { grid-template-columns: minmax(0, 1fr); }
-            .saved-build-intro { gap: 1rem; }
-            .saved-build-images { gap: 0.4rem; }
+    .saved-build-page {
+        padding-inline: 1rem;
+    }
+
+    .saved-build-panel {
+        padding: clamp(1.25rem, 3vw, 2rem);
+        border: 1px solid var(--forge-border);
+        border-radius: 1.25rem;
+        background: var(--forge-surface-raised);
+    }
+
+    .saved-build-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+        margin: 2rem 0 3rem;
+    }
+
+    .saved-build-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .saved-build-card {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .saved-build-card h3 {
+        overflow-wrap: anywhere;
+    }
+
+    .saved-build-images {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.65rem;
+        margin: 1.25rem 0;
+    }
+
+    .saved-build-image {
+        min-width: 0;
+        text-align: center;
+        color: var(--forge-muted);
+        font-size: 0.7rem;
+    }
+
+    .saved-build-image-box {
+        position: relative;
+        display: grid;
+        place-items: center;
+        aspect-ratio: 4 / 3;
+        margin-bottom: 0.4rem;
+        border-radius: 0.65rem;
+        overflow: hidden;
+        background: var(--forge-surface);
+    }
+
+    .saved-build-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0.5rem;
+        object-fit: contain;
+        background: var(--forge-surface);
+    }
+
+    .saved-build-part {
+        display: grid;
+        grid-template-columns: 6rem minmax(0, 1fr);
+        gap: 0.75rem;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid var(--forge-border);
+        font-size: 0.85rem;
+        overflow-wrap: anywhere;
+    }
+
+    .saved-build-part dt {
+        color: var(--forge-muted);
+        font-weight: 400;
+    }
+
+    .saved-build-part dd {
+        margin: 0;
+    }
+
+    .saved-build-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: auto;
+        padding: 1.25rem 0;
+    }
+
+    .saved-build-manage {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .saved-build-manage summary {
+        cursor: pointer;
+        color: var(--forge-muted);
+    }
+
+    @media (max-width: 767.98px) {
+
+        .saved-build-intro,
+        .saved-build-grid {
+            grid-template-columns: minmax(0, 1fr);
         }
+
+        .saved-build-intro {
+            gap: 1rem;
+        }
+
+        .saved-build-images {
+            gap: 0.4rem;
+        }
+    }
     </style>
     <div class="container section-padding saved-build-page">
         <p class="small fw-semibold text-uppercase text-secondary">Your build library</p>
@@ -136,126 +240,168 @@ require_once __DIR__ . '/includes/navbar.php';
         <?php if ($error): ?><p class="alert alert-warning" role="alert"><?= e($error) ?></p><?php endif; ?>
 
         <?php if (!$loadFailed): ?>
-            <section class="saved-build-panel saved-build-intro" aria-labelledby="current-build-heading">
-                <div>
-                    <h2 class="h4" id="current-build-heading">Save your current build</h2>
-                    <?php if ($currentIds && $currentPreview): ?>
-                        <p class="text-secondary mb-0"><?= count($currentIds) ?> of 8 parts selected. You can save a build while it is still in progress.</p>
-                        <?php savedBuildImages($currentPreview['parts']); ?>
-                        <a href="<?= e(url('build-summary.php')) ?>">Review current build &rarr;</a>
-                    <?php else: ?>
-                        <p class="text-secondary">Start with a few components, then come back to save your idea.</p>
-                        <a class="btn btn-primary" href="<?= e(url('builder.php')) ?>">Start a build &rarr;</a>
-                    <?php endif; ?>
-                </div>
-                <?php if ($currentIds && $currentPreview && !$currentPreview['unavailable']): ?>
-                    <form method="post" action="<?= e(url('saved-builds.php')) ?>">
-                        <?= csrf_field() ?>
-                        <input type="hidden" name="action" value="save">
-                        <label class="form-label fw-semibold" for="save-build-name">Build name</label>
-                        <input class="form-control" id="save-build-name" name="build_name" required maxlength="100" placeholder="e.g. My everyday workstation" value="<?= e(($_POST['action'] ?? '') === 'save' ? $buildName : '') ?>">
-                        <p class="small text-secondary mt-2">Saves a separate copy of your selected parts.</p>
-                        <button class="forge-save-btn w-100" type="submit" data-build-save <?= $justSaved ? 'data-save-success' : '' ?> aria-label="Save build">
-                            <span class="forge-save-label forge-save-idle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1z"/></svg>Save build</span>
-                            <span class="forge-save-label forge-save-done" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1z"/></svg>Saved</span>
-                        </button>
-                    </form>
+        <section class="saved-build-panel saved-build-intro" aria-labelledby="current-build-heading">
+            <div>
+                <h2 class="h4" id="current-build-heading">Save your current build</h2>
+                <?php if ($currentIds && $currentPreview): ?>
+                <p class="text-secondary mb-0"><?= count($currentIds) ?> of 8 parts selected. You can save a build while
+                    it is still in progress.</p>
+                <?php savedBuildImages($currentPreview['parts']); ?>
+                <a href="<?= e(url('build-summary.php')) ?>">Review current build &rarr;</a>
                 <?php else: ?>
-                    <p class="text-secondary mb-0"><?= $currentPreview && $currentPreview['unavailable'] ? 'Some selected parts are unavailable. Replace them in the builder before saving.' : 'Your saved builds belong to your account, so you can return to them after signing in again.' ?></p>
+                <p class="text-secondary">Start with a few components, then come back to save your idea.</p>
+                <a class="btn btn-primary" href="<?= e(url('builder.php')) ?>">Start a build &rarr;</a>
                 <?php endif; ?>
-            </section>
+            </div>
+            <?php if ($currentIds && $currentPreview && !$currentPreview['unavailable']): ?>
+            <form method="post" action="<?= e(url('saved-builds.php')) ?>">
+                <?= csrf_field() ?>
+                <input type="hidden" name="action" value="save">
+                <label class="form-label fw-semibold" for="save-build-name">Build name</label>
+                <input class="form-control" id="save-build-name" name="build_name" required maxlength="100"
+                    placeholder="e.g. My everyday workstation"
+                    value="<?= e(($_POST['action'] ?? '') === 'save' ? $buildName : '') ?>">
+                <p class="small text-secondary mt-2">Saves a separate copy of your selected parts.</p>
+                <button class="forge-save-btn w-100" type="submit" data-build-save
+                    <?= $justSaved ? 'data-save-success' : '' ?> aria-label="Save build">
+                    <span class="forge-save-label forge-save-idle" aria-hidden="true"><svg viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1z" />
+                        </svg>Save build</span>
+                    <span class="forge-save-label forge-save-done" aria-hidden="true"><svg viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1z" />
+                        </svg>Saved</span>
+                </button>
+            </form>
+            <?php else: ?>
+            <p class="text-secondary mb-0">
+                <?= $currentPreview && $currentPreview['unavailable'] ? 'Some selected parts are unavailable. Replace them in the builder before saving.' : 'Your saved builds belong to your account, so you can return to them after signing in again.' ?>
+            </p>
+            <?php endif; ?>
+        </section>
 
-            <section aria-labelledby="saved-builds-heading">
-                <h2 class="h3" id="saved-builds-heading">Saved builds <span class="text-secondary">(<?= $count ?>)</span></h2>
-                <p class="text-secondary small mb-4">Prices use the current catalogue. Opening a saved build replaces your current builder selection; saved copies stay here.</p>
-                <?php if (!$savedBuilds): ?>
-                    <div class="saved-build-panel text-center py-5">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 5V3h10v2M8 11h8m-8 4h5"/></svg>
-                        <h3 class="h5 mt-3">Room for your first idea.</h3>
-                        <p class="text-secondary mb-0">Name your current build above to add it to your library.</p>
+        <section aria-labelledby="saved-builds-heading">
+            <h2 class="h3" id="saved-builds-heading">Saved builds <span class="text-secondary">(<?= $count ?>)</span>
+            </h2>
+            <p class="text-secondary small mb-4">Prices use the current catalogue. Opening a saved build replaces your
+                current builder selection; saved copies stay here.</p>
+            <?php if (!$savedBuilds): ?>
+            <div class="saved-build-panel text-center py-5">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
+                    aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="16" rx="3" />
+                    <path d="M7 5V3h10v2M8 11h8m-8 4h5" />
+                </svg>
+                <h3 class="h5 mt-3">Room for your first idea.</h3>
+                <p class="text-secondary mb-0">Name your current build above to add it to your library.</p>
+            </div>
+            <?php else: ?>
+            <div class="saved-build-grid">
+                <?php foreach ($savedBuilds as $saved): ?>
+                <?php $preview = $saved['preview']; ?>
+                <article class="saved-build-panel saved-build-card" aria-labelledby="build-<?= (int) $saved['id'] ?>">
+                    <p class="small text-secondary mb-2">Saved <?= e(date('M j, Y', strtotime($saved['created_at']))) ?>
+                    </p>
+                    <h3 class="h4 mb-0" id="build-<?= (int) $saved['id'] ?>"><?= e($saved['build_name']) ?></h3>
+                    <?php if ($preview): ?>
+                    <?php savedBuildImages($preview['parts']); ?>
+                    <details>
+                        <summary>View <?= count($preview['parts']) ?> selected parts</summary>
+                        <dl class="mb-0">
+                            <?php foreach ($preview['parts'] as $category => $product): ?>
+                            <div class="saved-build-part">
+                                <dt><?= e($categories[$category]) ?></dt>
+                                <dd><?= e($product['name'] ?? 'No longer available') ?></dd>
+                            </div>
+                            <?php endforeach; ?>
+                        </dl>
+                    </details>
+                    <?php if ($preview['unavailable'] || $preview['missing_prices']): ?><p
+                        class="small text-secondary mt-3">Some parts are unavailable or missing prices. The subtotal is
+                        incomplete.</p><?php endif; ?>
+                    <div class="saved-build-total">
+                        <span
+                            class="small text-secondary"><?= $preview['unavailable'] || $preview['missing_prices'] ? 'Known-price subtotal' : 'Current parts total' ?></span>
+                        <strong class="fs-4"><?= e(savedBuildPrice($preview['cents'])) ?></strong>
                     </div>
-                <?php else: ?>
-                    <div class="saved-build-grid">
-                        <?php foreach ($savedBuilds as $saved): ?>
-                            <?php $preview = $saved['preview']; ?>
-                            <article class="saved-build-panel saved-build-card" aria-labelledby="build-<?= (int) $saved['id'] ?>">
-                                <p class="small text-secondary mb-2">Saved <?= e(date('M j, Y', strtotime($saved['created_at']))) ?></p>
-                                <h3 class="h4 mb-0" id="build-<?= (int) $saved['id'] ?>"><?= e($saved['build_name']) ?></h3>
-                                <?php if ($preview): ?>
-                                    <?php savedBuildImages($preview['parts']); ?>
-                                    <details>
-                                        <summary>View <?= count($preview['parts']) ?> selected parts</summary>
-                                        <dl class="mb-0">
-                                            <?php foreach ($preview['parts'] as $category => $product): ?>
-                                                <div class="saved-build-part"><dt><?= e($categories[$category]) ?></dt><dd><?= e($product['name'] ?? 'No longer available') ?></dd></div>
-                                            <?php endforeach; ?>
-                                        </dl>
-                                    </details>
-                                    <?php if ($preview['unavailable'] || $preview['missing_prices']): ?><p class="small text-secondary mt-3">Some parts are unavailable or missing prices. The subtotal is incomplete.</p><?php endif; ?>
-                                    <div class="saved-build-total">
-                                        <span class="small text-secondary"><?= $preview['unavailable'] || $preview['missing_prices'] ? 'Known-price subtotal' : 'Current parts total' ?></span>
-                                        <strong class="fs-4"><?= e(savedBuildPrice($preview['cents'])) ?></strong>
-                                    </div>
-                                    <?php $canAdd = count($preview['parts']) === 8 && !$preview['unavailable'] && !$preview['missing_prices']; ?>
-                                    <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
-                                        <?= csrf_field() ?><input type="hidden" name="action" value="add_saved_build"><input type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
-                                        <button class="btn btn-primary w-100" type="submit" <?= $canAdd ? '' : 'disabled' ?> aria-label="<?= e('Add ' . $saved['build_name'] . ' to cart') ?>">Add to cart</button>
-                                    </form>
-                                    <?php if (!$canAdd): ?><p class="small text-secondary">Complete all eight parts with available prices in the builder to add this build to your cart.</p><?php endif; ?>
-                                    <form method="post" action="<?= e(url('saved-builds.php')) ?>">
-                                        <?= csrf_field() ?><input type="hidden" name="action" value="load"><input type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
-                                        <button class="btn btn-outline-dark w-100" type="submit" aria-label="<?= e('Open ' . $saved['build_name'] . ' in builder') ?>">Open in builder &rarr;</button>
-                                    </form>
-                                <?php else: ?>
-                                    <p class="text-secondary my-4">This build has no readable components. Save a new copy from the builder.</p>
-                                <?php endif; ?>
-                                <details class="saved-build-manage">
-                                    <summary>Manage build</summary>
-                                    <form method="post" action="<?= e(url('saved-builds.php')) ?>" class="mt-3">
-                                        <?= csrf_field() ?><input type="hidden" name="action" value="rename"><input type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
-                                        <label class="form-label" for="rename-<?= (int) $saved['id'] ?>">Build name</label>
-                                        <input class="form-control" id="rename-<?= (int) $saved['id'] ?>" name="build_name" required maxlength="100" value="<?= e($saved['build_name']) ?>">
-                                        <button class="btn btn-sm btn-outline-dark mt-2" type="submit">Rename</button>
-                                    </form>
-                                    <form method="post" action="<?= e(url('saved-builds.php')) ?>" class="border-top mt-3 pt-3">
-                                        <?= csrf_field() ?><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
-                                        <p class="small text-secondary">Delete this saved copy permanently. Your current builder selection will stay as it is.</p>
-                                        <button class="btn btn-sm btn-outline-dark" type="submit" aria-label="<?= e('Delete saved build ' . $saved['build_name']) ?>">Delete saved copy</button>
-                                    </form>
-                                </details>
-                            </article>
-                        <?php endforeach; ?>
-                    </div>
-                    <?php if ($pageCount > 1): ?>
-                        <nav class="d-flex flex-wrap align-items-center justify-content-center gap-3 mt-4" aria-label="Saved builds pages">
-                            <?php if ($page > 1): ?><a class="btn btn-outline-dark" href="<?= e(url('saved-builds.php?page=' . ($page - 1))) ?>">Previous</a><?php endif; ?>
-                            <span class="small">Page <?= $page ?> of <?= $pageCount ?></span>
-                            <?php if ($page < $pageCount): ?><a class="btn btn-outline-dark" href="<?= e(url('saved-builds.php?page=' . ($page + 1))) ?>">Next</a><?php endif; ?>
-                        </nav>
+                    <?php $canAdd = count($preview['parts']) === 8 && !$preview['unavailable'] && !$preview['missing_prices']; ?>
+                    <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
+                        <?= csrf_field() ?><input type="hidden" name="action" value="add_saved_build"><input
+                            type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
+                        <button class="btn btn-primary w-100" type="submit" <?= $canAdd ? '' : 'disabled' ?>
+                            aria-label="<?= e('Add ' . $saved['build_name'] . ' to cart') ?>">Add to cart</button>
+                    </form>
+                    <?php if (!$canAdd): ?><p class="small text-secondary">Complete all eight parts with available
+                        prices in the builder to add this build to your cart.</p><?php endif; ?>
+                    <form method="post" action="<?= e(url('saved-builds.php')) ?>">
+                        <?= csrf_field() ?><input type="hidden" name="action" value="load"><input type="hidden"
+                            name="id" value="<?= (int) $saved['id'] ?>">
+                        <button class="btn btn-outline-dark w-100" type="submit"
+                            aria-label="<?= e('Open ' . $saved['build_name'] . ' in builder') ?>">Open in builder
+                            &rarr;</button>
+                    </form>
+                    <?php else: ?>
+                    <p class="text-secondary my-4">This build has no readable components. Save a new copy from the
+                        builder.</p>
                     <?php endif; ?>
-                <?php endif; ?>
-            </section>
+                    <details class="saved-build-manage">
+                        <summary>Manage build</summary>
+                        <form method="post" action="<?= e(url('saved-builds.php')) ?>" class="mt-3">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="rename"><input type="hidden"
+                                name="id" value="<?= (int) $saved['id'] ?>">
+                            <label class="form-label" for="rename-<?= (int) $saved['id'] ?>">Build name</label>
+                            <input class="form-control" id="rename-<?= (int) $saved['id'] ?>" name="build_name" required
+                                maxlength="100" value="<?= e($saved['build_name']) ?>">
+                            <button class="btn btn-sm btn-outline-dark mt-2" type="submit">Rename</button>
+                        </form>
+                        <form method="post" action="<?= e(url('saved-builds.php')) ?>" class="border-top mt-3 pt-3">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="delete"><input type="hidden"
+                                name="id" value="<?= (int) $saved['id'] ?>">
+                            <p class="small text-secondary">Delete this saved copy permanently. Your current builder
+                                selection will stay as it is.</p>
+                            <button class="btn btn-sm btn-outline-dark" type="submit"
+                                aria-label="<?= e('Delete saved build ' . $saved['build_name']) ?>">Delete saved
+                                copy</button>
+                        </form>
+                    </details>
+                </article>
+                <?php endforeach; ?>
+            </div>
+            <?php if ($pageCount > 1): ?>
+            <nav class="d-flex flex-wrap align-items-center justify-content-center gap-3 mt-4"
+                aria-label="Saved builds pages">
+                <?php if ($page > 1): ?><a class="btn btn-outline-dark"
+                    href="<?= e(url('saved-builds.php?page=' . ($page - 1))) ?>">Previous</a><?php endif; ?>
+                <span class="small">Page <?= $page ?> of <?= $pageCount ?></span>
+                <?php if ($page < $pageCount): ?><a class="btn btn-outline-dark"
+                    href="<?= e(url('saved-builds.php?page=' . ($page + 1))) ?>">Next</a><?php endif; ?>
+            </nav>
+            <?php endif; ?>
+            <?php endif; ?>
+        </section>
         <?php endif; ?>
     </div>
 </main>
 <script>
-    (() => {
-        const button = document.querySelector('[data-build-save]');
-        if (!button) return;
-        if (button.hasAttribute('data-save-success')) {
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                button.classList.add('is-saved');
-                button.setAttribute('aria-label', 'Saved');
-            }));
-        }
-        button.form.addEventListener('input', () => {
-            button.classList.remove('is-saved');
-            button.setAttribute('aria-label', 'Save build');
-        });
-        button.form.addEventListener('submit', () => {
-            button.disabled = true;
-            button.setAttribute('aria-busy', 'true');
-        });
-    })();
+(() => {
+    const button = document.querySelector('[data-build-save]');
+    if (!button) return;
+    if (button.hasAttribute('data-save-success')) {
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            button.classList.add('is-saved');
+            button.setAttribute('aria-label', 'Saved');
+        }));
+    }
+    button.form.addEventListener('input', () => {
+        button.classList.remove('is-saved');
+        button.setAttribute('aria-label', 'Save build');
+    });
+    button.form.addEventListener('submit', () => {
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+    });
+})();
 </script>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

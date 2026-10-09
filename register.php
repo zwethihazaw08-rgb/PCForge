@@ -132,7 +132,8 @@ $pageTitle = $verifyMode ? 'Verify Your Email' : 'Create Account';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
-<link rel="stylesheet" href="<?= e(url('assets/css/auth.css?v=' . (string) filemtime(__DIR__ . '/assets/css/auth.css'))) ?>">
+<link rel="stylesheet"
+    href="<?= e(url('assets/css/auth.css?v=' . (string) filemtime(__DIR__ . '/assets/css/auth.css'))) ?>">
 
 <main id="main-content" class="auth-page" tabindex="-1">
     <div class="auth-container">
@@ -144,57 +145,57 @@ require_once __DIR__ . '/includes/navbar.php';
             </p>
         </div>
 
-            <?php if ($errors): ?>
-            <div class="alert alert-warning" role="alert">
-                <ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul>
-            </div>
-            <?php endif; ?>
-            <?php if ($notice): ?><div class="alert alert-info" role="status"><?= e($notice) ?></div><?php endif; ?>
-
-            <?php if ($verifyMode): ?>
-            <form method="post" action="<?= e(url('register.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
-                <?= csrf_field() ?><input type="hidden" name="action" value="verify_otp"><input type="hidden"
-                    name="redirect" value="<?= e($target) ?>">
-                <label class="form-label" for="otp">Verification code</label>
-                <input class="form-control form-control-lg text-center" type="text" id="otp" name="otp"
-                    inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required>
-                <button class="btn btn-primary w-100 mt-4" type="submit">Verify email and create account</button>
-            </form>
-            <form method="post" action="<?= e(url('register.php')) ?>" class="mt-2">
-                <?= csrf_field() ?><input type="hidden" name="action" value="resend_otp"><input type="hidden"
-                    name="redirect" value="<?= e($target) ?>">
-                <button class="btn btn-outline-dark w-100" type="submit">Send a new code</button>
-            </form>
-            <a class="d-block text-center small mt-3"
-                href="<?= e(url('register.php?reset=1&redirect=' . rawurlencode($target))) ?>">Use a different email</a>
-            <?php else: ?>
-            <form method="post" action="<?= e(url('register.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
-                <?= csrf_field() ?><input type="hidden" name="redirect" value="<?= e($target) ?>">
-                <div class="mb-3"><label class="form-label" for="username">Username</label><input class="form-control"
-                        type="text" id="username" name="username" maxlength="50" autocomplete="username" required
-                        value="<?= e($username) ?>"></div>
-                <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control"
-                        type="email" id="email" name="email" maxlength="100" autocomplete="email" required
-                        value="<?= e($email) ?>"></div>
-                <div class="mb-3"><label class="form-label" for="password">Password</label><input class="form-control"
-                        type="password" id="password" name="password" minlength="8" autocomplete="new-password"
-                        required></div>
-                <div class="mb-4"><label class="form-label" for="password_confirmation">Confirm password</label><input
-                        class="form-control" type="password" id="password_confirmation" name="password_confirmation"
-                        minlength="8" autocomplete="new-password" required></div>
-                <button class="btn btn-primary w-100" type="submit">Send verification code</button>
-                <div class="d-flex align-items-center gap-3 my-4">
-                    <hr class="flex-grow-1"><span class="small text-secondary">or</span>
-                    <hr class="flex-grow-1">
-                </div>
-                <a class="btn btn-outline-dark w-100"
-                    href="<?= e(url('auth/google-start.php?redirect=' . rawurlencode($target))) ?>">Continue with
-                    Google</a>
-                <p class="small text-secondary text-center mt-4 mb-0">Already have an account? <a
-                        href="<?= e(url('login.php?redirect=' . rawurlencode($target))) ?>">Sign in</a></p>
-            </form>
-            <?php endif; ?>
+        <?php if ($errors): ?>
+        <div class="alert alert-warning" role="alert">
+            <ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul>
         </div>
+        <?php endif; ?>
+        <?php if ($notice): ?><div class="alert alert-info" role="status"><?= e($notice) ?></div><?php endif; ?>
+
+        <?php if ($verifyMode): ?>
+        <form method="post" action="<?= e(url('register.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
+            <?= csrf_field() ?><input type="hidden" name="action" value="verify_otp"><input type="hidden"
+                name="redirect" value="<?= e($target) ?>">
+            <label class="form-label" for="otp">Verification code</label>
+            <input class="form-control form-control-lg text-center" type="text" id="otp" name="otp" inputmode="numeric"
+                autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required>
+            <button class="btn btn-primary w-100 mt-4" type="submit">Verify email and create account</button>
+        </form>
+        <form method="post" action="<?= e(url('register.php')) ?>" class="mt-2">
+            <?= csrf_field() ?><input type="hidden" name="action" value="resend_otp"><input type="hidden"
+                name="redirect" value="<?= e($target) ?>">
+            <button class="btn btn-outline-dark w-100" type="submit">Send a new code</button>
+        </form>
+        <a class="d-block text-center small mt-3"
+            href="<?= e(url('register.php?reset=1&redirect=' . rawurlencode($target))) ?>">Use a different email</a>
+        <?php else: ?>
+        <form method="post" action="<?= e(url('register.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
+            <?= csrf_field() ?><input type="hidden" name="redirect" value="<?= e($target) ?>">
+            <div class="mb-3"><label class="form-label" for="username">Username</label><input class="form-control"
+                    type="text" id="username" name="username" maxlength="50" autocomplete="username" required
+                    value="<?= e($username) ?>"></div>
+            <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control"
+                    type="email" id="email" name="email" maxlength="100" autocomplete="email" required
+                    value="<?= e($email) ?>"></div>
+            <div class="mb-3"><label class="form-label" for="password">Password</label><input class="form-control"
+                    type="password" id="password" name="password" minlength="8" autocomplete="new-password" required>
+            </div>
+            <div class="mb-4"><label class="form-label" for="password_confirmation">Confirm password</label><input
+                    class="form-control" type="password" id="password_confirmation" name="password_confirmation"
+                    minlength="8" autocomplete="new-password" required></div>
+            <button class="btn btn-primary w-100" type="submit">Send verification code</button>
+            <div class="d-flex align-items-center gap-3 my-4">
+                <hr class="flex-grow-1"><span class="small text-secondary">or</span>
+                <hr class="flex-grow-1">
+            </div>
+            <a class="btn btn-outline-dark w-100"
+                href="<?= e(url('auth/google-start.php?redirect=' . rawurlencode($target))) ?>">Continue with
+                Google</a>
+            <p class="small text-secondary text-center mt-4 mb-0">Already have an account? <a
+                    href="<?= e(url('login.php?redirect=' . rawurlencode($target))) ?>">Sign in</a></p>
+        </form>
+        <?php endif; ?>
+    </div>
     </div>
 </main>
 

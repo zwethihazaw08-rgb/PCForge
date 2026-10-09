@@ -21,6 +21,36 @@ $total = (int)admin_query('SELECT COUNT(*) FROM ' . $source . $where,$values)->f
 $products = admin_query('SELECT * FROM ' . $source . $where . " ORDER BY stock IS NULL, stock, name, category, id LIMIT 20 OFFSET $offset",$values)->fetchAll();
 admin_start('Inventory','Low stock: 1–' . store_settings()['low_stock_threshold'] . ' units. Blank stock values are unknown.');
 ?>
-<section class="admin-panel"><?php admin_filter_form(); ?><div class="table-responsive"><table class="table align-middle"><thead><tr><th>Product</th><th>Category</th><th>Current stock</th><th>Stock status</th><th>Last updated</th><th>Update stock</th></tr></thead><tbody>
-<?php foreach ($products as $product): ?><tr><td><a href="<?= e(admin_product_link($product)) ?>"><?= e($product['name']) ?></a></td><td><?= e(component_categories()[$product['category']]) ?></td><td><?= $product['stock'] === null ? 'Unknown' : (int)$product['stock'] ?></td><td><?= admin_badge(admin_stock_status($product['stock'])) ?></td><td><?= e($product['updated_at'] ?? 'Unknown') ?></td><td><form class="stock-form" method="post"><?= csrf_field() ?><input type="hidden" name="type" value="<?= e($product['category']) ?>"><input type="hidden" name="id" value="<?= (int)$product['id'] ?>"><input type="hidden" name="previous" value="<?= e((string)$product['stock']) ?>"><input class="form-control" name="stock" type="number" min="0" max="2147483647" required value="<?= e((string)$product['stock']) ?>" aria-label="<?= e('Stock for ' . $product['name']) ?>"><button class="btn btn-dark btn-sm">Update</button></form></td></tr><?php endforeach; if (!$products) admin_empty(6,'No products match your stock filters.'); ?>
-</tbody></table></div><?php admin_pager($page,$pages,$total); ?></section><?php admin_end(); ?>
+<section class="admin-panel"><?php admin_filter_form(); ?><div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Current stock</th>
+                    <th>Stock status</th>
+                    <th>Last updated</th>
+                    <th>Update stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?><tr>
+                    <td><a href="<?= e(admin_product_link($product)) ?>"><?= e($product['name']) ?></a></td>
+                    <td><?= e(component_categories()[$product['category']]) ?></td>
+                    <td><?= $product['stock'] === null ? 'Unknown' : (int)$product['stock'] ?></td>
+                    <td><?= admin_badge(admin_stock_status($product['stock'])) ?></td>
+                    <td><?= e($product['updated_at'] ?? 'Unknown') ?></td>
+                    <td>
+                        <form class="stock-form" method="post"><?= csrf_field() ?><input type="hidden" name="type"
+                                value="<?= e($product['category']) ?>"><input type="hidden" name="id"
+                                value="<?= (int)$product['id'] ?>"><input type="hidden" name="previous"
+                                value="<?= e((string)$product['stock']) ?>"><input class="form-control" name="stock"
+                                type="number" min="0" max="2147483647" required
+                                value="<?= e((string)$product['stock']) ?>"
+                                aria-label="<?= e('Stock for ' . $product['name']) ?>"><button
+                                class="btn btn-dark btn-sm">Update</button></form>
+                    </td>
+                </tr><?php endforeach; if (!$products) admin_empty(6,'No products match your stock filters.'); ?>
+            </tbody>
+        </table>
+    </div><?php admin_pager($page,$pages,$total); ?></section><?php admin_end(); ?>

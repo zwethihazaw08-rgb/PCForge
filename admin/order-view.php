@@ -13,4 +13,63 @@ $items = admin_query('SELECT * FROM order_items WHERE order_id = ? ORDER BY id',
 admin_start('Order ' . $order['order_number'],'Placed ' . $order['created_at']);
 $next = ['pending'=>['processing','cancelled'],'processing'=>['completed','cancelled']][$order['status']] ?? [];
 ?>
-<div class="row g-4"><div class="col-lg-8"><section class="admin-panel"><div class="table-responsive"><table class="table"><thead><tr><th>Purchased component</th><th>Quantity</th><th>Unit price</th><th>Total</th></tr></thead><tbody><?php foreach ($items as $item): ?><tr><td><?= e($item['product_name']) ?><small class="d-block text-muted"><?= e(component_categories()[$item['category']]) ?> #<?= (int)$item['product_id'] ?></small></td><td><?= (int)$item['quantity'] ?></td><td><?= e(admin_money($item['unit_price'],$order['currency'])) ?></td><td><?= e(admin_money($item['line_total'],$order['currency'])) ?></td></tr><?php endforeach; if (!$items) admin_empty(4,'No order items recorded.'); ?></tbody></table></div><dl class="order-totals"><div><dt>Subtotal</dt><dd><?= e(admin_money($order['subtotal'],$order['currency'])) ?></dd></div><div><dt>Shipping</dt><dd><?= e(admin_money($order['shipping_total'],$order['currency'])) ?></dd></div><div><dt>Total</dt><dd><?= e(admin_money($order['total'],$order['currency'])) ?></dd></div></dl><p class="text-muted small">Prices and delivery details are the snapshots saved at checkout.</p></section></div><div class="col-lg-4"><section class="admin-panel"><h2 class="h5">Customer</h2><p><?php if ($order['user_id']): ?><a href="user-view.php?id=<?= (int)$order['user_id'] ?>"><?= e($order['customer_name']) ?></a><?php else: ?><?= e($order['customer_name']) ?><?php endif; ?><br><?= e($order['customer_email']) ?></p><h2 class="h5">Delivery</h2><p><?= e($order['shipping_address']) ?><br><?= e($order['shipping_city'] . ' ' . $order['shipping_postal_code']) ?><br><?= e($order['shipping_region'] . ' ' . $order['shipping_country']) ?><br><?= e($order['shipping_phone']) ?></p><p>Payment: <?= admin_badge($order['payment_status']) ?></p><p>Order: <?= admin_badge($order['status']) ?></p><?php if ($next): ?><form method="post" data-order-status-form><?= csrf_field() ?><label class="form-label" for="status">Update order status</label><select class="form-select mb-3" name="status" id="status"><?php foreach ($next as $status): ?><option value="<?= e($status) ?>"><?= e(ucfirst($status)) ?></option><?php endforeach; ?></select><button class="btn btn-dark">Update status</button></form><small class="d-block mt-3 text-muted">Completing this order deducts stock once. Cancellation and completion are final.</small><?php endif; ?></section></div></div><?php admin_end(); ?>
+<div class="row g-4">
+    <div class="col-lg-8">
+        <section class="admin-panel">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Purchased component</th>
+                            <th>Quantity</th>
+                            <th>Unit price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody><?php foreach ($items as $item): ?><tr>
+                            <td><?= e($item['product_name']) ?><small
+                                    class="d-block text-muted"><?= e(component_categories()[$item['category']]) ?>
+                                    #<?= (int)$item['product_id'] ?></small></td>
+                            <td><?= (int)$item['quantity'] ?></td>
+                            <td><?= e(admin_money($item['unit_price'],$order['currency'])) ?></td>
+                            <td><?= e(admin_money($item['line_total'],$order['currency'])) ?></td>
+                        </tr><?php endforeach; if (!$items) admin_empty(4,'No order items recorded.'); ?></tbody>
+                </table>
+            </div>
+            <dl class="order-totals">
+                <div>
+                    <dt>Subtotal</dt>
+                    <dd><?= e(admin_money($order['subtotal'],$order['currency'])) ?></dd>
+                </div>
+                <div>
+                    <dt>Shipping</dt>
+                    <dd><?= e(admin_money($order['shipping_total'],$order['currency'])) ?></dd>
+                </div>
+                <div>
+                    <dt>Total</dt>
+                    <dd><?= e(admin_money($order['total'],$order['currency'])) ?></dd>
+                </div>
+            </dl>
+            <p class="text-muted small">Prices and delivery details are the snapshots saved at checkout.</p>
+        </section>
+    </div>
+    <div class="col-lg-4">
+        <section class="admin-panel">
+            <h2 class="h5">Customer</h2>
+            <p><?php if ($order['user_id']): ?><a
+                    href="user-view.php?id=<?= (int)$order['user_id'] ?>"><?= e($order['customer_name']) ?></a><?php else: ?><?= e($order['customer_name']) ?><?php endif; ?><br><?= e($order['customer_email']) ?>
+            </p>
+            <h2 class="h5">Delivery</h2>
+            <p><?= e($order['shipping_address']) ?><br><?= e($order['shipping_city'] . ' ' . $order['shipping_postal_code']) ?><br><?= e($order['shipping_region'] . ' ' . $order['shipping_country']) ?><br><?= e($order['shipping_phone']) ?>
+            </p>
+            <p>Payment: <?= admin_badge($order['payment_status']) ?></p>
+            <p>Order: <?= admin_badge($order['status']) ?></p><?php if ($next): ?><form method="post"
+                data-order-status-form><?= csrf_field() ?><label class="form-label" for="status">Update order
+                    status</label><select class="form-select mb-3" name="status"
+                    id="status"><?php foreach ($next as $status): ?><option value="<?= e($status) ?>">
+                        <?= e(ucfirst($status)) ?></option><?php endforeach; ?></select><button
+                    class="btn btn-dark">Update status</button></form><small class="d-block mt-3 text-muted">Completing
+                this order deducts stock once. Cancellation and completion are final.</small><?php endif; ?>
+        </section>
+    </div>
+</div><?php admin_end(); ?>

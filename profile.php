@@ -145,24 +145,136 @@ require_once __DIR__ . '/includes/navbar.php';
 ?>
 <main id="main-content" tabindex="-1">
     <style>
-        .settings-page { max-width: 1160px; }
-        .settings-heading { margin-bottom: 2.5rem; }
-        .settings-heading h1 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.04em; }
-        .settings-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 2rem; align-items: start; }
-        .settings-sidebar { position: sticky; top: 6rem; border: 1px solid var(--forge-border); border-radius: 1.25rem; padding: 1.5rem; background: var(--forge-surface); overflow-wrap: anywhere; }
-        .settings-avatar { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 18px; background: var(--bs-body-color); color: var(--bs-body-bg); font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
-        .settings-nav { display: grid; gap: 0.35rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--forge-border); }
-        .settings-nav a { padding: 0.7rem 0.8rem; border-radius: 0.6rem; text-decoration: none; color: var(--bs-body-color); font-size: 0.9rem; }
-        .settings-nav a:hover, .settings-nav a:focus-visible { background: var(--forge-surface-raised); }
-        .settings-panels { display: grid; gap: 1.5rem; min-width: 0; }
-        .settings-panel { border: 1px solid var(--forge-border); border-radius: 1.25rem; background: var(--forge-surface-raised); padding: clamp(1.25rem, 3vw, 2rem); scroll-margin-top: 6rem; }
-        .settings-panel h2 { font-size: 1.35rem; letter-spacing: -0.02em; }
-        .settings-panel .form-control { min-height: 46px; border-radius: 0.6rem; }
-        .settings-panel .form-label { font-size: 0.88rem; font-weight: 600; }
-        .settings-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--forge-border); }
-        .settings-footer p { margin: 0; font-size: 0.8rem; color: var(--forge-muted); }
-        @media (max-width: 767.98px) { .settings-layout { grid-template-columns: minmax(0, 1fr); } .settings-sidebar { position: static; } .settings-nav { display: flex; flex-wrap: wrap; } }
-        @media (max-width: 479.98px) { .settings-footer .btn { width: 100%; } }
+    .settings-page {
+        max-width: 1160px;
+    }
+
+    .settings-heading {
+        margin-bottom: 2.5rem;
+    }
+
+    .settings-heading h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.04em;
+    }
+
+    .settings-layout {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .settings-sidebar {
+        position: sticky;
+        top: 6rem;
+        border: 1px solid var(--forge-border);
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        background: var(--forge-surface);
+        overflow-wrap: anywhere;
+    }
+
+    .settings-avatar {
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+        background: var(--bs-body-color);
+        color: var(--bs-body-bg);
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .settings-nav {
+        display: grid;
+        gap: 0.35rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--forge-border);
+    }
+
+    .settings-nav a {
+        padding: 0.7rem 0.8rem;
+        border-radius: 0.6rem;
+        text-decoration: none;
+        color: var(--bs-body-color);
+        font-size: 0.9rem;
+    }
+
+    .settings-nav a:hover,
+    .settings-nav a:focus-visible {
+        background: var(--forge-surface-raised);
+    }
+
+    .settings-panels {
+        display: grid;
+        gap: 1.5rem;
+        min-width: 0;
+    }
+
+    .settings-panel {
+        border: 1px solid var(--forge-border);
+        border-radius: 1.25rem;
+        background: var(--forge-surface-raised);
+        padding: clamp(1.25rem, 3vw, 2rem);
+        scroll-margin-top: 6rem;
+    }
+
+    .settings-panel h2 {
+        font-size: 1.35rem;
+        letter-spacing: -0.02em;
+    }
+
+    .settings-panel .form-control {
+        min-height: 46px;
+        border-radius: 0.6rem;
+    }
+
+    .settings-panel .form-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+    }
+
+    .settings-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--forge-border);
+    }
+
+    .settings-footer p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: var(--forge-muted);
+    }
+
+    @media (max-width: 767.98px) {
+        .settings-layout {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .settings-sidebar {
+            position: static;
+        }
+
+        .settings-nav {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    @media (max-width: 479.98px) {
+        .settings-footer .btn {
+            width: 100%;
+        }
+    }
     </style>
     <div class="container section-padding settings-page">
         <header class="settings-heading">
@@ -171,10 +283,13 @@ require_once __DIR__ . '/includes/navbar.php';
             <p class="text-secondary mb-0">Manage your personal details, delivery address, and account security.</p>
         </header>
         <?php if ($notice): ?><div class="alert alert-success" role="status"><?= e($notice) ?></div><?php endif; ?>
-        <?php if ($errors): ?><div class="alert alert-warning" role="alert"><ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
+        <?php if ($errors): ?><div class="alert alert-warning" role="alert">
+            <ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul>
+        </div><?php endif; ?>
         <div class="settings-layout">
             <aside class="settings-sidebar" aria-label="Profile navigation">
-                <div class="settings-avatar" aria-hidden="true"><?= e(mb_strtoupper(mb_substr($profileUser['username'], 0, 1))) ?></div>
+                <div class="settings-avatar" aria-hidden="true">
+                    <?= e(mb_strtoupper(mb_substr($profileUser['username'], 0, 1))) ?></div>
                 <p class="fw-semibold mb-1"><?= e($profileUser['username']) ?></p>
                 <p class="small text-secondary mb-0"><?= e($profileUser['email']) ?></p>
                 <nav class="settings-nav" aria-label="Account settings">
@@ -191,37 +306,74 @@ require_once __DIR__ . '/includes/navbar.php';
                     <form method="post" action="<?= e(url('profile.php#account')) ?>">
                         <?= csrf_field() ?><input type="hidden" name="action" value="account">
                         <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label" for="username">Username</label><input class="form-control" id="username" name="username" autocomplete="username" minlength="3" maxlength="50" pattern="[A-Za-z0-9_]{3,50}" required value="<?= e($account['username']) ?>" aria-describedby="username-help"><div id="username-help" class="form-text">Letters, numbers, and underscores.</div></div>
-                            <div class="col-md-6"><label class="form-label" for="email">Email address</label><input class="form-control" type="email" id="email" name="email" autocomplete="email" maxlength="100" required value="<?= e($account['email']) ?>"></div>
-                            <div class="col-12"><label class="form-label" for="current-password">Current password <span class="fw-normal text-secondary">(only for email changes)</span></label><input class="form-control" type="password" id="current-password" name="current_password" autocomplete="current-password" aria-describedby="email-help"><div class="form-text" id="email-help">Changing your email also requires a code sent to the new address. If you joined with Google, keep using your Google sign-in email.</div></div>
+                            <div class="col-md-6"><label class="form-label" for="username">Username</label><input
+                                    class="form-control" id="username" name="username" autocomplete="username"
+                                    minlength="3" maxlength="50" pattern="[A-Za-z0-9_]{3,50}" required
+                                    value="<?= e($account['username']) ?>" aria-describedby="username-help">
+                                <div id="username-help" class="form-text">Letters, numbers, and underscores.</div>
+                            </div>
+                            <div class="col-md-6"><label class="form-label" for="email">Email address</label><input
+                                    class="form-control" type="email" id="email" name="email" autocomplete="email"
+                                    maxlength="100" required value="<?= e($account['email']) ?>"></div>
+                            <div class="col-12"><label class="form-label" for="current-password">Current password <span
+                                        class="fw-normal text-secondary">(only for email changes)</span></label><input
+                                    class="form-control" type="password" id="current-password" name="current_password"
+                                    autocomplete="current-password" aria-describedby="email-help">
+                                <div class="form-text" id="email-help">Changing your email also requires a code sent to
+                                    the new address. If you joined with Google, keep using your Google sign-in email.
+                                </div>
+                            </div>
                         </div>
-                        <div class="settings-footer"><p>Your email is used to sign in.</p><button class="btn btn-primary" type="submit">Save account details</button></div>
+                        <div class="settings-footer">
+                            <p>Your email is used to sign in.</p><button class="btn btn-primary" type="submit">Save
+                                account details</button>
+                        </div>
                     </form>
                     <?php if ($pending): ?>
-                        <div class="border rounded-3 p-3 mt-4">
-                            <h3 class="h6">Verify your new email</h3><p class="small text-secondary">Enter the code sent to <?= e($pending['email']) ?>. Your current email stays active until verification.</p>
-                            <form method="post" action="<?= e(url('profile.php#account')) ?>" class="d-flex flex-wrap gap-2">
-                                <?= csrf_field() ?><input type="hidden" name="action" value="verify_email">
-                                <label class="visually-hidden" for="email-otp">Six-digit verification code</label><input class="form-control" style="max-width: 190px" id="email-otp" name="otp" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required><button class="btn btn-primary" type="submit">Verify &amp; save</button>
-                            </form>
-                            <form method="post" action="<?= e(url('profile.php#account')) ?>" class="mt-2"><?= csrf_field() ?><input type="hidden" name="action" value="cancel_email"><button class="btn btn-link p-0 small" type="submit">Cancel email change</button></form>
-                        </div>
+                    <div class="border rounded-3 p-3 mt-4">
+                        <h3 class="h6">Verify your new email</h3>
+                        <p class="small text-secondary">Enter the code sent to <?= e($pending['email']) ?>. Your current
+                            email stays active until verification.</p>
+                        <form method="post" action="<?= e(url('profile.php#account')) ?>"
+                            class="d-flex flex-wrap gap-2">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="verify_email">
+                            <label class="visually-hidden" for="email-otp">Six-digit verification code</label><input
+                                class="form-control" style="max-width: 190px" id="email-otp" name="otp"
+                                inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6"
+                                required><button class="btn btn-primary" type="submit">Verify &amp; save</button>
+                        </form>
+                        <form method="post" action="<?= e(url('profile.php#account')) ?>" class="mt-2">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="cancel_email"><button
+                                class="btn btn-link p-0 small" type="submit">Cancel email change</button></form>
+                    </div>
                     <?php endif; ?>
                 </section>
                 <section class="settings-panel" id="shipping" aria-labelledby="shipping-heading">
                     <h2 id="shipping-heading">Shipping details</h2>
                     <p class="text-secondary small mb-4">Save the contact and address details for your deliveries.</p>
-                    <?php if (!$shippingAvailable): ?><p class="alert alert-warning" role="status">Shipping settings are temporarily unavailable. Please try again later.</p><?php endif; ?>
+                    <?php if (!$shippingAvailable): ?><p class="alert alert-warning" role="status">Shipping settings are
+                        temporarily unavailable. Please try again later.</p><?php endif; ?>
                     <form method="post" action="<?= e(url('profile.php#shipping')) ?>">
                         <?= csrf_field() ?><input type="hidden" name="action" value="shipping">
                         <fieldset <?= !$shippingAvailable ? 'disabled' : '' ?>>
                             <legend class="visually-hidden">Delivery address</legend>
                             <div class="row g-3">
                                 <?php foreach ($shippingFields as $field => [$label, $limit, $autocomplete, $required]): ?>
-                                    <div class="<?= in_array($field, ['address', 'address_line2'], true) ? 'col-12' : 'col-md-6' ?>"><label class="form-label" for="shipping-<?= e($field) ?>"><?= e($label) ?></label><input class="form-control" type="<?= $field === 'phone' ? 'tel' : 'text' ?>" id="shipping-<?= e($field) ?>" name="<?= e($field) ?>" autocomplete="shipping <?= e($autocomplete) ?>" maxlength="<?= $limit ?>" <?= $required ? 'required' : '' ?> value="<?= e($shipping[$field]) ?>"></div>
+                                <div
+                                    class="<?= in_array($field, ['address', 'address_line2'], true) ? 'col-12' : 'col-md-6' ?>">
+                                    <label class="form-label"
+                                        for="shipping-<?= e($field) ?>"><?= e($label) ?></label><input
+                                        class="form-control" type="<?= $field === 'phone' ? 'tel' : 'text' ?>"
+                                        id="shipping-<?= e($field) ?>" name="<?= e($field) ?>"
+                                        autocomplete="shipping <?= e($autocomplete) ?>" maxlength="<?= $limit ?>"
+                                        <?= $required ? 'required' : '' ?> value="<?= e($shipping[$field]) ?>">
+                                </div>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="settings-footer"><p>You can update this address anytime.</p><button class="btn btn-primary" type="submit">Save shipping details</button></div>
+                            <div class="settings-footer">
+                                <p>You can update this address anytime.</p><button class="btn btn-primary"
+                                    type="submit">Save shipping details</button>
+                            </div>
                         </fieldset>
                     </form>
                 </section>
@@ -230,12 +382,25 @@ require_once __DIR__ . '/includes/navbar.php';
                     <p class="text-secondary small mb-4">Choose a strong password you do not use elsewhere.</p>
                     <form method="post" action="<?= e(url('profile.php#security')) ?>">
                         <?= csrf_field() ?><input type="hidden" name="action" value="password">
-                        <div class="mb-3"><label class="form-label" for="password-current">Current password</label><input class="form-control" type="password" id="password-current" name="password_current" autocomplete="current-password" required></div>
+                        <div class="mb-3"><label class="form-label" for="password-current">Current
+                                password</label><input class="form-control" type="password" id="password-current"
+                                name="password_current" autocomplete="current-password" required></div>
                         <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label" for="new-password">New password</label><input class="form-control" type="password" id="new-password" name="new_password" autocomplete="new-password" minlength="8" maxlength="72" required aria-describedby="password-help"><div class="form-text" id="password-help">Use at least 8 characters.</div></div>
-                            <div class="col-md-6"><label class="form-label" for="password-confirmation">Confirm new password</label><input class="form-control" type="password" id="password-confirmation" name="password_confirmation" autocomplete="new-password" minlength="8" maxlength="72" required></div>
+                            <div class="col-md-6"><label class="form-label" for="new-password">New
+                                    password</label><input class="form-control" type="password" id="new-password"
+                                    name="new_password" autocomplete="new-password" minlength="8" maxlength="72"
+                                    required aria-describedby="password-help">
+                                <div class="form-text" id="password-help">Use at least 8 characters.</div>
+                            </div>
+                            <div class="col-md-6"><label class="form-label" for="password-confirmation">Confirm new
+                                    password</label><input class="form-control" type="password"
+                                    id="password-confirmation" name="password_confirmation" autocomplete="new-password"
+                                    minlength="8" maxlength="72" required></div>
                         </div>
-                        <div class="settings-footer"><p>Joined with Google? Manage your password in your Google account.</p><button class="btn btn-primary" type="submit">Update password</button></div>
+                        <div class="settings-footer">
+                            <p>Joined with Google? Manage your password in your Google account.</p><button
+                                class="btn btn-primary" type="submit">Update password</button>
+                        </div>
                     </form>
                 </section>
             </div>

@@ -49,10 +49,14 @@ admin_start('Dashboard', 'Welcome back, ' . auth_user()['username'] . '. Here is
         <section class="admin-panel h-100">
             <h2 class="h5">Sales overview <small class="text-muted"><?= e($currency) ?></small></h2>
             <p class="text-muted small">Completed, paid orders by order month. Demo payments are excluded.</p>
-            <div class="chart-wrap"><canvas id="sales-chart" role="img" aria-label="Paid revenue over the last six months"></canvas></div>
-            <details><summary>View sales data</summary>
+            <div class="chart-wrap"><canvas id="sales-chart" role="img"
+                    aria-label="Paid revenue over the last six months"></canvas></div>
+            <details>
+                <summary>View sales data</summary>
                 <?php foreach ($months as $i=>$month): ?>
-                <div class="activity-row"><span><?= e($month) ?></span><span><?= e(admin_money($monthValues[$i],$currency)) ?></span></div>
+                <div class="activity-row">
+                    <span><?= e($month) ?></span><span><?= e(admin_money($monthValues[$i],$currency)) ?></span>
+                </div>
                 <?php endforeach; ?>
             </details>
         </section>
@@ -63,7 +67,8 @@ admin_start('Dashboard', 'Welcome back, ' . auth_user()['username'] . '. Here is
             <div class="chart-wrap"><canvas id="orders-chart" role="img" aria-label="Orders by status"></canvas></div>
             <div class="chart-legend">
                 <?php foreach (['pending','processing','completed','cancelled'] as $status): ?>
-                <a href="orders.php?status=<?= e($status) ?>"><?= e(ucfirst($status)) ?> <strong><?= (int)($statuses[$status] ?? 0) ?></strong></a>
+                <a href="orders.php?status=<?= e($status) ?>"><?= e(ucfirst($status)) ?>
+                    <strong><?= (int)($statuses[$status] ?? 0) ?></strong></a>
                 <?php endforeach; ?>
             </div>
         </section>
@@ -71,33 +76,48 @@ admin_start('Dashboard', 'Welcome back, ' . auth_user()['username'] . '. Here is
     <div class="col-md-6 col-xl-3">
         <section class="admin-panel h-100">
             <h2 class="h5">Component mix</h2>
-            <div class="chart-wrap"><canvas id="components-chart" role="img" aria-label="Products by component category"></canvas></div>
-            <details><summary>View category counts</summary>
+            <div class="chart-wrap"><canvas id="components-chart" role="img"
+                    aria-label="Products by component category"></canvas></div>
+            <details>
+                <summary>View category counts</summary>
                 <?php foreach (component_categories() as $type=>$label): ?>
-                <div class="activity-row"><span><?= e($label) ?></span><span><?= (int)($distribution[$type] ?? 0) ?></span></div>
+                <div class="activity-row">
+                    <span><?= e($label) ?></span><span><?= (int)($distribution[$type] ?? 0) ?></span>
+                </div>
                 <?php endforeach; ?>
             </details>
         </section>
     </div>
 </div>
 <section class="admin-panel mt-4">
-    <div class="panel-heading mb-3"><h2>Recent orders</h2><a href="orders.php">View all →</a></div>
+    <div class="panel-heading mb-3">
+        <h2>Recent orders</h2><a href="orders.php">View all →</a>
+    </div>
     <div class="table-responsive">
         <table class="table">
-            <thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
             <tbody>
-            <?php foreach ($recent as $order): ?>
+                <?php foreach ($recent as $order): ?>
                 <tr>
                     <td><a href="order-view.php?id=<?= (int)$order['id'] ?>"><?= e($order['order_number']) ?></a></td>
                     <td>
-                        <?php if ($order['user_id']): ?><a href="user-view.php?id=<?= (int)$order['user_id'] ?>"><?= e($order['customer_name']) ?></a>
+                        <?php if ($order['user_id']): ?><a
+                            href="user-view.php?id=<?= (int)$order['user_id'] ?>"><?= e($order['customer_name']) ?></a>
                         <?php else: ?><?= e($order['customer_name']) ?><?php endif; ?>
                     </td>
                     <td><?= e(admin_money($order['total'],$order['currency'])) ?></td>
                     <td><?= admin_badge($order['status']) ?></td>
                     <td><?= e($order['created_at']) ?></td>
                 </tr>
-            <?php endforeach; if (!$recent) admin_empty(5,'No orders yet. New checkouts will appear here.'); ?>
+                <?php endforeach; if (!$recent) admin_empty(5,'No orders yet. New checkouts will appear here.'); ?>
             </tbody>
         </table>
     </div>
@@ -105,12 +125,22 @@ admin_start('Dashboard', 'Welcome back, ' . auth_user()['username'] . '. Here is
 <div class="row g-4 mt-1">
     <div class="col-lg-8">
         <section class="admin-panel h-100">
-            <div class="panel-heading mb-3"><h2>Recently added products</h2><a href="product-add.php">Add product →</a></div>
+            <div class="panel-heading mb-3">
+                <h2>Recently added products</h2><a href="product-add.php">Add product →</a>
+            </div>
             <div class="table-responsive">
                 <table class="table">
-                    <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                    <?php foreach ($latest as $product): ?>
+                        <?php foreach ($latest as $product): ?>
                         <tr>
                             <td><a href="<?= e(admin_product_link($product)) ?>"><?= e($product['name']) ?></a></td>
                             <td><?= e(component_categories()[$product['category']]) ?></td>
@@ -118,7 +148,7 @@ admin_start('Dashboard', 'Welcome back, ' . auth_user()['username'] . '. Here is
                             <td><?= e($product['stock'] === null ? 'Unknown' : (string)$product['stock']) ?></td>
                             <td><?= admin_badge($product['status']) ?></td>
                         </tr>
-                    <?php endforeach; if (!$latest) admin_empty(5,'No products with a recorded creation date yet. Existing product history is unknown.'); ?>
+                        <?php endforeach; if (!$latest) admin_empty(5,'No products with a recorded creation date yet. Existing product history is unknown.'); ?>
                     </tbody>
                 </table>
             </div>
@@ -126,22 +156,27 @@ admin_start('Dashboard', 'Welcome back, ' . auth_user()['username'] . '. Here is
     </div>
     <div class="col-lg-4">
         <section class="admin-panel h-100">
-            <div class="panel-heading mb-3"><h2>Low stock</h2><a href="inventory.php?filter=low">Manage →</a></div>
+            <div class="panel-heading mb-3">
+                <h2>Low stock</h2><a href="inventory.php?filter=low">Manage →</a>
+            </div>
             <?php foreach ($low as $product): ?>
             <div class="activity-row">
-                <a href="<?= e(admin_product_link($product,'edit')) ?>"><?= e($product['name']) ?><small class="d-block text-muted"><?= e(component_categories()[$product['category']]) ?></small></a>
+                <a href="<?= e(admin_product_link($product,'edit')) ?>"><?= e($product['name']) ?><small
+                        class="d-block text-muted"><?= e(component_categories()[$product['category']]) ?></small></a>
                 <span class="badge text-bg-warning"><?= (int)$product['stock'] ?> left</span>
             </div>
             <?php endforeach; if (!$low): ?><p class="text-muted">No products with known low stock.</p><?php endif; ?>
         </section>
     </div>
 </div>
-<script type="application/json" id="dashboard-data"><?= json_encode([
+<script type="application/json" id="dashboard-data">
+<?= json_encode([
     'months'=>$months, 'sales'=>$monthValues,
     'statuses'=>array_map(fn($status)=>(int)($statuses[$status] ?? 0),['pending','processing','completed','cancelled']),
     'labels'=>array_values(component_categories()),
     'counts'=>array_map(fn($type)=>(int)($distribution[$type] ?? 0),array_keys(component_categories()))
-], JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT) ?></script>
+], JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT) ?>
+</script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 <script defer src="<?= e(url('assets/js/admin-charts.js')) ?>"></script>
 <?php admin_end(); ?>
