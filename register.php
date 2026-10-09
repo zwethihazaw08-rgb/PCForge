@@ -132,15 +132,17 @@ $pageTitle = $verifyMode ? 'Verify Your Email' : 'Create Account';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
+<link rel="stylesheet" href="<?= e(url('assets/css/auth.css?v=' . (string) filemtime(__DIR__ . '/assets/css/auth.css'))) ?>">
 
-<main id="main-content" tabindex="-1">
-    <div class="container section-padding">
-        <div class="mx-auto" style="max-width: 520px">
-            <p class="small text-secondary text-uppercase fw-semibold">PCForge account</p>
+<main id="main-content" class="auth-page" tabindex="-1">
+    <div class="auth-container">
+        <div class="auth-heading">
+            <p class="auth-eyebrow small text-secondary text-uppercase fw-semibold">PCForge account</p>
             <h1><?= $verifyMode ? 'Check your email' : 'Create your account' ?></h1>
             <p class="lead text-secondary">
                 <?= $verifyMode ? 'Enter the six-digit code we sent to ' . e($email) . '.' : 'Save builds and complete checkout faster.' ?>
             </p>
+        </div>
 
             <?php if ($errors): ?>
             <div class="alert alert-warning" role="alert">
@@ -150,7 +152,7 @@ require_once __DIR__ . '/includes/navbar.php';
             <?php if ($notice): ?><div class="alert alert-info" role="status"><?= e($notice) ?></div><?php endif; ?>
 
             <?php if ($verifyMode): ?>
-            <form method="post" action="<?= e(url('register.php')) ?>" class="border rounded-4 p-4 p-md-5">
+            <form method="post" action="<?= e(url('register.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
                 <?= csrf_field() ?><input type="hidden" name="action" value="verify_otp"><input type="hidden"
                     name="redirect" value="<?= e($target) ?>">
                 <label class="form-label" for="otp">Verification code</label>
@@ -166,7 +168,7 @@ require_once __DIR__ . '/includes/navbar.php';
             <a class="d-block text-center small mt-3"
                 href="<?= e(url('register.php?reset=1&redirect=' . rawurlencode($target))) ?>">Use a different email</a>
             <?php else: ?>
-            <form method="post" action="<?= e(url('register.php')) ?>" class="border rounded-4 p-4 p-md-5">
+            <form method="post" action="<?= e(url('register.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
                 <?= csrf_field() ?><input type="hidden" name="redirect" value="<?= e($target) ?>">
                 <div class="mb-3"><label class="form-label" for="username">Username</label><input class="form-control"
                         type="text" id="username" name="username" maxlength="50" autocomplete="username" required

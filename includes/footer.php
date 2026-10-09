@@ -85,6 +85,19 @@ $footerGroups = [
         letter-spacing: 0.06em;
         text-transform: uppercase;
     }
+    .forge-footer-section > summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+        list-style: none;
+        color: #171717;
+        cursor: pointer;
+    }
+    .forge-footer-section > summary::-webkit-details-marker { display: none; }
+    .forge-footer-heading { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .forge-footer-section-icon { display: none; font-size: 1.25rem; font-weight: 400; line-height: 1; }
+    .forge-footer-section[open] .forge-footer-section-icon { transform: rotate(45deg); }
     .forge-footer-list { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
     .forge-footer-list a,
     .forge-footer-top-link { color: #606060; font-size: 0.875rem; text-decoration: none; }
@@ -113,6 +126,23 @@ $footerGroups = [
         .forge-footer { margin-right: 0.5rem; margin-left: 0.5rem; border-radius: 1rem; }
         .forge-footer-top { grid-template-columns: 1fr; }
     }
+    @media (max-width: 575.98px) {
+        .forge-footer { padding: 1.25rem; }
+        .forge-footer-top { display: block; padding-bottom: .75rem; }
+        .forge-footer-brand { max-width: none; padding-bottom: 1rem; }
+        .forge-footer-description { display: none; }
+        .forge-footer-brand > p:not(.forge-footer-description) { display: none; }
+        .forge-footer-brand .btn { width: 100%; }
+        .forge-footer-section { border-top: 1px solid #dedede; }
+        .forge-footer-section > summary { padding: .8rem 0; }
+        .forge-footer-section-icon { display: inline-block; }
+        .forge-footer-list { gap: .5rem; padding-bottom: .8rem; }
+        .forge-footer-bottom { display: block; padding-top: 1rem; }
+        .forge-footer-bottom > * { margin-bottom: .6rem; }
+        .forge-footer-bottom > :last-child { margin-bottom: 0; }
+    }
+    html[data-theme="dark"] .forge-footer-section > summary { color: #f1f1f1; }
+    html[data-theme="dark"] .forge-footer-section { border-color: #3a3a3a; }
 </style>
 <footer class="forge-footer">
     <div class="forge-footer-top">
@@ -129,14 +159,14 @@ $footerGroups = [
             <a class="btn btn-primary" href="<?= e(url('builder.php')) ?>">Build Your PC <span aria-hidden="true">&rarr;</span></a>
         </div>
         <?php foreach ($footerGroups as $heading => $links): ?>
-            <nav aria-label="<?= e('Footer: ' . $heading) ?>">
-                <h2><?= e($heading) ?></h2>
+            <details class="forge-footer-section" data-footer-section aria-label="<?= e('Footer: ' . $heading) ?>" open>
+                <summary><span class="forge-footer-heading" role="heading" aria-level="2"><?= e($heading) ?></span><span class="forge-footer-section-icon" aria-hidden="true">+</span></summary>
                 <ul class="forge-footer-list">
                     <?php foreach ($links as $label => $path): ?>
                         <li><a href="<?= e(url($path)) ?>"><?= e($label) ?></a></li>
                     <?php endforeach; ?>
                 </ul>
-            </nav>
+            </details>
         <?php endforeach; ?>
     </div>
     <div class="forge-footer-bottom">
@@ -148,5 +178,14 @@ $footerGroups = [
         <a class="forge-footer-top-link" href="#main-content">Back to content <span aria-hidden="true">&uarr;</span></a>
     </div>
 </footer>
+<script>
+    (() => {
+        const sections = [...document.querySelectorAll('[data-footer-section]')];
+        const mobile = window.matchMedia('(max-width: 575.98px)');
+        const syncFooterSections = () => sections.forEach(section => { section.open = !mobile.matches; });
+        syncFooterSections();
+        mobile.addEventListener?.('change', syncFooterSections);
+    })();
+</script>
 </body>
 </html>

@@ -226,7 +226,11 @@ require_once __DIR__ . '/includes/navbar.php';
                         <div class="d-flex justify-content-between border-top pt-2"><span>Estimated load</span><strong><?= $estimatedWatts ?> W</strong></div>
                         <div class="d-flex justify-content-between gap-2 mt-2"><span>Recommended PSU</span><strong><?= $recommendedWatts ? $recommendedWatts . ' W' : 'Pending' ?></strong></div>
                         <p class="small text-secondary mt-3">Adds 35% headroom, rounds up to a 50 W step, and respects the GPU's listed PSU recommendation. Based on selected parts only; this is not a wall-power measurement.</p>
-                        <a class="btn btn-primary w-100" href="<?= e(url('builder.php')) ?>">Continue editing</a>
+                        <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="add_build">
+                            <button class="btn btn-primary w-100" type="submit" <?= $missingParts || $missingPrices || $unavailable ? 'disabled' : '' ?>>Add to cart</button>
+                        </form>
+                        <a class="btn btn-outline-dark w-100" href="<?= e(url('builder.php')) ?>">Continue editing</a>
                     </div>
                 </aside>
             </div>

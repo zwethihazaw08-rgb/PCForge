@@ -43,8 +43,9 @@ try {
             $_SESSION['cart'][$key]['quantity'] = $quantity;
             $_SESSION['cart_notice'] = 'Quantity updated.';
             redirect('cart.php');
-        } elseif (in_array($action, ['add_product', 'add_build'], true)) {
+        } elseif (in_array($action, ['add_product', 'add_build', 'add_prebuilt', 'add_saved_build'], true)) {
             $parts = [];
+            $buildName = 'Custom PC build';
             if ($action === 'add_product') {
                 $category = is_string($_POST['category'] ?? null) ? $_POST['category'] : '';
                 $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
@@ -52,7 +53,27 @@ try {
                 $parts[$category] = $id;
             } else {
                 $build = is_array($_SESSION['build'] ?? null) ? $_SESSION['build'] : [];
-                foreach (array_diff(array_keys($categories), ['fans', 'monitor']) as $category) {
+                if ($action === 'add_prebuilt') {
+                    require_once __DIR__ . '/includes/prebuilts.php';
+                    $templateKey = is_string($_POST['build'] ?? null) ? $_POST['build'] : '';
+                    $template = prebuilt_templates()[$templateKey] ?? null;
+                    if (!$template) throw new InvalidArgumentException('Choose an available prebuilt configuration.');
+                    $build = $template['ids'];
+                    $buildName = $template['name'];
+                } elseif ($action === 'add_saved_build') {
+                    require_login('saved-builds.php');
+                    $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+                    if ($id === false) throw new InvalidArgumentException('Choose a valid saved build.');
+                    $query = db()->prepare('SELECT build_name, build_data FROM saved_builds WHERE id = ? AND user_id = ?');
+                    $query->execute([$id, auth_user()['id']]);
+                    $saved = $query->fetch();
+                    if (!$saved) throw new InvalidArgumentException('That saved build is no longer available.');
+                    $build = json_decode($saved['build_data'], true);
+                    $buildName = $saved['build_name'];
+                }
+                $buildCategories = array_diff(array_keys($categories), ['fans', 'monitor']);
+                if (!is_array($build) || array_diff_key($build, array_flip($buildCategories))) throw new InvalidArgumentException('This build could not be read. Open it in the builder and save a new copy.');
+                foreach ($buildCategories as $category) {
                     $id = filter_var($build[$category] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
                     if ($id === false) throw new InvalidArgumentException('Complete all eight builder steps before adding the build.');
                     $parts[$category] = $id;
@@ -64,10 +85,11 @@ try {
             }
             // Build entries keep a snapshot of IDs; later builder edits do not change the cart.
             ksort($parts);
-            $key = hash('sha256', $action . json_encode($parts));
+            $isBuild = $action !== 'add_product';
+            $key = hash('sha256', ($isBuild ? 'add_build' : 'add_product') . json_encode($parts));
             $quantity = ($_SESSION['cart'][$key]['quantity'] ?? 0) + 1;
             if ($quantity > 99) throw new InvalidArgumentException('The maximum quantity per item is 99.');
-            $_SESSION['cart'][$key] = ['type' => $action === 'add_build' ? 'build' : 'product', 'parts' => $parts, 'quantity' => $quantity];
+            $_SESSION['cart'][$key] = ['type' => $isBuild ? 'build' : 'product', 'name' => $buildName, 'parts' => $parts, 'quantity' => $quantity];
             unset($_SESSION['demo_order']);
             $_SESSION['cart_notice'] = 'Added to your cart.';
             redirect('cart.php');
@@ -111,7 +133,7 @@ try {
                 $demand[$stockKey]['quantity'] += $item['quantity'];
             }
         }
-        $row['name'] = $item['type'] === 'build' ? 'Custom PC build' : $row['parts'][0]['name'];
+        $row['name'] = $item['type'] === 'build' ? ($item['name'] ?? 'Custom PC build') : $row['parts'][0]['name'];
         $quantityTotal += $item['quantity'];
         if ($row['unavailable']) $totalIncomplete = true;
         else $totalCents += $row['cents'] * $item['quantity'];

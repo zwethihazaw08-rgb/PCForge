@@ -196,9 +196,15 @@ require_once __DIR__ . '/includes/navbar.php';
                                         <span class="small text-secondary"><?= $preview['unavailable'] || $preview['missing_prices'] ? 'Known-price subtotal' : 'Current parts total' ?></span>
                                         <strong class="fs-4"><?= e(savedBuildPrice($preview['cents'])) ?></strong>
                                     </div>
+                                    <?php $canAdd = count($preview['parts']) === 8 && !$preview['unavailable'] && !$preview['missing_prices']; ?>
+                                    <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
+                                        <?= csrf_field() ?><input type="hidden" name="action" value="add_saved_build"><input type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
+                                        <button class="btn btn-primary w-100" type="submit" <?= $canAdd ? '' : 'disabled' ?> aria-label="<?= e('Add ' . $saved['build_name'] . ' to cart') ?>">Add to cart</button>
+                                    </form>
+                                    <?php if (!$canAdd): ?><p class="small text-secondary">Complete all eight parts with available prices in the builder to add this build to your cart.</p><?php endif; ?>
                                     <form method="post" action="<?= e(url('saved-builds.php')) ?>">
                                         <?= csrf_field() ?><input type="hidden" name="action" value="load"><input type="hidden" name="id" value="<?= (int) $saved['id'] ?>">
-                                        <button class="btn btn-primary w-100" type="submit" aria-label="<?= e('Open ' . $saved['build_name'] . ' in builder') ?>">Open in builder &rarr;</button>
+                                        <button class="btn btn-outline-dark w-100" type="submit" aria-label="<?= e('Open ' . $saved['build_name'] . ' in builder') ?>">Open in builder &rarr;</button>
                                     </form>
                                 <?php else: ?>
                                     <p class="text-secondary my-4">This build has no readable components. Save a new copy from the builder.</p>

@@ -16,7 +16,8 @@ See the Laravel README for startup, email configuration, tests, and administrato
 - Product detail pages with normalized specifications and source descriptions.
 - Eight-step PC builder with compatibility checks and power guidance.
 - Compare up to three products from the same category.
-- Cart and demo checkout with stock validation and order snapshots.
+- Direct Add to cart from prebuilts, saved builds, and the custom builder.
+- Demo checkout with stock validation, order snapshots, and printable receipts with QR codes.
 - Password login, optional Google sign-in, saved builds, and profile settings.
 - Admin dashboard for products, inventory, users, orders, reports, and store settings.
 - Optional Groq-powered build assistant. The site works without it.
@@ -55,6 +56,29 @@ http://localhost/PCForge/
 ```
 
 The admin workspace is at `/PCForge/admin/dashboard.php`. It requires an active account with the `admin` role. Fresh installations contain no accounts; after registering your own account, assign its `role` to `admin` in phpMyAdmin if you need administrator access.
+
+## Checkout and receipt QR codes
+
+Complete builds add all eight components to the cart as one build; changing the
+cart quantity changes the quantity of every included component. Prebuilt and
+saved-build buttons do not replace the current builder selection. Incomplete
+saved builds must be completed before adding them. Prices and stock are checked
+again when placing the demo order, and no real money is charged.
+
+After checkout, **View / print receipt** opens a receipt with the purchased
+component names, quantities, prices, delivery details, and zero amount charged.
+Use **Print / save PDF** to keep a copy. The QR code opens that same receipt and
+requires the customer to sign in with the account that placed the order.
+
+QR codes use the locally bundled, MIT-licensed
+[Project Nayuki QR Code generator v1.8.0](https://github.com/nayuki/QR-Code-generator/releases/tag/v1.8.0).
+No QR service, API key, Composer install, or database migration is required.
+The library's license and source details are in `assets/js/vendor/`.
+For scanning from a phone, set `PCFORGE_PUBLIC_URL` in Apache/PHP to a reachable
+LAN or shared site URL, for example `http://192.168.10.105/PCForge`, then restart
+Apache and create/display the receipt again. If it is left blank, the QR uses the
+current browser address; a `localhost` link only works on the same computer. See
+[SHARING.md](SHARING.md) for sharing options.
 
 ## Real product data
 
@@ -107,6 +131,7 @@ Useful checks include:
 C:/xampp/php/php.exe -l product.php
 C:/xampp/php/php.exe tests/catalog-install.php
 C:/xampp/php/php.exe tests/order-workflow.php
+C:/xampp/php/php.exe tests/checkout-builds.php
 C:/xampp/php/php.exe tests/admin-database.php
 C:/xampp/php/php.exe tests/admin-workflows.php
 ```

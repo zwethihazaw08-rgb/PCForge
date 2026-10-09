@@ -26,6 +26,7 @@ Database/products_data.json
 Database/product_image_overrides.json
 Database/seed_dashboard.php
 tests/product-images.py
+tests/checkout-preview/
 
 # New installs use only the schema and public catalog seed.
 Database/*.sql

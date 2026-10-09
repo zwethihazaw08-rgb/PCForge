@@ -47,13 +47,15 @@ $pageTitle = 'Sign In';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
+<link rel="stylesheet" href="<?= e(url('assets/css/auth.css?v=' . (string) filemtime(__DIR__ . '/assets/css/auth.css'))) ?>">
 
-<main id="main-content" tabindex="-1">
-    <div class="container section-padding">
-        <div class="mx-auto" style="max-width: 520px">
-            <p class="small text-secondary text-uppercase fw-semibold">PCForge account</p>
+<main id="main-content" class="auth-page" tabindex="-1">
+    <div class="auth-container">
+        <div class="auth-heading">
+            <p class="auth-eyebrow small text-secondary text-uppercase fw-semibold">PCForge account</p>
             <h1>Sign in</h1>
             <p class="lead text-secondary">Sign in to continue to checkout and access your account.</p>
+        </div>
 
             <?php if ($errors): ?>
                 <div class="alert alert-warning" role="alert">
@@ -64,7 +66,7 @@ require_once __DIR__ . '/includes/navbar.php';
             <?php endif; ?>
             <?php if ($oauthMessage): ?><div class="alert alert-info" role="status"><?= e($oauthMessage) ?></div><?php endif; ?>
 
-            <form method="post" action="<?= e(url('login.php')) ?>" class="border rounded-4 p-4 p-md-5">
+            <form method="post" action="<?= e(url('login.php')) ?>" class="auth-form border rounded-4 p-4 p-md-5">
                 <?= csrf_field() ?>
                 <input type="hidden" name="redirect" value="<?= e($target) ?>">
                 <div class="mb-3">

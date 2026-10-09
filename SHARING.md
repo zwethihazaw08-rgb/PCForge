@@ -20,6 +20,16 @@ The link serves this PC's current files and database; refresh to see saved chang
 It does not automatically reload other devices. Keep this PC awake while sharing.
 Run the script again if your network address changes.
 
+To make receipt QR codes use the same phone-reachable address, configure the
+Apache/PHP environment variable `PCFORGE_PUBLIC_URL`, for example:
+
+```text
+PCFORGE_PUBLIC_URL=http://192.168.10.105/PCForge
+```
+
+Restart Apache after changing it. The QR opens a login-protected receipt, so the
+customer may need to sign in again on the phone.
+
 If another device cannot connect, check that Windows Firewall allows Apache on
 your private network and that your router does not isolate guest Wi-Fi clients.
 This is a local-network link, not a public internet hosting link.

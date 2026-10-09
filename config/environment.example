@@ -8,3 +8,7 @@ PCFORGE_GOOGLE_REDIRECT_URI=http://localhost/PCForge/auth/google-callback.php
 
 GROQ_API_KEY=
 GROQ_MODEL=openai/gpt-oss-20b
+
+# Optional. Use a hostname reachable from a phone for receipt QR codes.
+# Example: http://192.168.10.105/PCForge
+PCFORGE_PUBLIC_URL=

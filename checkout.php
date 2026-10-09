@@ -19,9 +19,19 @@ try {
 }
 
 
-$categories = ['cpu' => 'Processor', 'mb' => 'Motherboard', 'memory' => 'Memory', 'gpu' => 'Graphics Card', 'storage' => 'Storage', 'cooling' => 'Cooling', 'psu' => 'Power Supply', 'case_box' => 'Case', 'fans' => 'Fans'];
-$confirmation = $_SESSION['demo_order'] ?? null;
+$categories = component_categories();
+$confirmation = null;
 $errors = [];
+header('Cache-Control: no-store, private');
+if (is_string($_SESSION['demo_order']['number'] ?? null)) {
+    try {
+        $confirmation = customer_order_receipt($_SESSION['demo_order']['number'], (int) $currentUser['id']);
+        if (!$confirmation) unset($_SESSION['demo_order']);
+    } catch (PDOException $exception) {
+        error_log('PCForge order confirmation load failed: ' . $exception->getMessage());
+        $errors[] = 'Your order confirmation could not be loaded. Please try again later.';
+    }
+}
 $cart = is_array($_SESSION['cart'] ?? null) ? $_SESSION['cart'] : [];
 
 function checkoutCents($price): ?int
@@ -57,7 +67,7 @@ try {
             $names[] = $product['name'];
         }
         $quantity = max(1, min(99, (int) ($item['quantity'] ?? 1)));
-        $items[] = ['key' => $key, 'name' => $item['type'] === 'build' ? 'Custom PC build' : ($names[0] ?? 'Component'), 'parts' => $names, 'quantity' => $quantity, 'cents' => $itemCents];
+        $items[] = ['key' => $key, 'name' => $item['type'] === 'build' ? ($item['name'] ?? 'Custom PC build') : ($names[0] ?? 'Component'), 'parts' => $names, 'quantity' => $quantity, 'cents' => $itemCents];
         $totalCents += $itemCents * $quantity;
     }
 } catch (PDOException $exception) {
@@ -102,19 +112,23 @@ require_once __DIR__ . '/includes/navbar.php';
 ?>
 
 <main id="main-content" tabindex="-1">
+    <?php if ($confirmation): ?><link rel="stylesheet" href="<?= e(url('assets/css/receipt.css')) ?>"><?php endif; ?>
     <div class="container section-padding">
+        <?php if ($errors): ?><div class="alert alert-warning" role="alert"><ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
         <?php if ($confirmation): ?>
             <div class="border rounded-4 p-4 p-md-5 text-center mx-auto" style="max-width: 700px">
                 <span class="compatibility-status compatible">Demo order created</span>
-                <h1 class="mt-3">Thanks, <?= e($confirmation['name']) ?>.</h1>
+                <h1 class="mt-3">Thanks, <?= e($confirmation['customer_name']) ?>.</h1>
                 <p class="lead text-secondary">Your demonstration order has been saved for administrator review.</p>
                 <div class="bg-light rounded-4 p-4 text-start my-4">
-                    <div class="d-flex justify-content-between gap-3"><span>Order number</span><strong><?= e($confirmation['number']) ?></strong></div>
-                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Items</span><strong><?= (int) $confirmation['item_count'] ?></strong></div>
-                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Demo total</span><strong><?= e($confirmation['total']) ?></strong></div>
+                    <div class="d-flex justify-content-between gap-3"><span>Order number</span><strong><?= e($confirmation['order_number']) ?></strong></div>
+                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Components</span><strong><?= (int) array_sum(array_column($confirmation['items'], 'quantity')) ?></strong></div>
+                    <div class="d-flex justify-content-between gap-3 mt-2"><span>Demo total</span><strong><?= e(receipt_money($confirmation['total'], $confirmation['currency'])) ?></strong></div>
                     <div class="d-flex justify-content-between gap-3 mt-2"><span>Status at checkout</span><strong>Pending review</strong></div>
                 </div>
                 <p class="small text-secondary">No payment was taken. This demo order is saved in PCForge; stock is deducted when an administrator completes it.</p>
+                <?php $receiptUrl = url('receipt.php?order=' . rawurlencode($confirmation['order_number'])); $receiptQrUrl = public_url('receipt.php?order=' . rawurlencode($confirmation['order_number'])); require __DIR__ . '/includes/receipt-qr.php'; ?>
+                <a class="btn btn-primary mt-3" href="<?= e($receiptUrl) ?>">View / print receipt</a>
                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-4"><a class="btn btn-primary" href="<?= e(url('products.php')) ?>">Continue shopping</a><a class="btn btn-outline-dark" href="<?= e(url('builder.php')) ?>">Build another PC</a></div>
             </div>
         <?php elseif (!$items || $cartInvalid): ?>
@@ -127,7 +141,6 @@ require_once __DIR__ . '/includes/navbar.php';
             <p class="small text-secondary text-uppercase fw-semibold">Demo checkout</p>
             <h1>Complete your order</h1>
             <p class="lead text-secondary">This checkout demonstrates the order flow. It does not process a real payment.</p>
-            <?php if ($errors): ?><div class="alert alert-warning" role="alert"><ul class="mb-0"><?php foreach ($errors as $error): ?><li><?= e($error) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
             <form method="post" action="<?= e(url('checkout.php')) ?>" class="row g-4">
                 <section class="col-lg-7" aria-labelledby="details-heading">
                     <div class="border rounded-4 p-4">
@@ -162,4 +175,8 @@ require_once __DIR__ . '/includes/navbar.php';
         <?php endif; ?>
     </div>
 </main>
+<?php if ($confirmation): ?>
+<script src="<?= e(url('assets/js/vendor/qrcodegen-v1.8.0.js')) ?>" defer></script>
+<script src="<?= e(url('assets/js/receipt.js')) ?>" defer></script>
+<?php endif; ?>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

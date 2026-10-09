@@ -25,6 +25,21 @@ function url(string $path = ''): string
     return '/PCForge/' . ltrim($path, '/');
 }
 
+function public_url(string $path = ''): string
+{
+    // QR codes may be scanned by another device, so allow the owner to set a
+    // hostname that is reachable from phones (for example a LAN address).
+    $configured = trim((string) getenv('PCFORGE_PUBLIC_URL'));
+    if ($configured !== '') {
+        $parts = parse_url($configured);
+        if (is_array($parts) && in_array(strtolower((string) ($parts['scheme'] ?? '')), ['http', 'https'], true) && !empty($parts['host'])) {
+            return rtrim($configured, '/') . '/' . ltrim($path, '/');
+        }
+    }
+
+    return url($path);
+}
+
 function redirect(string $path): void
 {
     // Pass a project-relative path, such as 'cart.php'.

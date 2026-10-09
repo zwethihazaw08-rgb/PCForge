@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/prebuilts.php';
 
 $pageTitle = 'Build a PC That Fits You';
 $categories = [
@@ -18,6 +19,8 @@ $categories = [
 
 $featuredProducts = [];
 $catalogError = false;
+$gamingBuilds = [];
+$buildsError = false;
 
 try {
     $connection = db();
@@ -41,6 +44,13 @@ try {
     error_log('PCForge homepage query failed: ' . $exception->getMessage());
     $featuredProducts = [];
     $catalogError = true;
+}
+
+try {
+    $gamingBuilds = array_filter(prebuilt_builds(db()), fn($build) => $build['use'] === 'Gaming');
+} catch (PDOException $exception) {
+    error_log('PCForge homepage builds failed: ' . $exception->getMessage());
+    $buildsError = true;
 }
 
 require_once __DIR__ . '/includes/header.php';
@@ -510,6 +520,8 @@ require_once __DIR__ . '/includes/navbar.php';
         </div>
     </section>
 
+    <?php require __DIR__ . '/includes/home-builds.php'; ?>
+
     <section class="section-padding build-showcase" aria-labelledby="showcase-heading">
         <div class="container">
             <div class="row g-4 g-lg-5 align-items-center">
@@ -580,7 +592,7 @@ require_once __DIR__ . '/includes/navbar.php';
         <div class="container">
             <h2 id="categories-heading">Every part has a purpose.</h2>
             <p class="text-secondary mb-4">Find the components for your next build.</p>
-            <div class="row g-3">
+            <div class="row g-3 home-category-row">
                 <?php foreach ($categories as $category => $label): ?>
                 <div class="col-sm-6 col-lg-4">
                     <a class="category-card" href="<?= e(url('products.php?category=' . $category)) ?>">

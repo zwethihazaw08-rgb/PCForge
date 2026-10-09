@@ -2,79 +2,11 @@
 
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/compatibility.php';
+require_once __DIR__ . '/includes/prebuilts.php';
 
-$partLabels = [
-    'cpu' => 'Processor', 'mb' => 'Motherboard', 'memory' => 'Memory', 'gpu' => 'Graphics card',
-    'storage' => 'Storage', 'cooling' => 'Cooling', 'psu' => 'Power supply', 'case_box' => 'Case',
-];
+$partLabels = prebuilt_part_labels();
 
-// Edit these current catalogue IDs to curate builds. Names, prices and
-// specifications always come from the catalogue; these are never copied from
-// a submitted form.
-$templates = [
-    'apex' => [
-        'name' => 'Forge Apex', 'use' => 'Gaming', 'number' => '01',
-        'description' => 'A high-refresh gaming build pairing the Ryzen 7 7800X3D with an RTX 5080 and fast 2 TB NVMe storage.',
-        'ids' => ['cpu' => 24, 'mb' => 28, 'memory' => 15, 'gpu' => 18, 'storage' => 26, 'cooling' => 22, 'psu' => 24, 'case_box' => 24],
-    ],
-    'creator' => [
-        'name' => 'Forge Creator', 'use' => 'Creator', 'number' => '02',
-        'description' => 'A capable production system with 96 GB of memory, 4 TB of NVMe storage, and the Ryzen 9 7950X.',
-        'ids' => ['cpu' => 22, 'mb' => 26, 'memory' => 16, 'gpu' => 24, 'storage' => 14, 'cooling' => 12, 'psu' => 20, 'case_box' => 15],
-    ],
-    'titan' => [
-        'name' => 'Forge Titan', 'use' => 'Workstation', 'number' => '03',
-        'description' => 'A flagship workstation built around the Core i9-14900KS, RTX 5090, 64 GB of DDR5, and 4 TB of NVMe storage.',
-        'ids' => ['cpu' => 19, 'mb' => 14, 'memory' => 12, 'gpu' => 14, 'storage' => 16, 'cooling' => 13, 'psu' => 17, 'case_box' => 12],
-    ],
-];
-
-function prebuiltCents($price): ?int
-{
-    if (!preg_match('/^(\d+)\.(\d{2})$/', (string) $price, $matches)) return null;
-    return (int) $matches[1] * 100 + (int) $matches[2];
-}
-
-function prebuiltMoney(int $cents): string
-{
-    return money(intdiv($cents, 100) . '.' . str_pad((string) ($cents % 100), 2, '0', STR_PAD_LEFT));
-}
-
-function prebuiltImage(?array $part): ?string
-{
-    $stored = (string) ($part['image_url'] ?? '');
-    if (filter_var($stored, FILTER_VALIDATE_URL) && strtolower(parse_url($stored, PHP_URL_SCHEME) ?? '') === 'https') return $stored;
-    if ($stored !== '' && is_file(__DIR__ . '/assets/images/' . basename($stored))) return url('assets/images/' . rawurlencode(basename($stored)));
-    return null;
-}
-
-function prebuiltIllustration(): void
-{
-    // A neutral concept illustration, not a photograph of the selected case.
-    ?>
-    <svg class="prebuilt-tower" viewBox="0 0 360 260" fill="none" aria-hidden="true">
-        <ellipse cx="183" cy="238" rx="112" ry="10" fill="currentColor" opacity=".07"/>
-        <path d="M88 46 223 23 283 57 149 82Z" fill="var(--forge-surface-raised)" stroke="currentColor" stroke-width="2"/>
-        <path d="M88 46 223 23V212L88 234Z" fill="var(--forge-surface-raised)" stroke="currentColor" stroke-width="2"/>
-        <path d="M223 23 283 57V224L223 212Z" fill="var(--forge-surface)" stroke="currentColor" stroke-width="2"/>
-        <path d="M101 59 209 41V182L101 200Z" fill="var(--forge-surface)" stroke="currentColor" opacity=".7"/>
-        <path d="M110 72 190 59V162L110 175Z" stroke="currentColor" opacity=".25"/>
-        <path d="M172 71v46m10-48v46m10-48v46" stroke="currentColor" stroke-width="5" opacity=".5"/>
-        <ellipse cx="139" cy="104" rx="21" ry="26" stroke="currentColor" stroke-width="2"/>
-        <path d="m139 81 6 16-6 7-13-7m32 5-14 9-5-7-1-18m-14 33 11-12 4-3 7 17" stroke="currentColor" stroke-width="4" opacity=".45"/>
-        <circle cx="139" cy="104" r="4" fill="currentColor"/>
-        <path d="m108 149 95-16v26l-95 16Z" fill="var(--forge-surface-raised)" stroke="currentColor"/>
-        <ellipse cx="135" cy="157" rx="10" ry="11" stroke="currentColor"/>
-        <ellipse cx="177" cy="149" rx="10" ry="11" stroke="currentColor"/>
-        <path d="m102 209 106-17v13l-106 17Z" fill="currentColor" opacity=".25"/>
-        <?php foreach ([91, 139, 187] as $y): ?>
-            <ellipse cx="251" cy="<?= $y ?>" rx="18" ry="23" stroke="currentColor" stroke-width="2" opacity=".6"/>
-            <ellipse cx="251" cy="<?= $y ?>" rx="5" ry="7" fill="currentColor" opacity=".6"/>
-        <?php endforeach; ?>
-        <circle cx="251" cy="60" r="3" fill="currentColor"/>
-    </svg>
-    <?php
-}
+$templates = prebuilt_templates();
 
 $builds = [];
 $error = '';
@@ -83,54 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') csrf_verify();
 
 try {
     $connection = db();
-    $catalog = [];
-    foreach ($partLabels as $category => $label) {
-        $ids = array_unique(array_map(fn($template) => $template['ids'][$category], $templates));
-        $placeholders = implode(',', array_fill(0, count($ids), '?'));
-        // The table name comes only from the fixed list above.
-        $query = $connection->prepare("SELECT * FROM `$category` WHERE id IN ($placeholders) AND status = 'active'");
-        $query->execute(array_values($ids));
-        $catalog[$category] = array_column($query->fetchAll(), null, 'id');
-    }
-    $caseSupport = [];
-    foreach ($connection->query('SELECT case_id, form_factor FROM case_motherboard_support') as $row) $caseSupport[$row['case_id']][] = $row['form_factor'];
-    $coolerSupport = [];
-    foreach ($connection->query('SELECT cooling_id, socket FROM cooling_socket_support') as $row) $coolerSupport[$row['cooling_id']][] = $row['socket'];
-
-    foreach ($templates as $key => $template) {
-        $build = $template + ['parts' => [], 'cents' => 0, 'missing' => [], 'missing_prices' => false, 'stock' => 'Parts in stock', 'watts' => 0];
-        $fallbackWatts = ['cpu' => 65, 'mb' => 50, 'memory' => 10, 'gpu' => 150, 'storage' => 5, 'cooling' => 5];
-        foreach ($partLabels as $category => $label) {
-            $part = $catalog[$category][$template['ids'][$category]] ?? null;
-            $build['parts'][$category] = $part;
-            if (!$part) {
-                $build['missing'][] = $label;
-                continue;
-            }
-            $cents = prebuiltCents($part['price']);
-            $build['missing_prices'] = $build['missing_prices'] || $cents === null;
-            $build['cents'] += $cents ?? 0;
-            if ($part['stock'] !== null && (int) $part['stock'] === 0) $build['stock'] = 'Some parts out of stock';
-            elseif ($part['stock'] === null && $build['stock'] === 'Parts in stock') $build['stock'] = 'Stock needs checking';
-            if (isset($fallbackWatts[$category])) {
-                $field = in_array($category, ['cpu', 'gpu'], true) ? 'tdp' : 'power_watts';
-                $build['watts'] += (int) ($part[$field] ?? $fallbackWatts[$category]);
-            }
-        }
-        $recommended = max((int) ceil($build['watts'] * 1.35 / 50) * 50, (int) ($build['parts']['gpu']['recommended_psu_watts'] ?? 0));
-        $build['checks'] = checkBuildCompatibility(array_merge($build['parts'], [
-            'motherboard' => $build['parts']['mb'] ?? [], 'case' => $build['parts']['case_box'] ?? [],
-            'estimated_watts' => $build['watts'], 'recommended_psu_watts' => $recommended,
-        ]), [
-            'case_form_factors' => $caseSupport[$template['ids']['case_box']] ?? [],
-            'cooling_sockets' => $coolerSupport[$template['ids']['cooling']] ?? [],
-        ]);
-        $statuses = array_column($build['checks'], 'status');
-        $build['fit'] = in_array('incompatible', $statuses, true) ? 'incompatible'
-            : (($build['missing'] || count($statuses) < 8 || array_diff($statuses, ['compatible'])) ? 'unknown' : 'compatible');
-        $build['fit_label'] = ['compatible' => 'Basic checks passed', 'unknown' => 'Review compatibility', 'incompatible' => 'Fit issue found'][$build['fit']];
-        $builds[$key] = $build;
-    }
+    $builds = prebuilt_builds($connection);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $key = is_string($_POST['build'] ?? null) ? $_POST['build'] : '';
@@ -229,7 +114,7 @@ require_once __DIR__ . '/includes/navbar.php';
             <div>
                 <p class="small text-secondary text-uppercase fw-semibold">PCForge / Custom builds</p>
                 <h1>A head start.<br>A build of your own.</h1>
-                <p class="lead text-secondary">Start with a complete configuration. Explore every part, then change what you want in the builder.</p>
+                <p class="lead text-secondary">Explore a complete configuration, add its parts to your cart, or make it your own in the builder.</p>
             </div>
             <a class="btn btn-outline-dark" href="<?= e(url('builder.php')) ?>">Build from scratch &rarr;</a>
         </header>
@@ -248,14 +133,14 @@ require_once __DIR__ . '/includes/navbar.php';
             </div>
             <div class="prebuilt-grid">
                 <?php foreach ($builds as $key => $build): ?>
-                    <article class="prebuilt-card" data-build-use="<?= e($build['use']) ?>">
+                    <article class="prebuilt-card" id="pc-<?= e($key) ?>" data-build-use="<?= e($build['use']) ?>">
                         <div class="prebuilt-art">
                             <?php prebuiltIllustration(); $caseImage = prebuiltImage($build['parts']['case_box']); ?>
                             <?php if ($caseImage): ?><img class="prebuilt-case-photo" src="<?= e($caseImage) ?>" alt="<?= e($build['parts']['case_box']['name']) ?>" onerror="this.hidden = true; this.nextElementSibling.textContent = 'Build illustration';"><?php endif; ?>
                             <span class="prebuilt-art-label"><?= $caseImage ? 'Case preview' : 'Build illustration' ?></span>
                         </div>
                         <div class="prebuilt-card-body">
-                            <div class="prebuilt-eyebrow"><span><?= e($build['use']) ?></span><span>Build <?= e($build['number']) ?></span></div>
+                            <div class="prebuilt-eyebrow"><span><?= e($build['use']) ?></span><span><?= !empty($build['is_new']) ? 'New build' : 'Build ' . e($build['number']) ?></span></div>
                             <h2><?= e($build['name']) ?></h2>
                             <p class="prebuilt-description"><?= e($build['description']) ?></p>
                             <dl class="prebuilt-specs">
@@ -266,7 +151,11 @@ require_once __DIR__ . '/includes/navbar.php';
                             <span class="compatibility-status prebuilt-fit <?= e($build['fit']) ?>"><?= e($build['fit_label']) ?></span>
                             <div class="prebuilt-price"><strong><?= e(prebuiltMoney($build['cents'])) ?></strong><span><?= $build['missing'] || $build['missing_prices'] ? 'Known-price subtotal · incomplete' : 'Current component total' ?></span></div>
                             <p class="prebuilt-stock"><?= e($build['missing'] ? 'Some parts unavailable' : $build['stock']) ?></p>
-                            <button class="btn btn-primary" type="button" data-open-build="build-<?= e($key) ?>" aria-haspopup="dialog" aria-controls="build-<?= e($key) ?>">View build &rarr;</button>
+                            <form method="post" action="<?= e(url('cart.php')) ?>" class="mb-2">
+                                <?= csrf_field() ?><input type="hidden" name="action" value="add_prebuilt"><input type="hidden" name="build" value="<?= e($key) ?>">
+                                <button class="btn btn-primary w-100" type="submit" <?= !$build['can_add'] ? 'disabled' : '' ?> aria-label="<?= e('Add ' . $build['name'] . ' to cart') ?>">Add to cart</button>
+                            </form>
+                            <button class="btn btn-outline-dark" type="button" data-open-build="build-<?= e($key) ?>" aria-haspopup="dialog" aria-controls="build-<?= e($key) ?>">View build &rarr;</button>
                         </div>
                     </article>
                 <?php endforeach; ?>
@@ -313,10 +202,14 @@ require_once __DIR__ . '/includes/navbar.php';
                         </div>
                     </div>
                     <footer class="prebuilt-dialog-footer">
+                        <form method="post" action="<?= e(url('cart.php')) ?>">
+                            <?= csrf_field() ?><input type="hidden" name="action" value="add_prebuilt"><input type="hidden" name="build" value="<?= e($key) ?>">
+                            <button class="btn btn-primary" type="submit" <?= !$build['can_add'] ? 'disabled' : '' ?>>Add to cart</button>
+                        </form>
                         <p><?= $hasCurrentBuild ? 'This replaces the parts in your current builder. Save your current build first if you want to keep it.' : 'Load these parts into the builder, then swap any component.' ?></p>
                         <form method="post" action="<?= e(url('prebuilts.php')) ?>">
                             <?= csrf_field() ?><input type="hidden" name="action" value="customize"><input type="hidden" name="build" value="<?= e($key) ?>">
-                            <button class="btn btn-primary" type="submit" <?= $build['missing'] ? 'disabled' : '' ?>><?= $build['missing'] ? 'Build unavailable' : 'Customize this build →' ?></button>
+                            <button class="btn btn-outline-dark" type="submit" <?= $build['missing'] ? 'disabled' : '' ?>><?= $build['missing'] ? 'Build unavailable' : 'Customize this build →' ?></button>
                         </form>
                     </footer>
                 </dialog>
@@ -338,6 +231,9 @@ require_once __DIR__ . '/includes/navbar.php';
             document.querySelectorAll('[data-open-build]').forEach(button => button.addEventListener('click', () => {
                 document.getElementById(button.dataset.openBuild).showModal();
             }));
+            const requestedBuild = new URLSearchParams(window.location.search).get('build');
+            const requestedDialog = requestedBuild && document.getElementById(`build-${requestedBuild}`);
+            if (requestedDialog instanceof HTMLDialogElement) requestedDialog.showModal();
         })();
     </script>
 </main>

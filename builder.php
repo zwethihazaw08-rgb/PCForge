@@ -550,6 +550,12 @@ require_once __DIR__ . '/includes/navbar.php';
                     <?php endif; ?>
                 </div>
                 <a class="btn btn-primary w-100 mt-3 summary-review-link" href="<?= e(url('build-summary.php')) ?>">Review complete build</a>
+                <?php if (count($selectedProducts) === count($steps)): ?>
+                    <form method="post" action="<?= e(url('cart.php')) ?>" class="mt-2">
+                        <?= csrf_field() ?><input type="hidden" name="action" value="add_build">
+                        <button class="btn btn-outline-dark w-100" type="submit">Add to cart</button>
+                    </form>
+                <?php endif; ?>
                     </div>
                 </div>
             </aside>

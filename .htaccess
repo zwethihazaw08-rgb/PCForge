@@ -1,0 +1,3 @@
+# Hostname used by receipt QR codes when a phone scans them.
+# Update this if the computer's Wi-Fi address changes.
+SetEnv PCFORGE_PUBLIC_URL "http://192.168.100.87/PCForge"

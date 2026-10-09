@@ -1,6 +1,25 @@
 <?php
 require_once __DIR__ . '/catalog.php';
 
+function customer_order_receipt(string $number, int $userId): ?array
+{
+    if (!preg_match('/^DEMO-[A-F0-9]{16}$/D', $number)) return null;
+    // An order number identifies a receipt; it never grants access to it.
+    $query = db()->prepare('SELECT * FROM orders WHERE order_number = ? AND user_id = ?');
+    $query->execute([$number, $userId]);
+    $order = $query->fetch();
+    if (!$order) return null;
+    $query = db()->prepare('SELECT category, product_name, quantity, unit_price, line_total FROM order_items WHERE order_id = ? ORDER BY id');
+    $query->execute([$order['id']]);
+    $order['items'] = $query->fetchAll();
+    return $order;
+}
+
+function receipt_money(string $amount, string $currency): string
+{
+    return $currency . ' ' . number_format((float) $amount, 2);
+}
+
 function order_status_update(int $id, string $next): void
 {
     $allowed = ['pending'=>['processing','cancelled'],'processing'=>['completed','cancelled'],'completed'=>[],'cancelled'=>[]];

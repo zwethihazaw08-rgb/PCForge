@@ -264,6 +264,37 @@ img {
   text-decoration: none;
 }
 
+@media (max-width: 767.98px) {
+  .home-category-row {
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.25rem 0.25rem 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 0.25rem;
+    scrollbar-width: thin;
+  }
+
+  .home-category-row > div {
+    flex: 0 0 auto;
+    width: auto;
+    margin-top: 0;
+    padding: 0;
+    scroll-snap-align: start;
+  }
+
+  .home-category-row .category-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-height: 44px;
+    padding: 0.625rem 0.875rem;
+    white-space: nowrap;
+  }
+}
+
 .product-image {
   display: block;
   width: 100%;
@@ -617,4 +648,27 @@ html[data-theme="dark"] .component-carousel-dot[aria-current="true"] {
 /* Keep the transparent black logo visible on dark surfaces. */
 html[data-theme="dark"] .forge-footer-logo-image {
   filter: invert(1);
+}
+
+/* Keep Bootstrap rows from cancelling the page gutter on narrow screens. */
+@media (max-width: 575.98px) {
+  main > .container {
+    width: calc(100% - 2rem);
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  main > .container > .row {
+    margin-top: 0;
+    margin-inline: 0;
+  }
+
+  main > .container > .row > [class*="col-"] {
+    padding-inline: 0;
+  }
+
+  .section-padding {
+    padding-top: 2.25rem;
+    padding-bottom: 3.25rem;
+  }
 }
