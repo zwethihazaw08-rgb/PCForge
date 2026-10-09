@@ -237,7 +237,4 @@ require_once __DIR__ . '/includes/navbar.php';
         <?php endif; ?>
     </div>
 </main>
-<?php require __DIR__ . '/includes/ai-assistant.php'; ?>
-<script src="<?= e(url('assets/js/ai-assistant.js?v=' . filemtime(__DIR__ . '/assets/js/ai-assistant.js'))) ?>" defer></script>
-
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

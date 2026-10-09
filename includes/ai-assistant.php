@@ -50,9 +50,11 @@ $aiHistory = ($_SESSION['ai_chat_owner'] ?? null) === (int) ($_SESSION['user_id'
         <div class="chat-status" data-ai-status role="status"></div>
         <p class="chat-notice">AI can make mistakes. Compatibility checks take priority. Messages and part details are sent to Groq.</p>
     </section>
-    <button type="button" class="chat-trigger" id="chatTrigger" aria-label="Open PCForge Assistant" aria-controls="chatWindow" aria-expanded="false">
-        <svg class="open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span class="close-icon" aria-hidden="true">&times;</span><span class="unread-badge" data-ai-unread hidden>1</span>
+    <button type="button" class="chat-trigger" id="chatTrigger" aria-label="Ask AI — PCForge Assistant" aria-controls="chatWindow" aria-expanded="false">
+        <svg class="open-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="open-label">Ask AI</span>
+        <span class="close-icon" aria-hidden="true">&times;</span><span class="close-label">Close chat</span>
+        <span class="unread-badge" data-ai-unread hidden>1</span>
     </button>
     <script type="application/json" data-ai-history><?= json_encode($aiHistory, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) ?></script>
     <noscript>Enable JavaScript to chat with PCForge Assistant.</noscript>

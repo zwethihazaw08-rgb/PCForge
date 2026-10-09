@@ -562,9 +562,6 @@ require_once __DIR__ . '/includes/navbar.php';
         </div>
     </div>
 </main>
-<?php require __DIR__ . '/includes/ai-assistant.php'; ?>
-<script src="<?= e(url('assets/js/ai-assistant.js?v=' . filemtime(__DIR__ . '/assets/js/ai-assistant.js'))) ?>" defer></script>
-
 <script>
     (() => {
         const bindBuilderNavigation = () => {

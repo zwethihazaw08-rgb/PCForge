@@ -94,7 +94,7 @@
         window_.inert = !value;
         window_.setAttribute('aria-hidden', String(!value));
         trigger.setAttribute('aria-expanded', String(value));
-        trigger.setAttribute('aria-label', value ? 'Close PCForge Assistant' : 'Open PCForge Assistant');
+        trigger.setAttribute('aria-label', value ? 'Close chat — PCForge Assistant' : 'Ask AI — PCForge Assistant');
         if (value) { badge.hidden = true; input.focus(); scroll(); }
         else trigger.focus();
     };

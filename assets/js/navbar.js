@@ -9,27 +9,97 @@
     const items = [...tabs.querySelectorAll('.lg-item')];
     const activeItem = items.find((item) => item.getAttribute('aria-current') === 'page');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const compactLayout = window.matchMedia('(max-width: 1199.98px)');
+    const menuStateKey = 'pcforge-navbar-open';
     let animation;
+    let touchOrigin;
     let shownItem;
+
+    const readMenuState = () => {
+        try { return sessionStorage.getItem(menuStateKey) === 'open'; } catch (error) { return false; }
+    };
+    const writeMenuState = (open) => {
+        try {
+            if (open) sessionStorage.setItem(menuStateKey, 'open');
+            else sessionStorage.removeItem(menuStateKey);
+        } catch (error) { /* Storage may be unavailable. */ }
+    };
 
     // Keep the mobile menu usable when Bootstrap's optional CDN script is
     // unavailable. The button owns this state, so it also avoids a delayed or
     // swallowed touch click on mobile browsers.
-    const setMenuOpen = (open) => {
+    const setMenuOpen = (open, restoreFocus = true) => {
         if (!menu || !menuToggle) return;
+        open = open && compactLayout.matches;
+        touchOrigin = null;
+        writeMenuState(open);
+        navbar.classList.toggle('is-menu-open', open);
         menu.classList.toggle('is-open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
+        menu.inert = compactLayout.matches && !open;
+
+        if (!open) {
+            menu.querySelectorAll('[data-bs-toggle="dropdown"]').forEach((toggle) => {
+                window.bootstrap?.Dropdown.getInstance(toggle)?.hide();
+            });
+            if (restoreFocus && compactLayout.matches && menu.contains(document.activeElement)) {
+                menuToggle.focus({ preventScroll: true });
+            }
+        }
+
     };
     menuToggle?.addEventListener('click', (event) => {
         event.preventDefault();
         setMenuOpen(!menu.classList.contains('is-open'));
     });
-    tabs.querySelectorAll('.lg-item').forEach((item) => item.addEventListener('click', () => {
-        if (window.matchMedia('(max-width: 1199.98px)').matches) setMenuOpen(false);
-    }));
-    window.addEventListener('resize', () => {
-        if (window.matchMedia('(min-width: 1200px)').matches) setMenuOpen(false);
+    const dismissMenu = () => {
+        if (compactLayout.matches && menu.classList.contains('is-open')) setMenuOpen(false);
+    };
+    document.addEventListener('click', (event) => {
+        if (!navbar.contains(event.target)) dismissMenu();
     });
+    // Dismiss on new scroll input, not scroll events: mobile browser chrome,
+    // focus, and residual momentum can move the page after the menu opens.
+    window.addEventListener('wheel', (event) => {
+        if (event.deltaY && !event.ctrlKey) dismissMenu();
+    }, { passive: true });
+    document.addEventListener('touchstart', (event) => {
+        touchOrigin = null;
+        if (!compactLayout.matches || !menu.classList.contains('is-open') || event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        touchOrigin = { id: touch.identifier, x: touch.clientX, y: touch.clientY };
+    }, { passive: true });
+    document.addEventListener('touchmove', (event) => {
+        if (!touchOrigin || event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        if (touch.identifier !== touchOrigin.id) return;
+        const distanceX = Math.abs(touch.clientX - touchOrigin.x);
+        const distanceY = Math.abs(touch.clientY - touchOrigin.y);
+        if (distanceY >= 12 && distanceY > distanceX) dismissMenu();
+    }, { passive: true });
+    ['touchend', 'touchcancel'].forEach((name) => {
+        document.addEventListener(name, () => { touchOrigin = null; }, { passive: true });
+    });
+    document.addEventListener('pointerdown', (event) => {
+        const viewport = document.documentElement;
+        if (event.pointerType === 'mouse' && (event.clientX >= viewport.clientWidth || event.clientY >= viewport.clientHeight)) dismissMenu();
+    }, { passive: true });
+    document.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented || !compactLayout.matches || !menu.classList.contains('is-open')) return;
+        if (event.key === 'Escape') {
+            setMenuOpen(false);
+            menuToggle.focus({ preventScroll: true });
+        } else if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)
+            && !event.ctrlKey && !event.metaKey && !event.altKey
+            && !event.target.closest('input, textarea, select, [contenteditable]')
+            && !(event.key === ' ' && event.target.closest('button, a'))) {
+            dismissMenu();
+        }
+    });
+    compactLayout.addEventListener('change', () => setMenuOpen(false));
+    // Keep the mobile menu expanded when a navigation link loads another page,
+    // matching the desktop navbar. It still closes from explicit dismissal.
+    setMenuOpen(compactLayout.matches && readMenuState(), false);
 
     // FLIP: measure the visible pill before replacing its layout, then animate
     // the inverse transform. Measuring first also handles interrupted motion.

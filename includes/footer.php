@@ -187,5 +187,7 @@ $footerGroups = [
         mobile.addEventListener?.('change', syncFooterSections);
     })();
 </script>
+<?php require_once __DIR__ . '/ai-assistant.php'; ?>
+<script src="<?= e(url('assets/js/ai-assistant.js?v=' . filemtime(__DIR__ . '/../assets/js/ai-assistant.js'))) ?>" defer></script>
 </body>
 </html>

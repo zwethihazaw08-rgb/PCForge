@@ -12,7 +12,7 @@
     --lg-text: #252735;
     --lg-muted: #555868;
     --lg-border: rgba(125, 130, 157, .22);
-    --lg-glass: rgba(245, 246, 252, .78);
+    --lg-glass: #f5f6fc;
     --lg-track: rgba(201, 205, 226, .24);
     --lg-selected: rgba(255, 255, 255, .85);
     --lg-highlight: rgba(255, 255, 255, .75);
@@ -42,7 +42,7 @@ html[data-theme="dark"] .lg-navbar {
     --lg-text: #f3f3fb;
     --lg-muted: #c4c4d3;
     --lg-border: rgba(208, 210, 244, .18);
-    --lg-glass: rgba(32, 33, 43, .82);
+    --lg-glass: #20212b;
     --lg-track: rgba(10, 11, 20, .28);
     --lg-selected: rgba(106, 108, 139, .42);
     --lg-highlight: rgba(230, 232, 255, .15);
@@ -178,14 +178,39 @@ html[data-theme="dark"] .lg-build:hover { background: #ffffff; }
 .lg-navbar .dropdown-item:is(:hover, :focus, :active) { background: var(--lg-track); color: var(--lg-text); }
 
 @media (max-width: 1199.98px) {
-    .lg-navbar { border-radius: 1.75rem; gap: 0; padding: .65rem .85rem; }
+    .lg-navbar { border-radius: 1.75rem; gap: 0; padding: .65rem .85rem; transition: border-radius .2s ease; }
+    .lg-navbar.is-menu-open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+    /* Keep the mobile navbar stable while a different page is loading. */
+    .lg-pill { view-transition-name: none; }
     .lg-mobile-controls { display: flex; margin-left: auto; }
     .lg-desktop-theme { display: none; }
-    .lg-menu { flex-basis: 100%; max-height: calc(100dvh - 7rem); overflow-y: auto; }
+    /* Keep the page and its scroll position still while the dropdown animates. */
+    .lg-menu {
+        display: block !important;
+        position: absolute;
+        top: calc(100% - 1px);
+        right: -1px;
+        left: -1px;
+        padding: 0 .85rem .65rem;
+        border: 1px solid var(--lg-border);
+        border-top: 0;
+        border-radius: 0 0 1.75rem 1.75rem;
+        background: var(--lg-glass);
+        -webkit-backdrop-filter: blur(20px) saturate(160%);
+        backdrop-filter: blur(20px) saturate(160%);
+        box-shadow: 0 16px 24px rgba(31, 38, 85, .1);
+        overflow: visible;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity .18s ease, transform .22s cubic-bezier(.22, .61, .36, 1), visibility 0s .22s;
+    }
+    .lg-menu.is-open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
     .lg-tabs { display: flex; width: max-content; max-width: 100%; margin: 1rem auto; }
     .lg-actions { justify-content: center; flex-wrap: wrap; gap: .5rem; padding: .85rem .25rem .25rem; border-top: 1px solid var(--lg-border); }
-    .lg-account .dropdown-menu { position: static; margin-block: .5rem; }
-    .lg-build { margin: .5rem auto 0; }
+    .lg-account .dropdown-menu { position: absolute; top: 100%; right: 0; left: auto; margin: .5rem 0 0; }
+    .lg-build { display: flex; width: fit-content; margin: .5rem auto 0; }
 }
 
 @media (min-width: 1200px) {
@@ -201,5 +226,5 @@ html[data-theme="dark"] .lg-build:hover { background: #ffffff; }
 
 @media (prefers-reduced-motion: reduce) {
     @view-transition { navigation: none; }
-    .lg-navbar *, .lg-navbar *::before, .lg-navbar *::after { animation: none !important; transition: none !important; }
+    .lg-navbar, .lg-navbar *, .lg-navbar *::before, .lg-navbar *::after { animation: none !important; transition: none !important; }
 }
