@@ -10,6 +10,7 @@ $userId = null; $products = []; $orderIds = []; $buildId = null;
 $cookies = tempnam(sys_get_temp_dir(),'pcforge-cookie-');
 $imageTemp = null; $uploadedImage = null;
 $password = bin2hex(random_bytes(20));
+$base = rtrim(getenv('PCFORGE_TEST_URL') ?: 'http://localhost/PCForge/', '/') . '/';
 
 function check(bool $ok, string $message): void
 {
@@ -18,7 +19,7 @@ function check(bool $ok, string $message): void
 }
 function request_page(string $path, ?array $post = null, bool $multipart = false): array
 {
-    $curl = curl_init('http://localhost/PCForge/' . $path);
+    $curl = curl_init($GLOBALS['base'] . $path);
     curl_setopt_array($curl,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>20,CURLOPT_COOKIEJAR=>$GLOBALS['cookies'],CURLOPT_COOKIEFILE=>$GLOBALS['cookies'],CURLOPT_FOLLOWLOCATION=>false]);
     if ($post !== null) curl_setopt_array($curl,[CURLOPT_POST=>true,CURLOPT_POSTFIELDS=>$multipart ? $post : http_build_query($post)]);
     $body = curl_exec($curl); $status = (int)curl_getinfo($curl,CURLINFO_HTTP_CODE); $location = curl_getinfo($curl,CURLINFO_REDIRECT_URL);

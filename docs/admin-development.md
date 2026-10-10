@@ -2,16 +2,14 @@
 
 ## Current implementation
 
-All requested routes are implemented and linked in the sidebar. The table below is the feature-by-feature guide; full source is in the named files. No build process is needed.
+Admin routes are linked in the sidebar. The table below maps each feature to its implementation. No build process is needed.
 
-Local runtime: Apache listens on port 80. XAMPP MariaDB uses port **3307** because the separate Windows MySQL80 service occupies 3306. `config/database.php` and XAMPP's `mysql/bin/my.ini` agree on 3307; the previous INI is backed up as `my.ini.pcforge-before-3307.bak`. The MySQL80 service was left unchanged. If moving this project to a different machine, set the database port and credentials for that machine.
+The default local configuration uses Apache on port 80 and MariaDB on port 3307. Set the database port and credentials in `config/database.php` for your installation.
 
-XAMPP phpMyAdmin also targets port 3307; its original `config.inc.php` is backed up as `config.inc.php.pcforge-before-3307.bak`. Validation passed for all admin routes and nine product types, real HTTP create/edit/soft-delete, image acceptance/rejection, CSRF and output escaping, inventory conflicts, shipping defaults and order snapshots, checkout persistence, stock completion/idempotence, and isolated rollback cases. Desktop light/dark layouts and the 390px mobile sidebar were visually checked. Disposable records and preview files were removed after the checks.
-
-| Stage | Files | Queries, behavior and connections |
+| Feature | Files | Queries, behavior and connections |
 | --- | --- | --- |
 | 1. Access/layout | `includes/auth.php`, `includes/admin-header.php`, `includes/admin-sidebar.php`, `includes/admin-navbar.php`, `includes/footer.php`, `assets/css/admin.css`, `assets/js/admin.js` | Database-backed active admin role check; shared shell, CSRF logout, flash messages, persisted light/dark mode, mobile offcanvas and no-JavaScript navigation fallback. Password and Google sign-in default to the dashboard for admins. |
-| 2. Dashboard | `admin/dashboard.php`, `assets/js/admin-charts.js` | Aggregate counts over the nine component tables using `UNION ALL`; counts of customers, builds and orders; paid revenue grouped by currency. Limited recent orders, products and low-stock lists link to details. Chart.js displays monthly paid revenue, statuses and category distribution, with accessible text alternatives. Unknown historical product creation dates are not invented. |
+| 2. Dashboard | `admin/dashboard.php`, `assets/js/admin-charts.js` | Aggregate counts over the ten component tables using `UNION ALL`; counts of customers, builds and orders; paid revenue grouped by currency. Limited recent orders, products and low-stock lists link to details. Chart.js displays monthly paid revenue, statuses and category distribution, with accessible text alternatives. Unknown historical product creation dates are not invented. |
 | 3. Product listing | `admin/products.php`, `includes/admin-functions.php`, `includes/catalog.php` | Prepared search over names, brand and existing short-name/model fields; GET category, brand, status, stock and price filters; 20 rows per page with validated offsets. Whitelisted source tables only. |
 | 4. Product forms/details | `admin/product-add.php`, `admin/product-edit.php`, `admin/product-view.php`, `admin/product-delete.php`, `includes/admin-product-form.php` | Form fields derive from `SHOW COLUMNS` on whitelisted component tables. Insert/update validates nullable fields, enum choices, lengths, nonnegative integers and decimal prices. Support lists update the existing cooler/socket and case/form-factor tables transactionally. Product deletion sets `status=inactive`, preserving references. A review page and confirmation modal precede disabling. |
 | 5. Inventory/categories | `admin/inventory.php`, `admin/categories.php` | Stock update accepts nonnegative integers and compares previous stock before saving, rejecting stale forms. Low stock uses the saved threshold; NULL is unknown, not zero. Categories are fixed schema types; each category links to products/add and can bulk activate or disable its products after confirmation. There is no arbitrary table creation UI. |
@@ -29,61 +27,17 @@ This is a demo store, with no payment provider. The admin cannot manufacture a r
 
 ### Running checks
 
-```text
-C:\xampp\php\php.exe tests/order-workflow.php
-C:\xampp\php\php.exe tests/admin-access.php
-C:\xampp\php\php.exe tests/admin-database.php
-C:\xampp\php\php.exe tests/admin-workflows.php
-C:\xampp\php\php.exe tests/profile-settings.php
+```powershell
+php tests/run.php
+php tests/run.php --database
+php tests/run.php --http
 ```
 
-`order-workflow.php` uses in-memory SQLite to test totals, aggregated quantities, snapshots, rollback and repeat completion. `admin-access.php` and `admin-database.php` use local transaction-scoped fixtures. `admin-workflows.php` requires running XAMPP Apache/MySQL and uses the real HTTP handlers with disposable records; a `finally` cleanup removes only records created by that run. It checks all routes, each product category, CSRF, XSS, inventory, self-disable protection, checkout and order completion. Do not run integration checks against production. A failed database connection must be resolved in `config/database.php` before the live suite can run.
+See [`tests/README.md`](../tests/README.md) for suite requirements, fixture cleanup,
+and the configurable HTTP base URL. Individual scripts can still be run directly.
+The database and HTTP suites are for development installations.
 
-## Foundation reference
-
-## Stage 1: authentication and shared layout
-
-Implemented in this stage:
-
-| File | Responsibility |
-| --- | --- |
-| `includes/auth.php` | Admin guard and one-time flash messages. Reuses existing authentication and CSRF helpers. |
-| `includes/admin-header.php` | Guarded document header, Bootstrap, Icons, early theme selection, shared navigation, main content opening. |
-| `includes/admin-sidebar.php` | Desktop sidebar and mobile offcanvas; current page indication and CSRF-protected logout. |
-| `includes/admin-navbar.php` | Breadcrumb, storefront link, and accessible theme button. |
-| `includes/footer.php` | Small admin footer when `$adminLayout` is set; existing public footer otherwise. |
-| `admin/index.php` | Protected redirect to dashboard. |
-| `admin/dashboard.php` | Live dashboard with statistics, charts, and related record links. |
-| `assets/css/admin.css` | Scoped monochrome admin styles, responsive layout, focus indicators, reduced motion. |
-| `assets/js/admin.js` | Theme toggle with localStorage fallback. |
-| `tests/admin-access.php` | Transactional checks for customer rejection, disabled-account rejection, and admin rendering. |
-
-The files contain the complete implementation; no build process is required.
-
-### Access and queries
-
-Open `/PCForge/admin/dashboard.php`. A guest goes to the existing login page with an admin return destination. An active customer receives HTTP 403. An active admin can enter. `auth_user()` runs the existing prepared query:
-
-```sql
-SELECT id, username, email, role
-FROM users
-WHERE id = :id AND status = 'active'
-LIMIT 1;
-```
-
-The primary key locates the account; the status check rejects disabled accounts. The role is read from the database, not trusted from session or form data. The existing login helper regenerates the session ID. Both password and Google login use this helper. Dashboard HTML is marked `no-store`.
-
-An existing account was promoted at the owner's request. No default admin is seeded. For another installation, choose the specific existing account before granting access. This is an explicit one-account setup operation, not a schema migration:
-
-```sql
--- Replace the example email with the exact account you intend to promote.
-UPDATE users SET role = 'admin'
-WHERE email = 'your-admin@example.com' AND status = 'active';
-```
-
-No accounts are automatically promoted and no default password is created.
-
-### Adding each subsequent page
+## Adding an admin page
 
 Start handlers before sending HTML:
 
@@ -101,22 +55,26 @@ require __DIR__ . '/../includes/admin-header.php';
 <?php require __DIR__ . '/../includes/footer.php'; ?>
 ```
 
-The header also checks authorization as a defensive fallback. All writes must use the guard before processing POST. Every sidebar section now links to an implemented route. Mobile navigation uses Bootstrap offcanvas with a no-JavaScript fallback; theme controls are hidden when JavaScript is unavailable.
+The header also checks authorization. `auth_user()` reads the active account's
+role from the database, and login regenerates the session ID. New installations
+seed no accounts or default passwords; register an account before assigning its
+`admin` role as described in the [setup guide](../README.md#local-setup).
 
-### Schema findings
+## Schema reference
 
-Inspected `Database/schema.sql` and the live `pcforge` table list. Existing component tables are `cpu`, `gpu`, `mb`, `memory`, `storage`, `psu`, `case_box`, `cooling`, and `fans`. Use these exact names through a whitelist. Compatibility support uses `case_motherboard_support` and `cooling_socket_support`. Saved builds reference `users` and store component IDs in JSON.
+`component_categories()` in `includes/catalog.php` is the shared whitelist for
+`cpu`, `gpu`, `mb`, `memory`, `storage`, `psu`, `case_box`, `cooling`, `fans`, and
+`monitor`. Use it when constructing queries rather than accepting table names
+from requests. Compatibility support lives in `case_motherboard_support` and
+`cooling_socket_support`.
 
-**Database foundation:** `Database/schema.sql` includes `orders`, `order_items`, and `store_settings`. Order items preserve purchased names, quantities, and unit/line prices; orders preserve delivery details, totals, currency, and payment/order status. `stock_deducted_at` prevents repeated stock deductions. Product references span existing component tables and are validated by the PHP whitelist. Checkout and admin settings now use these tables.
+`Database/schema.sql` defines accounts, shipping details, saved builds, orders,
+order items, store settings, and component tables. Order items retain purchased
+names and prices; orders retain delivery and currency snapshots.
+`stock_deducted_at` prevents repeat stock deductions. Product timestamps may be
+NULL when their original history is unknown.
 
-The schema also includes product descriptions, creation/update timestamps, and the shipping details table used by profile and checkout. Existing product timestamps can remain NULL when their history is unknown; new products get a creation timestamp, and subsequent updates set the update timestamp. New installations use `Database/schema.sql` followed by `Database/catalog.sql`. Historical migrations are retained locally but excluded from the repository. `tests/admin-database.php` verifies shipping and order inserts and constraints inside a rolled-back transaction.
-
-All ten stages have implementation files. See the current implementation table and verification notes above.
-
-### Verification
-
-```text
-C:\xampp\php\php.exe tests/admin-access.php
-```
-
-This uses transaction-scoped random test accounts and rolls them back. It never promotes an existing account. Also check the guest HTTP redirect and run PHP lint on changed files.
+Fresh installations import `Database/schema.sql` followed by
+`Database/catalog.sql`. See the [catalog guide](products-data.md) for existing
+installation upgrades and source provenance. Historical migrations stay local
+and are excluded from Git.

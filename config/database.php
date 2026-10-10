@@ -28,6 +28,10 @@ function db(): PDO
     } catch (PDOException $exception) {
         // Keep connection details in the server log, away from visitors.
         error_log('PCForge database connection failed: ' . $exception->getMessage());
+        if (PHP_SAPI === 'cli') {
+            fwrite(STDERR, "Unable to connect to the database. Check config/database.php and the database service.\n");
+            exit(1);
+        }
         http_response_code(500);
         exit('Unable to connect to the database. Please try again later.');
     }

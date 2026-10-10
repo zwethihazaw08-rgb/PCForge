@@ -33,7 +33,8 @@ function url(string $s): string { return '/PCForge/' . $s; }
 function redirect(string $s): void { exit; }
 function pcforge_mail_settings(): array { return ['otp_ttl_seconds' => 600, 'otp_max_attempts' => 5]; }
 function send_registration_otp(string $email, string $otp, bool $change = false): bool { $GLOBALS['sentMail'] = [$email, $otp, $change]; return true; }
-session_start();
+session_save_path(sys_get_temp_dir());
+if (!session_start()) throw new RuntimeException('Cannot start the test session.');
 $_SESSION = [];
 $_POST = ['csrf_token' => 'test-token'];
 $_SERVER['REQUEST_METHOD'] = $scenario === 'render' ? 'GET' : 'POST';
@@ -57,26 +58,31 @@ $fixture = tempnam(sys_get_temp_dir(), 'profile-check-');
 file_put_contents($fixture, $source);
 ob_start();
 register_shutdown_function(function () use ($scenario, $fixture) {
-    $html = ob_get_clean();
-    unlink($fixture);
-    $user = db()->query('SELECT * FROM users WHERE id = 1')->fetch();
-    $shipping = db()->query('SELECT * FROM user_shipping_details WHERE user_id = 1')->fetch();
-    $errors = $GLOBALS['errors'] ?? [];
-    $ok = match ($scenario) {
-        'render' => str_contains($html, 'Shipping details') && !str_contains($html, 'Your saved builds'),
-        'username' => $user['username'] === 'renamed' && $user['email'] === 'old@example.com',
-        'duplicate' => $user['username'] === 'tester' && count($errors) > 0,
-        'shipping' => $shipping['address'] === '12 Main Road' && $shipping['phone'] === '+95 91234567' && db()->query('SELECT name FROM user_shipping_details WHERE user_id = 2')->fetchColumn() === 'Other user',
-        'invalid_shipping' => !$shipping && count($errors) > 0,
-        'password' => password_verify('new-password', $user['password']),
-        'wrong_password' => password_verify('old-password', $user['password']) && count($errors) > 0,
-        'email_request' => $user['email'] === 'old@example.com' && ($_SESSION['profile_email_change']['email'] ?? '') === 'new@example.com' && ($GLOBALS['sentMail'][2] ?? false),
-        'email_verify' => $user['email'] === 'new@example.com' && !isset($_SESSION['profile_email_change']),
-        'email_wrong' => $user['email'] === 'old@example.com' && $_SESSION['profile_email_change']['attempts'] === 1 && count($errors) > 0,
-        'email_expired' => $user['email'] === 'old@example.com' && !isset($_SESSION['profile_email_change']) && count($errors) > 0,
-        default => false,
-    };
-    echo ($ok ? 'PASS ' : 'FAIL ') . $scenario . PHP_EOL;
-    if (!$ok) exit(1);
+$html = ob_get_clean();
+unlink($fixture);
+if (session_status() === PHP_SESSION_ACTIVE) session_destroy();
+$user = db()->query('SELECT * FROM users WHERE id = 1')->fetch();
+$shipping = db()->query('SELECT * FROM user_shipping_details WHERE user_id = 1')->fetch();
+$errors = $GLOBALS['errors'] ?? [];
+$ok = match ($scenario) {
+'render' => str_contains($html, 'Shipping details') && !str_contains($html, 'Your saved builds'),
+'username' => $user['username'] === 'renamed' && $user['email'] === 'old@example.com',
+'duplicate' => $user['username'] === 'tester' && count($errors) > 0,
+'shipping' => $shipping['address'] === '12 Main Road' && $shipping['phone'] === '+95 91234567' && db()->query('SELECT
+name FROM user_shipping_details WHERE user_id = 2')->fetchColumn() === 'Other user',
+'invalid_shipping' => !$shipping && count($errors) > 0,
+'password' => password_verify('new-password', $user['password']),
+'wrong_password' => password_verify('old-password', $user['password']) && count($errors) > 0,
+'email_request' => $user['email'] === 'old@example.com' && ($_SESSION['profile_email_change']['email'] ?? '') ===
+'new@example.com' && ($GLOBALS['sentMail'][2] ?? false),
+'email_verify' => $user['email'] === 'new@example.com' && !isset($_SESSION['profile_email_change']),
+'email_wrong' => $user['email'] === 'old@example.com' && $_SESSION['profile_email_change']['attempts'] === 1 &&
+count($errors) > 0,
+'email_expired' => $user['email'] === 'old@example.com' && !isset($_SESSION['profile_email_change']) && count($errors) >
+0,
+default => false,
+};
+echo ($ok ? 'PASS ' : 'FAIL ') . $scenario . PHP_EOL;
+if (!$ok) exit(1);
 });
 require $fixture;

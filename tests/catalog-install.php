@@ -2,6 +2,8 @@
 // Validate the files shipped to new users without changing the configured database.
 if (PHP_SAPI !== 'cli') { http_response_code(404); exit; }
 require __DIR__ . '/../config/database.php';
+require __DIR__ . '/../Database/import_web_catalog.php';
+$webCatalog = web_catalog_manifest();
 
 $pdo = db();
 $originalDatabase = (string) $pdo->query('SELECT DATABASE()')->fetchColumn();
@@ -25,7 +27,7 @@ try {
     $images = [];
     foreach ($categories as $table) {
         $rows = $pdo->query("SELECT * FROM `$table` ORDER BY id")->fetchAll();
-        $expectedCount = $table === 'fans' ? 0 : 15;
+        $expectedCount = $table === 'fans' ? 20 : 35;
         if (count($rows) !== $expectedCount) throw new RuntimeException('Wrong product count: ' . $table);
         foreach ($rows as $row) {
             if ($row['status'] !== 'active' || $row['name'] === '' || $row['description'] === null) {
@@ -40,12 +42,26 @@ try {
         }
         $importedCatalog[$table] = $rows;
     }
-    if (count($images) !== 135) throw new RuntimeException('Expected 135 distinct product images.');
+    if (count($images) !== 335) throw new RuntimeException('Expected 335 distinct product image files.');
+
+    foreach ($webCatalog['records'] as $record) {
+        $table = $record['category'];
+        $statement = $pdo->prepare("SELECT * FROM `$table` WHERE id = ?");
+        $statement->execute([$record['product']['id']]);
+        $product = $statement->fetch();
+        foreach ($record['product'] as $field => $value) {
+            if (($value === null && $product[$field] !== null) || ($value !== null && (string) $product[$field] !== (string) $value)) {
+                throw new RuntimeException("Catalog/manifest mismatch: $table/$field");
+            }
+        }
+    }
 
     foreach (['case_motherboard_support' => ['case_id', 'form_factor', 'case_box'],
               'cooling_socket_support' => ['cooling_id', 'socket', 'cooling']] as $table => [$key, $value, $productTable]) {
         $rows = $pdo->query("SELECT * FROM `$table` ORDER BY `$key`, `$value`")->fetchAll();
-        if (count(array_unique(array_column($rows, $key))) !== 15) {
+        $supportKey = $productTable === 'case_box' ? 'form_factors' : 'sockets';
+        $newSupport = count(array_filter($webCatalog['records'], fn($record) => $record['category'] === $productTable && !empty($record['support'][$supportKey])));
+        if (count(array_unique(array_column($rows, $key))) !== 15 + $newSupport) {
             throw new RuntimeException('Missing supplied compatibility support: ' . $table);
         }
         $orphans = (int) $pdo->query("SELECT COUNT(*) FROM `$table` s LEFT JOIN `$productTable` p ON p.id = s.`$key` WHERE p.id IS NULL")->fetchColumn();
@@ -53,7 +69,13 @@ try {
         $importedCatalog[$table] = $rows;
     }
 
-    foreach (['users', 'user_shipping_details', 'orders', 'order_items', 'saved_builds', 'product_data_sources'] as $table) {
+    if ((int) $pdo->query('SELECT COUNT(*) FROM product_data_sources')->fetchColumn() !== 200) {
+        throw new RuntimeException('Expected 200 public web source records.');
+    }
+    $rerun = import_web_catalog($pdo, $webCatalog, true);
+    if ($rerun !== ['added' => 0, 'skipped' => 200]) throw new RuntimeException('Fresh catalog is not recognized by upgrade importer.');
+
+    foreach (['users', 'user_shipping_details', 'orders', 'order_items', 'saved_builds'] as $table) {
         if ((int) $pdo->query("SELECT COUNT(*) FROM `$table`")->fetchColumn() !== 0) {
             throw new RuntimeException('Unexpected records in fresh installation: ' . $table);
         }
@@ -69,4 +91,4 @@ try {
     if ($created) $pdo->exec("DROP DATABASE `$temporaryDatabase`");
 }
 
-echo "PASS fresh schema and catalog: 135 products, 135 images, compatibility support, empty private tables; temporary database removed.\n";
+echo "PASS fresh schema and catalog: 335 products, 335 image files, source records, compatibility support, repeatable import, empty private tables; temporary database removed.\n";

@@ -11,6 +11,7 @@ if ($scenario === '') {
     exit;
 }
 if (!in_array($scenario, ['customer', 'disabled', 'admin'], true)) exit(1);
+session_save_path(sys_get_temp_dir());
 require_once __DIR__ . '/../includes/auth.php';
 db()->beginTransaction();
 $name = 'admin_test_' . bin2hex(random_bytes(6));

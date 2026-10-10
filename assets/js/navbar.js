@@ -11,9 +11,11 @@
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const compactLayout = window.matchMedia('(max-width: 1199.98px)');
     const menuStateKey = 'pcforge-navbar-open';
+    const isMenuOpen = () => document.documentElement.hasAttribute('data-navbar-open');
     let animation;
     let touchOrigin;
     let shownItem;
+    let navigating = false;
 
     const readMenuState = () => {
         try { return sessionStorage.getItem(menuStateKey) === 'open'; } catch (error) { return false; }
@@ -33,8 +35,7 @@
         open = open && compactLayout.matches;
         touchOrigin = null;
         writeMenuState(open);
-        navbar.classList.toggle('is-menu-open', open);
-        menu.classList.toggle('is-open', open);
+        document.documentElement.toggleAttribute('data-navbar-open', open);
         menuToggle.setAttribute('aria-expanded', String(open));
         menu.inert = compactLayout.matches && !open;
 
@@ -50,10 +51,10 @@
     };
     menuToggle?.addEventListener('click', (event) => {
         event.preventDefault();
-        setMenuOpen(!menu.classList.contains('is-open'));
+        setMenuOpen(!isMenuOpen());
     });
     const dismissMenu = () => {
-        if (compactLayout.matches && menu.classList.contains('is-open')) setMenuOpen(false);
+        if (compactLayout.matches && isMenuOpen()) setMenuOpen(false);
     };
     document.addEventListener('click', (event) => {
         if (!navbar.contains(event.target)) dismissMenu();
@@ -65,7 +66,7 @@
     }, { passive: true });
     document.addEventListener('touchstart', (event) => {
         touchOrigin = null;
-        if (!compactLayout.matches || !menu.classList.contains('is-open') || event.touches.length !== 1) return;
+        if (!compactLayout.matches || !isMenuOpen() || event.touches.length !== 1) return;
         const touch = event.touches[0];
         touchOrigin = { id: touch.identifier, x: touch.clientX, y: touch.clientY };
     }, { passive: true });
@@ -85,7 +86,7 @@
         if (event.pointerType === 'mouse' && (event.clientX >= viewport.clientWidth || event.clientY >= viewport.clientHeight)) dismissMenu();
     }, { passive: true });
     document.addEventListener('keydown', (event) => {
-        if (event.defaultPrevented || !compactLayout.matches || !menu.classList.contains('is-open')) return;
+        if (event.defaultPrevented || !compactLayout.matches || !isMenuOpen()) return;
         if (event.key === 'Escape') {
             setMenuOpen(false);
             menuToggle.focus({ preventScroll: true });
@@ -101,9 +102,10 @@
     // matching the desktop navbar. It still closes from explicit dismissal.
     setMenuOpen(compactLayout.matches && readMenuState(), false);
 
-    // FLIP: measure the visible pill before replacing its layout, then animate
-    // the inverse transform. Measuring first also handles interrupted motion.
+    // Animate the box itself so its rounded edges and shadow are never scaled.
+    // Read the current box before cancelling to preserve interrupted motion.
     const movePillTo = (item, animate = true) => {
+        if (navigating) return;
         if (!item || !tabs.getClientRects().length) {
             animation?.cancel();
             pill.style.opacity = '0';
@@ -111,24 +113,29 @@
             return;
         }
 
-        const first = pill.getBoundingClientRect();
+        const next = {
+            left: `${item.offsetLeft}px`,
+            top: `${item.offsetTop}px`,
+            width: `${item.offsetWidth}px`,
+            height: `${item.offsetHeight}px`,
+        };
         const wasVisible = pill.style.opacity === '1';
+        // Hover, focus, resize and font readiness can report the same target.
+        // A repeated notification must not restart or cut short its animation.
+        if (wasVisible && shownItem === item
+            && Object.entries(next).every(([key, value]) => pill.style[key] === value)) return;
+
+        const current = getComputedStyle(pill);
+        const first = { left: current.left, top: current.top, width: current.width, height: current.height };
         animation?.cancel();
-        pill.style.left = `${item.offsetLeft}px`;
-        pill.style.top = `${item.offsetTop}px`;
-        pill.style.width = `${item.offsetWidth}px`;
-        pill.style.height = `${item.offsetHeight}px`;
+        Object.assign(pill.style, next);
         pill.style.opacity = '1';
         tabs.dataset.ready = '';
         shownItem = item;
 
-        const last = pill.getBoundingClientRect();
-        if (!animate || !wasVisible || reducedMotion.matches || !last.width || !last.height) return;
+        if (!animate || !wasVisible || reducedMotion.matches || !item.offsetWidth || !item.offsetHeight) return;
 
-        animation = pill.animate([
-            { transform: `translate(${first.left - last.left}px, ${first.top - last.top}px) scale(${first.width / last.width}, ${first.height / last.height})` },
-            { transform: 'translate(0, 0) scale(1, 1)' },
-        ], { duration: 450, easing: 'cubic-bezier(.34, 1.56, .64, 1)' });
+        animation = pill.animate([first, next], { duration: 300, easing: 'cubic-bezier(.22, .61, .36, 1)' });
     };
 
     const restorePill = () => {
@@ -140,10 +147,17 @@
         item.addEventListener('pointerenter', (event) => {
             if (event.pointerType === 'mouse' || event.pointerType === 'pen') movePillTo(item);
         });
-        item.addEventListener('focus', () => movePillTo(item));
-        item.addEventListener('click', (event) => {
-            if (event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) movePillTo(item);
+        item.addEventListener('focus', () => {
+            if (item.matches(':focus-visible')) movePillTo(item);
         });
+    });
+
+    // The cross-document transition owns navigation motion. Do not start a
+    // second tap animation or let hover/focus restoration change its snapshot.
+    window.addEventListener('pageswap', (event) => {
+        if (!event.viewTransition) return;
+        navigating = true;
+        animation?.pause();
     });
 
     tabs.addEventListener('pointermove', (event) => {
@@ -163,9 +177,14 @@
     const snapPill = () => movePillTo(shownItem || activeItem, false);
     new ResizeObserver(snapPill).observe(tabs);
     navbar.querySelector('#mainNavbar').addEventListener('shown.bs.collapse', snapPill);
-    window.addEventListener('pageshow', () => movePillTo(activeItem, false));
+    window.addEventListener('pageshow', () => {
+        navigating = false;
+        animation?.cancel();
+        movePillTo(activeItem, false);
+    });
     document.fonts.ready.then(snapPill);
     reducedMotion.addEventListener('change', () => {
+        animation?.cancel();
         tabs.style.removeProperty('--lg-x');
         tabs.style.removeProperty('--lg-y');
         snapPill();

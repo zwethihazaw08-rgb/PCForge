@@ -3,9 +3,33 @@
 ::view-transition-old(root),
 ::view-transition-new(root) { animation-duration: 180ms; }
 
+/* Static navbar snapshots must not resize or blend: both soften the labels. */
+::view-transition-group(pcforge-navbar),
+::view-transition-group(pcforge-nav-home),
+::view-transition-group(pcforge-nav-components),
+::view-transition-group(pcforge-nav-prebuilts),
+::view-transition-group(pcforge-nav-compare) { animation: none; }
+
+::view-transition-old(pcforge-navbar),
+::view-transition-old(pcforge-nav-home),
+::view-transition-old(pcforge-nav-components),
+::view-transition-old(pcforge-nav-prebuilts),
+::view-transition-old(pcforge-nav-compare),
+::view-transition-old(pcforge-glass-pill) { display: none; }
+
+::view-transition-new(pcforge-navbar),
+::view-transition-new(pcforge-nav-home),
+::view-transition-new(pcforge-nav-components),
+::view-transition-new(pcforge-nav-prebuilts),
+::view-transition-new(pcforge-nav-compare),
+::view-transition-new(pcforge-glass-pill) { animation: none; mix-blend-mode: normal; }
+
+/* Different tab widths must not stretch the snapshot's automatic height. */
+::view-transition-new(pcforge-glass-pill) { height: 100%; }
+
 ::view-transition-group(pcforge-glass-pill) {
-    animation-duration: 450ms;
-    animation-timing-function: cubic-bezier(.34, 1.56, .64, 1);
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(.22, .61, .36, 1);
 }
 
 .lg-navbar {
@@ -36,6 +60,7 @@
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     backdrop-filter: blur(20px) saturate(160%);
     box-shadow: 0 8px 32px rgba(31, 38, 85, .1), inset 0 1px 1px var(--lg-highlight);
+    view-transition-name: pcforge-navbar;
 }
 
 html[data-theme="dark"] .lg-navbar {
@@ -66,7 +91,6 @@ html[data-theme="dark"] .lg-navbar {
 .lg-logo { width: auto; height: 2rem; max-width: 80px; object-fit: contain; }
 html[data-theme="dark"] .lg-logo { filter: invert(1); }
 .lg-menu { display: none !important; flex-basis: 100%; gap: .75rem; min-width: 0; }
-.lg-menu.is-open { display: block !important; }
 
 .lg-tabs {
     position: relative;
@@ -102,7 +126,6 @@ html[data-theme="dark"] .lg-logo { filter: invert(1); }
     box-shadow: 0 4px 14px rgba(31, 38, 85, .14), inset 0 1px 1px var(--lg-highlight);
     opacity: 0;
     pointer-events: none;
-    transform-origin: left top;
     view-transition-name: pcforge-glass-pill;
 }
 
@@ -131,7 +154,12 @@ html[data-theme="dark"] .lg-logo { filter: invert(1); }
     transition: color .25s, background-color .25s;
 }
 
-.lg-item { z-index: 2; }
+.lg-item { z-index: 2; transition: color .25s; }
+/* Separate label snapshots keep the moving pill behind the text. */
+.lg-item:nth-of-type(1) { view-transition-name: pcforge-nav-home; }
+.lg-item:nth-of-type(2) { view-transition-name: pcforge-nav-components; }
+.lg-item:nth-of-type(3) { view-transition-name: pcforge-nav-prebuilts; }
+.lg-item:nth-of-type(4) { view-transition-name: pcforge-nav-compare; }
 .lg-item.active { background: var(--lg-selected); color: var(--lg-text); }
 .lg-tabs[data-ready] .lg-item.active { background: transparent; }
 .lg-item:hover,
@@ -179,9 +207,7 @@ html[data-theme="dark"] .lg-build:hover { background: #ffffff; }
 
 @media (max-width: 1199.98px) {
     .lg-navbar { border-radius: 1.75rem; gap: 0; padding: .65rem .85rem; transition: border-radius .2s ease; }
-    .lg-navbar.is-menu-open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
-    /* Keep the mobile navbar stable while a different page is loading. */
-    .lg-pill { view-transition-name: none; }
+    html[data-navbar-open] .lg-navbar { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
     .lg-mobile-controls { display: flex; margin-left: auto; }
     .lg-desktop-theme { display: none; }
     /* Keep the page and its scroll position still while the dropdown animates. */
@@ -206,7 +232,7 @@ html[data-theme="dark"] .lg-build:hover { background: #ffffff; }
         transform: translateY(-8px);
         transition: opacity .18s ease, transform .22s cubic-bezier(.22, .61, .36, 1), visibility 0s .22s;
     }
-    .lg-menu.is-open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+    html[data-navbar-open] .lg-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
     .lg-tabs { display: flex; width: max-content; max-width: 100%; margin: 1rem auto; }
     .lg-actions { justify-content: center; flex-wrap: wrap; gap: .5rem; padding: .85rem .25rem .25rem; border-top: 1px solid var(--lg-border); }
     .lg-account .dropdown-menu { position: absolute; top: 100%; right: 0; left: auto; margin: .5rem 0 0; }

@@ -40,110 +40,7 @@ $footerGroups = [
     ],
 ];
 ?>
-<!-- Scoped styles keep this footer update in one file. -->
-<style>
-    .forge-footer {
-        margin: auto 1rem 1rem;
-        padding: clamp(1.5rem, 4vw, 3.5rem);
-        border: 1px solid #dedede;
-        border-radius: 1.5rem;
-        background: #ffffff;
-        color: #171717;
-    }
-    .forge-footer-top {
-        display: grid;
-        grid-template-columns: 1.5fr repeat(4, 1fr);
-        gap: 2rem;
-        padding-bottom: 2.5rem;
-    }
-    .forge-footer-brand { max-width: 340px; }
-    .forge-footer-logo {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
-        color: #171717;
-        font-size: 1.2rem;
-        font-weight: 700;
-        text-decoration: none;
-        letter-spacing: -0.025em;
-    }
-    .forge-footer-mark {
-        display: grid;
-        place-items: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 0.6rem;
-        background: #171717;
-        color: #ffffff;
-        font-size: 0.85rem;
-    }
-    .forge-footer-logo-image { display: block; width: auto; height: 2.4rem; max-width: 180px; object-fit: contain; }
-    .forge-footer-description { margin: 1rem 0 1.25rem; color: #606060; font-size: 0.875rem; }
-    .forge-footer h2 {
-        margin: 0 0 1rem;
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-    }
-    .forge-footer-section > summary {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: .75rem;
-        list-style: none;
-        color: #171717;
-        cursor: pointer;
-    }
-    .forge-footer-section > summary::-webkit-details-marker { display: none; }
-    .forge-footer-heading { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-    .forge-footer-section-icon { display: none; font-size: 1.25rem; font-weight: 400; line-height: 1; }
-    .forge-footer-section[open] .forge-footer-section-icon { transform: rotate(45deg); }
-    .forge-footer-list { display: flex; flex-direction: column; gap: 0.75rem; list-style: none; padding: 0; margin: 0; }
-    .forge-footer-list a,
-    .forge-footer-top-link { color: #606060; font-size: 0.875rem; text-decoration: none; }
-    .forge-footer-list a:hover,
-    .forge-footer-top-link:hover { color: #171717; text-decoration: underline; text-underline-offset: 0.25em; }
-    .forge-footer-bottom {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        border-top: 1px solid #dedede;
-        padding-top: 1.5rem;
-        color: #606060;
-        font-size: 0.8rem;
-    }
-    .forge-footer-note { display: inline-block; padding: 0.3rem 0.65rem; border-radius: 999px; background: #f5f5f5; color: #505050; }
-    @media (max-width: 1100px) {
-        .forge-footer-top { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-        .forge-footer-brand { grid-column: 1 / -1; max-width: 480px; }
-    }
-    @media (max-width: 760px) {
-        .forge-footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 460px) {
-        .forge-footer { margin-right: 0.5rem; margin-left: 0.5rem; border-radius: 1rem; }
-        .forge-footer-top { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 575.98px) {
-        .forge-footer { padding: 1.25rem; }
-        .forge-footer-top { display: block; padding-bottom: .75rem; }
-        .forge-footer-brand { max-width: none; padding-bottom: 1rem; }
-        .forge-footer-description { display: none; }
-        .forge-footer-brand > p:not(.forge-footer-description) { display: none; }
-        .forge-footer-brand .btn { width: 100%; }
-        .forge-footer-section { border-top: 1px solid #dedede; }
-        .forge-footer-section > summary { padding: .8rem 0; }
-        .forge-footer-section-icon { display: inline-block; }
-        .forge-footer-list { gap: .5rem; padding-bottom: .8rem; }
-        .forge-footer-bottom { display: block; padding-top: 1rem; }
-        .forge-footer-bottom > * { margin-bottom: .6rem; }
-        .forge-footer-bottom > :last-child { margin-bottom: 0; }
-    }
-    html[data-theme="dark"] .forge-footer-section > summary { color: #f1f1f1; }
-    html[data-theme="dark"] .forge-footer-section { border-color: #3a3a3a; }
-</style>
+<link rel="stylesheet" href="<?= e(url('assets/css/footer.css?v=' . filemtime(__DIR__ . '/../assets/css/footer.css'))) ?>">
 <footer class="forge-footer">
     <div class="forge-footer-top">
         <div class="forge-footer-brand">
@@ -178,15 +75,7 @@ $footerGroups = [
         <a class="forge-footer-top-link" href="#main-content">Back to content <span aria-hidden="true">&uarr;</span></a>
     </div>
 </footer>
-<script>
-    (() => {
-        const sections = [...document.querySelectorAll('[data-footer-section]')];
-        const mobile = window.matchMedia('(max-width: 575.98px)');
-        const syncFooterSections = () => sections.forEach(section => { section.open = !mobile.matches; });
-        syncFooterSections();
-        mobile.addEventListener?.('change', syncFooterSections);
-    })();
-</script>
+<script src="<?= e(url('assets/js/footer.js?v=' . filemtime(__DIR__ . '/../assets/js/footer.js'))) ?>"></script>
 <?php require_once __DIR__ . '/ai-assistant.php'; ?>
 <script src="<?= e(url('assets/js/ai-assistant.js?v=' . filemtime(__DIR__ . '/../assets/js/ai-assistant.js'))) ?>" defer></script>
 </body>

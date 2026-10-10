@@ -52,6 +52,15 @@ $pageTitle = $pageTitle ?? 'Build Your PC';
         });
 
         (() => {
+            // Restore the mobile menu before the first paint so navigation
+            // never renders a collapsed menu and then animates it open again.
+            try {
+                if (window.matchMedia('(max-width: 1199.98px)').matches
+                    && sessionStorage.getItem('pcforge-navbar-open') === 'open') {
+                    document.documentElement.setAttribute('data-navbar-open', '');
+                }
+            } catch (error) { /* Storage may be unavailable. */ }
+
             try {
                 const saved = localStorage.getItem('pcforge-theme');
                 const preferred = saved === 'dark' || saved === 'light'

@@ -2,17 +2,9 @@
 
 PCForge is a PHP and MariaDB PC component catalog, compatibility builder, comparison tool, shopping cart, demo checkout, customer account area, and administrator workspace. It is designed for a local XAMPP deployment and a school project; no real payments are processed.
 
-## Laravel migration
-
-The Laravel application is being developed in [`PCForge-Laravel`](PCForge-Laravel/README.md)
-with a separate database. Its catalog, email-verified accounts, account settings,
-and administrator overview are implemented. The builder, shopping workflows,
-admin management pages, and external integrations remain in this PHP application.
-See the Laravel README for startup, email configuration, tests, and administrator setup.
-
 ## Features
 
-- Catalog browsing for CPUs, GPUs, motherboards, memory, storage, power supplies, cases, CPU cooling, and monitors.
+- Catalog browsing for CPUs, GPUs, motherboards, memory, storage, power supplies, cases, CPU cooling, case fans, and monitors.
 - Product detail pages with normalized specifications and source descriptions.
 - Eight-step PC builder with compatibility checks and power guidance.
 - Compare up to three products from the same category.
@@ -45,7 +37,7 @@ Keep the folder name `PCForge` unless you also change the base path in [`include
 In phpMyAdmin, create an empty `pcforge` database, select it, and import these two files in order:
 
 1. [`Database/schema.sql`](Database/schema.sql) — application tables and default settings.
-2. [`Database/catalog.sql`](Database/catalog.sql) — the 135 supplied products, image references, and known compatibility support.
+2. [`Database/catalog.sql`](Database/catalog.sql) — 335 products, image references, public source records, and known compatibility support.
 
 Import the catalog only once into a fresh installation. No Python, original spreadsheets, image processing, or additional SQL files are required. Existing installations should keep their database; these files are not an upgrade or a reset.
 
@@ -76,15 +68,18 @@ No QR service, API key, Composer install, or database migration is required.
 The library's license and source details are in `assets/js/vendor/`.
 For scanning from a phone, set `PCFORGE_PUBLIC_URL` in Apache/PHP to a reachable
 LAN or shared site URL, for example `http://192.168.10.105/PCForge`, then restart
-Apache and create/display the receipt again. If it is left blank, the QR uses the
-current browser address; a `localhost` link only works on the same computer. See
-[SHARING.md](SHARING.md) for sharing options.
+Apache and create/display the receipt again. This checkout also sets the value in
+the root `.htaccess`; update that value to match your network. If it is left blank,
+the QR uses the current browser address; a `localhost` link only works on the same
+computer. See [local network sharing](#local-network-sharing) below.
 
 ## Real product data
 
-The catalog contains 15 products in each of nine categories. No supplied case-fan data was available. Prices are in USD. Stock is a snapshot of the project's inventory, originally based on assumed quantities because the source spreadsheets contained no inventory counts. It does not represent verified supplier availability.
+The catalog contains 335 products: 35 in each of nine original categories and 20 case fans. The October 9, 2026 expansion adds 20 real products per category, with locally stored retailer photos and recorded source URLs. Prices are in USD. New prices are reference snapshots converted from Computer Lounge NZD listings (including GST), using 1 NZD = 0.55891 USD on October 8, 2026. They are not live US retail quotes. New stock quantities remain unconfirmed; original inventory quantities are project assumptions.
 
-The website reads products from MariaDB and final images from `assets/images`. All 135 final images are included: 90 transparent PNG derivatives and 45 images that already had transparency. The original `ProductsData` folder, duplicate photos, import tools, and local `.tools` runtime are excluded from the current repository files and are not required to run the website.
+The website reads products from MariaDB and final images from `assets/images`. All 335 catalog image files are included: the original 135 images plus 200 product photos downloaded for the expansion. The original `ProductsData` folder, duplicate photos, one-time preparation tools, and local `.tools` runtime are excluded from the current repository files and are not required to run the website. The repeatable web catalog importer and its reviewed manifest are included for existing installations.
+
+For an existing installation, run `C:/xampp/php/php.exe Database/import_web_catalog.php` to preview the 200 additions, then run the same command with `--apply`. This repeatable upgrade preserves existing products and subsequent admin edits. Fresh installs already receive the additions from `catalog.sql`.
 
 Use Admin > Products and Admin > Inventory to edit the running catalog. The bundled SQL is an installation snapshot; admin edits do not automatically update it. See [`docs/products-data.md`](docs/products-data.md) for details.
 
@@ -125,27 +120,49 @@ For a fresh installation containing only the supplied catalog, use `schema.sql` 
 
 ## Validation
 
-Useful checks include:
+Run the isolated checks first, then the database and HTTP suites as needed:
 
 ```powershell
-C:/xampp/php/php.exe -l product.php
-C:/xampp/php/php.exe tests/catalog-install.php
-C:/xampp/php/php.exe tests/order-workflow.php
-C:/xampp/php/php.exe tests/checkout-builds.php
-C:/xampp/php/php.exe tests/admin-database.php
-C:/xampp/php/php.exe tests/admin-workflows.php
+C:/xampp/php/php.exe tests/run.php
+C:/xampp/php/php.exe tests/run.php --database
+C:/xampp/php/php.exe tests/run.php --http
 ```
 
-The catalog installation check creates a randomly named temporary database, imports both SQL files, checks products and images, and drops that temporary database. It does not modify the configured database. The configured database user needs permission to create and drop databases.
+The default suite uses in-memory SQLite and test doubles. The database suite requires MariaDB; its catalog checks create and drop temporary databases, while access and relationship checks roll back their fixtures. HTTP tests also require a running development site and remove their own disposable records.
 
-The other workflow tests require MariaDB, and HTTP tests also require Apache. Run them against a development installation, not a production database.
+Use `--all` to run all ten scripts. See [`tests/README.md`](tests/README.md) for extensions, database permissions, individual scripts, and `PCFORGE_TEST_URL`.
+
+## Project layout
+
+| Path | Purpose |
+| --- | --- |
+| Root PHP pages | Storefront, account, builder, cart, and checkout routes. |
+| `admin/` | Administrator routes. |
+| `auth/` | Google sign-in handlers. |
+| `includes/` | Shared PHP logic and page fragments. |
+| `assets/` | Stylesheets, browser scripts, and final product images. |
+| `config/` | Database and integration configuration. |
+| `Database/` | Installation SQL and the repeatable catalog upgrade. |
+| `docs/` | Catalog, admin, and AI implementation notes. |
+| `tests/` | CLI checks and the test runner. |
+
+No frontend build step or Composer installation is required. `.editorconfig`
+defines formatting for future edits; generated caches and test previews are
+excluded by `.gitignore`.
+
+## Local network sharing
+
+On a trusted local network, open `http://<computer-LAN-IP>/PCForge/` from another
+device on the same network. Apache must be running and reachable through the
+computer's firewall. Set `PCFORGE_PUBLIC_URL` to that same address for receipt
+QR codes, and update it when the computer's LAN address changes.
 
 ## Git and deployment notes
 
-The current repository includes application code, final catalog images, documentation, and the two setup SQL files. `.gitignore` excludes original source material, preparation tools, obsolete SQL files, database backups, and private exports. Keep your backups outside Git.
+The current repository includes application code, final catalog images, documentation, the two setup SQL files, and the web catalog upgrade importer/manifest. `.gitignore` excludes original source material, preparation tools, obsolete SQL files, database backups, and private exports. Keep your backups outside Git.
 
 Files removed from the current version may still exist in older Git commits. The shallow clone command above avoids downloading that old history; downloading the current branch as a ZIP also includes only current files.
 
 Bootstrap CSS and JavaScript are loaded from jsDelivr, so the default site requires internet access for the full styling and navigation experience. The optional Google and Groq integrations also require outbound HTTPS access.
 
-For local network sharing, see [`SHARING.md`](SHARING.md). For a public deployment, use HTTPS, configure the database credentials and environment variables on the server, update the Google callback URI, and use a proper web-server account instead of the local XAMPP root account.
+For a public deployment, use HTTPS, configure the database credentials and environment variables on the server, update the Google callback URI, and use a proper web-server account instead of the local XAMPP root account.

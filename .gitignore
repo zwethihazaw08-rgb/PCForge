@@ -17,6 +17,11 @@ config/oauth.local.php
 Thumbs.db
 *.swp
 
+# Generated Python bytecode and local test previews.
+__pycache__/
+*.py[cod]
+tests/*-preview.html
+
 # Original sources and one-time preparation tools stay on the maintainer's PC.
 ProductsData/
 Database/import_products_data.php
@@ -35,6 +40,8 @@ Database/*.sql
 Database/migrations/
 
 # Original image copies superseded by the transparent catalog assets.
+assets/images/web-20261009-*
+!assets/images/web-20261009-*-transparent.png
 assets/images/productsdata-cpu-1.jpg
 assets/images/productsdata-cpu-2.jpg
 assets/images/productsdata-cpu-3.jpg

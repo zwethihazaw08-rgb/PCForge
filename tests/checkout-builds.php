@@ -7,7 +7,7 @@ $pdo = db();
 $tag = 'checkout_test_' . bin2hex(random_bytes(6));
 $password = bin2hex(random_bytes(20));
 $users = []; $parts = []; $cookies = [];
-$base = getenv('PCFORGE_TEST_URL') ?: 'http://localhost/PCForge/';
+$base = rtrim(getenv('PCFORGE_TEST_URL') ?: 'http://localhost/PCForge/', '/') . '/';
 
 function verify_checkout(bool $ok, string $message): void
 {
