@@ -2,9 +2,14 @@
 
 // Include this after header.php, which loads e() and url().
 $currentPage = basename($_SERVER['SCRIPT_NAME'] ?? '');
-$navPage = $currentPage === 'product.php' ? 'products.php' : $currentPage;
+$navPage = match ($currentPage) {
+    'product.php' => 'products.php',
+    'build-summary.php' => 'builder.php',
+    default => $currentPage,
+};
 $navLinks = [
     'index.php' => 'Home',
+    'builder.php' => 'PC Builder',
     'products.php' => 'Components',
     'prebuilts.php' => 'Prebuilt PCs',
     'compare.php' => 'Compare',
@@ -33,8 +38,6 @@ $currentUser = auth_user();
                 <a class="lg-item<?= $navPage === $path ? ' active' : '' ?>" href="<?= e(url($path)) ?>" <?= $navPage === $path ? 'aria-current="page"' : '' ?>><?= e($label) ?></a>
             <?php endforeach; ?>
         </div>
-
-        <a class="lg-build" href="<?= e(url('builder.php')) ?>" <?= $currentPage === 'builder.php' ? 'aria-current="page"' : '' ?>>Build Your PC <span aria-hidden="true">&rarr;</span></a>
 
         <div class="lg-actions">
             <button class="lg-control lg-theme-toggle lg-desktop-theme" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">&#9790;</button>
